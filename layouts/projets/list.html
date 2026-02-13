@@ -1,0 +1,196 @@
+{{ define "main" }}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<style>
+  :root {
+    --primary: #3b82f6;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --border: rgba(255, 255, 255, 0.1);
+  }
+  
+  html:not(.dark) {
+    --primary: #2563eb;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border: #e2e8f0;
+  }
+
+  .projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 15px;
+  }
+  .page-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    height: 100%;
+    position: relative;
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .img-wrapper {
+    height: 200px;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .img-wrapper img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin: 0 0 10px 0;
+  }
+  .card-summary {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .card-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .badge-wip {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #eab308;
+    color: #422006;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 2rem; }
+  }
+</style>
+
+<div class="projects-container">
+  
+  <header class="page-header">
+    <h1 class="page-title">Projets & Recherche</h1>
+    <p class="page-desc">
+      Une sélection de mes travaux en optimisation convexe, modélisation stochastique et data science.
+    </p>
+  </header>
+
+  <div class="projects-grid">
+    {{ range .Pages }}
+      <a href="{{ .RelPermalink }}" class="project-card">
+        
+        {{ if in .Title "Bandit" }}
+          <div class="badge-wip">En cours</div>
+        {{ end }}
+
+        <div class="img-wrapper">
+          {{ with .Resources.GetMatch "feature.*" }}
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+          {{ else }}
+            <span style="color:#ccc; font-weight:bold;">Code</span>
+          {{ end }}
+        </div>
+
+        <div class="card-body">
+          <h2 class="card-title">{{ .Title }}</h2>
+          <p class="card-summary">
+            {{ .Description | default .Summary }}
+          </p>
+          
+          <div class="card-footer">
+            <span style="font-family: monospace;">
+              {{ if .Params.tags }}
+                #{{ index .Params.tags 0 }}
+              {{ else }}
+                {{ .Date.Format "2006" }}
+              {{ end }}
+            </span>
+            <span>Voir le projet →</span>
+          </div>
+        </div>
+      </a>
+    {{ end }}
+  </div>
+
+</div>
+
+{{ end }}

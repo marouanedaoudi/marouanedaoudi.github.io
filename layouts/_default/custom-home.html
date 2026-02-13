@@ -1,0 +1,303 @@
+{{ define "main" }}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+<style>
+  :root {
+    --primary: #2563eb;
+    --github: #1f2937;
+    --contact: #059669;
+    
+    --bg-card: #ffffff;       
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  html.dark {
+    --primary: #3b82f6;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  }
+
+  footer { display: none !important; }
+
+  .layout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  .profile-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
+    text-align: center;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.3s, border 0.3s;
+  }
+
+  .profile-img {
+    display: block;
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    margin: 0 auto 20px auto;
+    border: 4px solid var(--primary);
+    object-fit: cover;
+  }
+
+  .tag-container {
+    display: flex; 
+    gap: 6px; 
+    justify-content: center; 
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+
+  .tag {
+    font-size: 0.7rem; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    padding: 4px 8px; 
+    border-radius: 4px;
+    background: rgba(37, 99, 235, 0.1); 
+    color: var(--primary);
+  }
+
+  .buttons-stack {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-uniform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    color: white !important;
+    transition: transform 0.2s, opacity 0.2s;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .btn-uniform:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  .btn-cv { background-color: var(--primary); }
+  .btn-gh { background-color: var(--github); }
+  .btn-mail { background-color: var(--contact); }
+
+  .main-content {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .bio-section h2 {
+    font-size: 2rem; 
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+    letter-spacing: -0.02em;
+    transition: color 0.3s;
+  }
+  .bio-text {
+    font-size: 1.15rem; 
+    line-height: 1.7; 
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+  .bio-text strong {
+    color: var(--text-main);
+  }
+
+  .project-header {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    transition: transform 0.2s, border-color 0.2s, background 0.3s;
+    height: 100%;
+    box-shadow: var(--shadow);
+  }
+  .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+  }
+
+  .project-img-container {
+    height: 180px;
+    width: 100%;
+    background: #ffffff;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; 
+  }
+
+  .project-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .project-title {
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    color: var(--primary); 
+    margin: 0 0 10px 0;
+  }
+
+  .project-desc {
+    font-size: 0.9rem; 
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 1024px) {
+    .layout-container { flex-direction: column; gap: 40px; }
+    .profile-sidebar { width: 100%; position: static; }
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .project-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="layout-container">
+
+  <aside class="profile-sidebar">
+    <img src="https://github.com/marouanedaoudi.png" class="profile-img" alt="Profil">
+    
+    <h1 style="font-size: 1.6rem; color: var(--text-main); margin: 0 0 5px 0; font-weight: 800;">Marouane Daoudi</h1>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">M1 Mathématiques Appliquées<br>Université de Montpellier</p>
+
+    <div class="tag-container">
+      <span class="tag">Optimisation</span>
+      <span class="tag">Statistique</span>
+      <span class="tag">Python / R</span>
+    </div>
+
+    <div class="buttons-stack">
+      <a href="/uploads/CV.pdf" class="btn-uniform btn-cv">
+        <span style="margin-right: 8px;">📄</span> CV
+      </a>
+      <a href="https://github.com/marouanedaoudi" class="btn-uniform btn-gh">
+        <span style="margin-right: 8px;">💻</span> GitHub
+      </a>
+      <a href="mailto:marouane.daoudi@etu.umontpellier.fr" class="btn-uniform btn-mail">
+        <span style="margin-right: 8px;">✉️</span> Contact
+      </a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    
+    <section class="bio-section">
+      <h2>À propos</h2>
+      <p class="bio-text">
+        Étudiant en <strong>Master 1</strong> de mathématiques appliquées à l'Université de Montpellier, spécialisé en <strong>statistique et science des données</strong>.
+      </p>
+    </section>
+
+    <section>
+      <div class="project-header">
+        <span>🚀</span> Projets Récents
+      </div>
+
+      <div class="project-grid">
+        
+        {{ range first 3 (where .Site.RegularPages "Section" "projets") }}
+        <a href="{{ .RelPermalink }}" class="project-card">
+          
+          <div class="project-img-container">
+            {{ with .Resources.GetMatch "feature.*" }}
+              <img src="{{ .RelPermalink }}" class="project-img" alt="{{ $.Title }}">
+            {{ else }}
+              <span style="color: #333; font-weight: bold;">Code</span>
+            {{ end }}
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title">{{ .Title }}</h3>
+            
+            <p class="project-desc">
+              {{ .Description | default .Summary | default "Projet d'analyse mathématique et d'implémentation algorithmique." }}
+            </p>
+            
+            <div style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">
+               {{ .Date.Format "2006" }} &bull; Voir détails →
+            </div>
+          </div>
+        </a>
+        {{ end }}
+
+      </div>
+    </section>
+
+  </main>
+</div>
+{{ end }}

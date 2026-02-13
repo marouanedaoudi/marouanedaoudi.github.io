@@ -1,0 +1,42 @@
+baseURL = "https://marouanedaoudi.github.io/"
+languageCode = "fr"
+title = "Marouane Daoudi"
+theme = "blowfish"
+
+[menu]
+  [[menu.main]]
+    name = "Accueil"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "Notes"
+    url = "/notes/"
+    weight = 20
+  [[menu.main]]
+    name = "Projets"
+    url = "/projets/"
+    weight = 30
+  [[menu.main]]
+    name = "Contact"
+    url = "mailto:marouane.daoudi@etu.umontpellier.fr"
+    weight = 40
+
+[params]
+  colorScheme = "ocean"
+  defaultAppearance = "dark"
+  
+[params.homepage]
+  layout = "simple"
+  showTitle = false
+  showRecent = false
+
+[params.article]
+  math = true
+  showDate = false
+  showAuthor = false
+
+[params.mathematics]
+  enable = true
+
+[markup.goldmark.renderer]
+  unsafe = true
