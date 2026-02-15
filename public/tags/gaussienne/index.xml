@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gaussienne on Marouane Daoudi</title>
+    <link>http://localhost:1313/tags/gaussienne/</link>
+    <description>Recent content in Gaussienne on Marouane Daoudi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr</language>
+    <copyright>© 2026 </copyright>
+    <lastBuildDate>Fri, 14 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/gaussienne/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Convergence d&#39;une suite de Gaussiennes</title>
+      <link>http://localhost:1313/notes/convergence-gaussienne/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/notes/convergence-gaussienne/</guid>
+      <description>Démonstration via les fonctions caractéristiques.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

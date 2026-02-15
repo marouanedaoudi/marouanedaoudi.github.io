@@ -15,35 +15,43 @@
 
   
   
-    <title>Tags &middot; Marouane Daoudi</title>
-    <meta name="title" content="Tags &middot; Marouane Daoudi">
+    <title>Convergence d&#39;une suite de Gaussiennes &middot; Marouane Daoudi</title>
+    <meta name="title" content="Convergence d&#39;une suite de Gaussiennes &middot; Marouane Daoudi">
+  
+
+  
+  
+    <meta name="description" content="Démonstration via les fonctions caractéristiques.">
+  
+  
+    <meta name="keywords" content="Gaussienne,Convergence en loi,">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/notes/convergence-gaussienne/">
   
 
   
   
   
-  
-  
-  <link rel="canonical" href="http://localhost:1313/tags/">
-  
-    
-      <link rel="alternate" type="application/rss+xml" href="/tags/index.xml" title="Marouane Daoudi" />
-  
 
   
-  
-  
-
-  
-  <meta property="og:url" content="http://localhost:1313/tags/">
+  <meta property="og:url" content="http://localhost:1313/notes/convergence-gaussienne/">
   <meta property="og:site_name" content="Marouane Daoudi">
-  <meta property="og:title" content="Tags">
+  <meta property="og:title" content="Convergence d&#39;une suite de Gaussiennes">
+  <meta property="og:description" content="Démonstration via les fonctions caractéristiques.">
   <meta property="og:locale" content="fr">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="notes">
+    <meta property="article:published_time" content="2025-02-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-14T00:00:00+00:00">
+    <meta property="article:tag" content="Gaussienne">
+    <meta property="article:tag" content="Convergence en Loi">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tags">
+  <meta name="twitter:title" content="Convergence d&#39;une suite de Gaussiennes">
+  <meta name="twitter:description" content="Démonstration via les fonctions caractéristiques.">
 
   
   
@@ -192,12 +200,12 @@
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Tags",
-    "name": "Tags",
-    "headline": "Tags",
+    "articleSection": "Mes Notes \u0026 Exercices",
+    "name": "Convergence d\u0027une suite de Gaussiennes",
+    "headline": "Convergence d\u0027une suite de Gaussiennes",
     
     "inLanguage": "fr",
-    "url" : "http://localhost:1313/tags/",
+    "url" : "http://localhost:1313/notes/convergence-gaussienne/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -208,10 +216,10 @@
     
     "dateModified": "2025-02-14T00:00:00\u002b00:00",
     
-    
+    "keywords": ["Gaussienne","Convergence en loi"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "0"
+    "wordCount": "237"
   }]
   </script>
 
@@ -537,390 +545,135 @@
     <div class="relative flex flex-col grow">
       <main id="main-content" class="grow">
         
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},   
+                {left: '$', right: '$', display: false},    
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });
+    });
+</script>
+
+<article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
   
-  
-  <header class="mt-5">
+  <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Convergence d&#39;une suite de Gaussiennes</h1>
     
-    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Tags</h1>
-    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
+      <span class="text-neutral-500 font-medium">14 Feb 2025</span>
       
-
-
-
-
-
-  
-  
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-  </div>
-
-
+      
+        <div class="flex gap-2">
+          
+            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+              Gaussienne
+            </span>
+          
+            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+              Convergence en loi
+            </span>
+          
+        </div>
+      
     </div>
   </header>
+
+  <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed 
+              prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
+              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+              prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
+    
+  
+  
+  
   
 
+
+
+<div
   
-
-    <section class="flex flex-wrap max-w-prose -mx-2 overflow-hidden">
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/borel-cantelli/"
-      >Borel-Cantelli</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        2
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence/"
-      >Convergence</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence-en-loi/"
-      >Convergence en Loi</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence-p.s./"
-      >Convergence P.s.</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/covariance/"
-      >Covariance</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/data-science/"
-      >Data Science</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/fonction-de-r%C3%A9partition/"
-      >Fonction De Répartition</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/fondamental/"
-      >Fondamental</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/gaussienne/"
-      >Gaussienne</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/ind%C3%A9pendance/"
-      >Indépendance</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/in%C3%A9galit%C3%A9/"
-      >Inégalité</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/mesure/"
-      >Mesure</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/numpy/"
-      >NumPy</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/optimisation/"
-      >Optimisation</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/python/"
-      >Python</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        2
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/r/"
-      >R</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/reinforcement-learning/"
-      >Reinforcement Learning</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/slutsky/"
-      >Slutsky</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/statistiques/"
-      >Statistiques</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/stochastique/"
-      >Stochastique</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-    </section>
+    class="flex px-4 py-3 rounded-md shadow bg-primary-100 dark:bg-primary-900"
   
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><p><strong>Énoncé :</strong>
+Soit $(X_n)_{n \in \mathbb{N}}$ une famille de variables aléatoires gaussiennes, centrées, de variance $(\sigma_n^2)_{n \in \mathbb{N}}$ convergeant en loi vers une variable aléatoire $X$.</p>
+<ol>
+<li>Montrer que la suite $(\sigma_n^2)_{n \in \mathbb{N}}$ est convergente et en déduire que $X$ suit une loi gaussienne.</li>
+<li>On suppose que $X_n \to X$ en probabilité. Démontrer que $X_n$ converge vers $X$ dans tous les espaces $L^p$.</li>
+</ol></span>
+</div>
+
+
+<h2 class="relative group">Solution
+    <div id="solution" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#solution" aria-label="Ancre">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">1. Convergence de la variance et loi de X
+    <div id="1-convergence-de-la-variance-et-loi-de-x" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-convergence-de-la-variance-et-loi-de-x" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<p>Calculons la fonction caractéristique de $X_n$.
+La fonction caractéristique de $X_n \sim \mathcal{N}(0, \sigma_n^2)$ est donnée par :</p>
+<p>$$\forall t \in \mathbb{R}, \quad \varphi_{X_n}(t) = e^{-\frac{t^2\sigma_n^2}{2}}$$</p>
+<p>On sait que la suite $(X_n)$ converge en loi vers $X$. Par le théorème de Lévy, la suite des fonctions caractéristiques converge ponctuellement vers la fonction caractéristique de $X$ :
+$$\lim_{n \rightarrow +\infty}\varphi_{X_n}(t) = \varphi_X(t)$$</p>
+<p>Fixons $t \neq 0$. Par continuité du logarithme :
+$$\lim_{n \rightarrow +\infty} -\frac{t^2\sigma_n^2}{2} = \ln(\varphi_{X}(t))$$</p>
+<p>On en déduit que la suite $(\sigma_n^2)$ converge vers une limite $\sigma^2$.
+En repassant à la limite :
+$$\varphi_X(t) = e^{-\frac{t^2\sigma^2}{2}}$$
+Ceci est la fonction caractéristique d&rsquo;une variable aléatoire gaussienne $\mathcal{N}(0, \sigma^2)$.</p>
+<p>$$\boxed{X \sim \mathcal{N}(0, \sigma^2)}$$</p>
+
+<h3 class="relative group">2. Convergence dans $L^p$
+    <div id="2-convergence-dans-lp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-convergence-dans-lp" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<p>On suppose maintenant que $X_n \xrightarrow{\mathbb{P}} X$.
+Pour montrer la convergence dans $L^p$, il suffit de montrer que la suite $(|X_n|^p)_n$ est uniformément intégrable.
+Pour des gaussiennes, la convergence des moments (due à la convergence des variances $\sigma_n \to \sigma$) suffit à assurer l&rsquo;uniforme intégrabilité.</p>
+
+  </div>
+
+</article>
 
         
 

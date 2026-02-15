@@ -1,5 +1,9 @@
-+++
-date = '2026-02-13T22:27:46+01:00'
-draft = true
-title = 'Notes'
-+++
+---
+title: "Mes Notes & Exercices"
+layout: "list"
+description: "Probabilités, Mesure et Intégration."
+showAuthor: false
+showDate: true
+---
+
+Retrouvez ici l'ensemble de mes démonstrations, fiches de révision et exercices corrigés.

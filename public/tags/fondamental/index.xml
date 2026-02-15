@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fondamental on Marouane Daoudi</title>
+    <link>http://localhost:1313/tags/fondamental/</link>
+    <description>Recent content in Fondamental on Marouane Daoudi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr</language>
+    <copyright>© 2026 </copyright>
+    <lastBuildDate>Fri, 14 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/fondamental/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Démonstration : Lemmes de Borel-Cantelli</title>
+      <link>http://localhost:1313/notes/lemme-borel-cantelli-demo/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/notes/lemme-borel-cantelli-demo/</guid>
+      <description>Preuve complète des deux lemmes (Convergence et Divergence).</description>
+      
+    </item>
+    
+  </channel>
+</rss>

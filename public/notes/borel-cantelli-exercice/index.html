@@ -15,35 +15,43 @@
 
   
   
-    <title>Tags &middot; Marouane Daoudi</title>
-    <meta name="title" content="Tags &middot; Marouane Daoudi">
+    <title>Exercice : Convergence p.s. et Borel-Cantelli &middot; Marouane Daoudi</title>
+    <meta name="title" content="Exercice : Convergence p.s. et Borel-Cantelli &middot; Marouane Daoudi">
+  
+
+  
+  
+    <meta name="description" content="Application du lemme de Borel-Cantelli.">
+  
+  
+    <meta name="keywords" content="Borel-Cantelli,Convergence p.s.,">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/notes/borel-cantelli-exercice/">
   
 
   
   
   
-  
-  
-  <link rel="canonical" href="http://localhost:1313/tags/">
-  
-    
-      <link rel="alternate" type="application/rss+xml" href="/tags/index.xml" title="Marouane Daoudi" />
-  
 
   
-  
-  
-
-  
-  <meta property="og:url" content="http://localhost:1313/tags/">
+  <meta property="og:url" content="http://localhost:1313/notes/borel-cantelli-exercice/">
   <meta property="og:site_name" content="Marouane Daoudi">
-  <meta property="og:title" content="Tags">
+  <meta property="og:title" content="Exercice : Convergence p.s. et Borel-Cantelli">
+  <meta property="og:description" content="Application du lemme de Borel-Cantelli.">
   <meta property="og:locale" content="fr">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="notes">
+    <meta property="article:published_time" content="2025-02-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-14T00:00:00+00:00">
+    <meta property="article:tag" content="Borel-Cantelli">
+    <meta property="article:tag" content="Convergence P.s.">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tags">
+  <meta name="twitter:title" content="Exercice : Convergence p.s. et Borel-Cantelli">
+  <meta name="twitter:description" content="Application du lemme de Borel-Cantelli.">
 
   
   
@@ -192,12 +200,12 @@
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Tags",
-    "name": "Tags",
-    "headline": "Tags",
+    "articleSection": "Mes Notes \u0026 Exercices",
+    "name": "Exercice : Convergence p.s. et Borel-Cantelli",
+    "headline": "Exercice : Convergence p.s. et Borel-Cantelli",
     
     "inLanguage": "fr",
-    "url" : "http://localhost:1313/tags/",
+    "url" : "http://localhost:1313/notes/borel-cantelli-exercice/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -208,10 +216,10 @@
     
     "dateModified": "2025-02-14T00:00:00\u002b00:00",
     
-    
+    "keywords": ["Borel-Cantelli","Convergence p.s."],
     
     "mainEntityOfPage": "true",
-    "wordCount": "0"
+    "wordCount": "214"
   }]
   </script>
 
@@ -537,390 +545,118 @@
     <div class="relative flex flex-col grow">
       <main id="main-content" class="grow">
         
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},   
+                {left: '$', right: '$', display: false},    
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });
+    });
+</script>
+
+<article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
   
-  
-  <header class="mt-5">
+  <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Exercice : Convergence p.s. et Borel-Cantelli</h1>
     
-    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Tags</h1>
-    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
+      <span class="text-neutral-500 font-medium">14 Feb 2025</span>
       
-
-
-
-
-
-  
-  
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  <div class="flex flex-row flex-wrap items-center">
-    
-    
-  </div>
-
-
+      
+        <div class="flex gap-2">
+          
+            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+              Borel-Cantelli
+            </span>
+          
+            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+              Convergence p.s.
+            </span>
+          
+        </div>
+      
     </div>
   </header>
+
+  <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed 
+              prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
+              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+              prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
+    
+  
+  
+  
   
 
+
+
+<div
   
-
-    <section class="flex flex-wrap max-w-prose -mx-2 overflow-hidden">
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/borel-cantelli/"
-      >Borel-Cantelli</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        2
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence/"
-      >Convergence</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence-en-loi/"
-      >Convergence en Loi</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/convergence-p.s./"
-      >Convergence P.s.</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/covariance/"
-      >Covariance</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/data-science/"
-      >Data Science</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/fonction-de-r%C3%A9partition/"
-      >Fonction De Répartition</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/fondamental/"
-      >Fondamental</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/gaussienne/"
-      >Gaussienne</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/ind%C3%A9pendance/"
-      >Indépendance</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/in%C3%A9galit%C3%A9/"
-      >Inégalité</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/mesure/"
-      >Mesure</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/numpy/"
-      >NumPy</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/optimisation/"
-      >Optimisation</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/python/"
-      >Python</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        2
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/r/"
-      >R</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/reinforcement-learning/"
-      >Reinforcement Learning</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/slutsky/"
-      >Slutsky</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/statistiques/"
-      >Statistiques</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-        <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-  <h2 class="flex items-center">
-    <a
-      class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-      href="/tags/stochastique/"
-      >Stochastique</a
-    >
-    
-      <span class="px-2 text-base text-primary-500">&middot;</span>
-      <span class="text-base text-neutral-400">
-        1
-      </span>
-    
-  </h2>
-</article>
-
-      
-    </section>
+    class="flex px-4 py-3 rounded-md shadow bg-primary-100 dark:bg-primary-900"
   
+  >
+  <span
+    
+      class="text-primary-400 pe-3 flex items-center"
+    
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><p><strong>Énoncé :</strong>
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles. On suppose qu&rsquo;il existe une suite de réels $(a_n)_{n \in \mathbb{N}}$ telle que les séries suivantes soient convergentes :</p>
+<ol>
+<li>$\sum_{n \in \mathbb{N}} a_n$</li>
+<li>$\sum_{n \in \mathbb{N}} P(X_n \neq a_n)$</li>
+</ol>
+<p>Démontrer que la série $\sum_{n \in \mathbb{N}} X_n$ est convergente presque sûrement.</p>
+</span>
+</div>
+
+
+<h2 class="relative group">Solution
+    <div id="solution" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#solution" aria-label="Ancre">#</a>
+    </span>
+    
+</h2>
+<p>Nous allons utiliser le <strong>premier lemme de Borel-Cantelli</strong>.</p>
+<p>Posons l&rsquo;événement $A_n = {X_n \neq a_n}$.
+L&rsquo;hypothèse nous dit que $\sum_{n \in \mathbb{N}} P(A_n) &lt; +\infty$.</p>
+<p>D&rsquo;après le lemme de Borel-Cantelli, cela implique que la probabilité que $A_n$ se réalise une infinité de fois est nulle :
+$$P(\limsup_{n \rightarrow +\infty} A_n) = 0$$</p>
+<p>Cela signifie que pour presque tout $\omega \in \Omega$, l&rsquo;événement $A_n$ ne se réalise qu&rsquo;un nombre fini de fois.
+Autrement dit, pour presque tout $\omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que :
+$$\forall n \geq N(\omega), \quad X_n(\omega) = a_n$$</p>
+<p>Regardons maintenant la série $\sum X_n$. Pour un $\omega$ fixé (dans l&rsquo;ensemble de mesure 1), on peut découper la somme :
+$$\sum_{n=0}^{+\infty} X_n(\omega) = \sum_{n=0}^{N(\omega)-1} X_n(\omega) + \sum_{n=N(\omega)}^{+\infty} a_n$$</p>
+<ul>
+<li>Le premier terme est une somme finie.</li>
+<li>Le second terme est le reste d&rsquo;une série numérique convergente.</li>
+</ul>
+<p>La somme de deux termes finis étant finie, la série converge p.s.</p>
+<p>$$\boxed{\sum_{n \in \mathbb{N}}X_n \quad \text{converge p.s.}}$$</p>
+
+  </div>
+
+</article>
 
         
 
