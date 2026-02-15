@@ -3,6 +3,9 @@ languageCode = "fr"
 title = "Marouane Daoudi"
 theme = "blowfish"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [menu]
   [[menu.main]]
     name = "Accueil"
@@ -21,22 +24,23 @@ theme = "blowfish"
     url = "mailto:marouane.daoudi@etu.umontpellier.fr"
     weight = 40
 
+# --- CONFIGURATION PRINCIPALE ---
 [params]
   colorScheme = "ocean"
   defaultAppearance = "dark"
   
-[params.homepage]
-  layout = "simple"
-  showTitle = false
-  showRecent = false
+  # Footer : On désactive les deux crédits
+  footer.showPoweredBy = false
+  footer.showTheme = false
+  footer.showCopyright = true
+  
+  # Le reste de tes params...
+  homepage.layout = "simple"
+  homepage.showTitle = false
+  homepage.showRecent = false
 
-[params.article]
-  math = true
-  showDate = false
-  showAuthor = false
+  article.math = true
+  article.showDate = false
+  article.showAuthor = false
 
-[params.mathematics]
-  enable = true
-
-[markup.goldmark.renderer]
-  unsafe = true
+  mathematics.enable = true
