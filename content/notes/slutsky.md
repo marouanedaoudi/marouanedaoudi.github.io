@@ -17,24 +17,30 @@ Montrer que $X\_n + Y\_n \xrightarrow{\mathcal{L}} X$.
 
 ## Démonstration
 
-Pour montrer la convergence en loi, il suffit de montrer que pour toute fonction $\phi$ continue bornée ($\phi \in C_b(\mathbb{R})$), on a convergence des espérances.
-Soit $\phi \in C_b(\mathbb{R})$ uniformément continue.
+Pour montrer la convergence en loi, il suffit de montrer que pour toute fonction $\phi$ continue bornée ($\phi \in C\_b(\mathbb{R})$), on a convergence des espérances.
+Soit $\phi \in C\_b(\mathbb{R})$ uniformément continue.
 
 Décomposons la différence :
 
-$$\left| \mathbb{E}[\phi(X\_n+Y\_n)] - \mathbb{E}[\phi(X)] \right| \leq \underbrace{\left| \mathbb{E}[\phi(X\_n+Y\_n)] - \mathbb{E}[\phi(X\_n)] \right|}_{A\_n} + \underbrace{\left| \mathbb{E}[\phi(X\_n)] - \mathbb{E}[\phi(X)] \right|}_{B\_n}$$
+$$
+\left| \mathbb{E}[\phi(X\_n+Y\_n)] - \mathbb{E}[\phi(X)] \right| \leq \underbrace{\left| \mathbb{E}[\phi(X\_n+Y\_n)] - \mathbb{E}[\phi(X\_n)] \right|}\_{A\_n} + \underbrace{\left| \mathbb{E}[\phi(X\_n)] - \mathbb{E}[\phi(X)] \right|}\_{B\_n}
+$$
 
 * **Terme $B\_n$ :** Comme $X\_n \xrightarrow{\mathcal{L}} X$, par définition $\lim_{n \to \infty} B\_n = 0$.
 * **Terme $A\_n$ :**
   Soit $\epsilon > 0$. Il existe $\eta > 0$ tel que $|x-y| < \eta \implies |\phi(x)-\phi(y)| < \epsilon$.
 
-  $$A\_n \leq \mathbb{E}\left[ \left| \phi(X\_n+Y\_n) - \phi(X\_n) \right| \mathbb{1}_{|Y\_n| \le \eta} \right] + \mathbb{E}\left[ \left| \phi(X\_n+Y\_n) - \phi(X\_n) \right| \mathbb{1}_{|Y\_n| > \eta} \right]$$
+  $$
+  A\_n \leq \mathbb{E}\left[ \left| \phi(X\_n+Y\_n) - \phi(X\_n) \right| \mathbb{1}\_{|Y\_n| \le \eta} \right] + \mathbb{E}\left[ \left| \phi(X\_n+Y\_n) - \phi(X\_n) \right| \mathbb{1}\_{|Y\_n| > \eta} \right]
+  $$
 
   * Si $|Y\_n| \le \eta$, alors $|\phi(X\_n+Y\_n) - \phi(X\_n)| < \epsilon$.
-  * Si $|Y\_n| > \eta$, on majore par $2 \|\phi\|_\infty$.
+  * Si $|Y\_n| > \eta$, on majore par $2 \|\phi\|\_\infty$.
 
   Donc :
-  $$A\_n \leq \epsilon + 2 \|\phi\|_\infty \mathbb{P}(|Y\_n| > \eta)$$
+  $$
+  A\_n \leq \epsilon + 2 \|\phi\|\_\infty \mathbb{P}(|Y\_n| > \eta)
+  $$
 
   Comme $Y\_n \xrightarrow{\mathbb{P}} 0$, pour $n$ assez grand, $\mathbb{P}(|Y\_n| > \eta)$ tend vers 0.
   Ainsi $A\_n \to 0$.
