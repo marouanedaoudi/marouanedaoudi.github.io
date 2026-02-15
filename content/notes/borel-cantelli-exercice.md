@@ -3,39 +3,25 @@ title: "Exercice : Convergence p.s. et Borel-Cantelli"
 date: 2025-02-14
 tags: ["Borel-Cantelli", "Convergence p.s."]
 math: true
-summary: "Application du lemme de Borel-Cantelli."
+summary: "Utilisation évidente du lemme de Borel-Cantelli."
 ---
 
 {{< alert icon="circle-info" >}}
 **Énoncé :**
-Soit $(X\_n)\_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles. On suppose qu'il existe une suite de réels $(a\_n)\_{n \in \mathbb{N}}$ telle que les séries suivantes soient convergentes :
-
-1. $\sum\_{n \in \mathbb{N}} a\_n$
-2. $\sum\_{n \in \mathbb{N}} P(X\_n \neq a\_n)$
-
-Démontrer que la série $\sum\_{n \in \mathbb{N}} X\_n$ est convergente presque sûrement.
+Soit $(X\_n)\_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles sur un espace probabilisé $(\Omega, \mathcal{A}, P)$. On suppose qu'il existe une suite de réels $(a\_n)\_{n \in \mathbb{N}}$ telle que les séries
+$$ \sum\_{n \in \mathbb{N}}a\_n \; \; \text{et} \; \; \sum\_{n \in \mathbb{N}}P(X\_n \not= a\_n) $$
+soient convergentes. Démontrer que la série $\sum\_{n \in \mathbb{N}}X\_n$ est $p.s$ convergente.
 {{< /alert >}}
 
-## Solution
+## Ma solution :
 
-Nous allons utiliser le **premier lemme de Borel-Cantelli**.
+Il est évident d'utiliser le lemme de Borel-Cantelli ici.
+Comme $\sum\_{n \in \mathbb{N}}P(X\_n \not= a\_n)<+\infty$, alors $P(\limsup\_{n \rightarrow +\infty}\\{X\_n\not=a\_n\\})=0$.
 
-Posons l'événement $A\_n = \{X\_n \neq a\_n\}$.
-L'hypothèse nous dit que $\sum\_{n \in \mathbb{N}} P(A\_n) < +\infty$.
+Cela signifie que l'ensemble des $\omega \in \Omega$ tel que $X\_n(\omega)\not=a\_n$ pour une infinité de $n$ est de mesure nulle. Par conséquent, pour presque tout $\omega \in \Omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que pour tout $n \geq N(\omega)$, on a $X\_n=a\_n$.
 
-D'après le lemme de Borel-Cantelli, cela implique que la probabilité que $A\_n$ se réalise une infinité de fois est nulle :
-$$P(\limsup\_{n \rightarrow +\infty} A\_n) = 0$$
+Donc :
+$$ \sum\_{n \in \mathbb{N}}X\_n=\sum\_{n <N}X\_n+\sum\_{n \geq N}a\_n<+\infty $$
 
-Cela signifie que pour presque tout $\omega \in \Omega$, l'événement $A\_n$ ne se réalise qu'un nombre fini de fois.
-Autrement dit, pour presque tout $\omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que :
-$$\forall n \geq N(\omega), \quad X\_n(\omega) = a\_n$$
-
-Regardons maintenant la série $\sum X\_n$. Pour un $\omega$ fixé (dans l'ensemble de mesure 1), on peut découper la somme :
-$$\sum\_{n=0}^{+\infty} X\_n(\omega) = \sum\_{n=0}^{N(\omega)-1} X\_n(\omega) + \sum\_{n=N(\omega)}^{+\infty} a\_n$$
-
-* Le premier terme est une somme finie.
-* Le second terme est le reste d'une série numérique convergente.
-
-La somme de deux termes finis étant finie, la série converge p.s.
-
-$$\boxed{\sum\_{n \in \mathbb{N}}X\_n \quad \text{converge p.s.}}$$
+Car $\sum\_{n <N}X\_n$ est une somme finie de réels et donc elle est finie presque sûrement.
+Ce qui conclut. $\blacksquare$

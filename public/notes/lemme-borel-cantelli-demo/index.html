@@ -21,7 +21,7 @@
 
   
   
-    <meta name="description" content="Preuve complète des deux lemmes (Convergence et Divergence).">
+    <meta name="description" content="Preuve complète des deux lemmes.">
   
   
     <meta name="keywords" content="Fondamental,Borel-Cantelli,Indépendance,">
@@ -39,7 +39,7 @@
   <meta property="og:url" content="http://localhost:1313/notes/lemme-borel-cantelli-demo/">
   <meta property="og:site_name" content="Marouane Daoudi">
   <meta property="og:title" content="Démonstration : Lemmes de Borel-Cantelli">
-  <meta property="og:description" content="Preuve complète des deux lemmes (Convergence et Divergence).">
+  <meta property="og:description" content="Preuve complète des deux lemmes.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -52,7 +52,7 @@
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Démonstration : Lemmes de Borel-Cantelli">
-  <meta name="twitter:description" content="Preuve complète des deux lemmes (Convergence et Divergence).">
+  <meta name="twitter:description" content="Preuve complète des deux lemmes.">
 
   
   
@@ -220,7 +220,7 @@
     "keywords": ["Fondamental","Borel-Cantelli","Indépendance"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "239"
+    "wordCount": "326"
   }]
   </script>
 
@@ -596,48 +596,70 @@
               prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
               prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
-    <p>Soit $(A_n)$ une suite d&rsquo;événements. On note $A = \limsup A_n = \{ \omega : \omega \in A_n \text{ pour une infinité de } n \}$.</p>
+    
+  
+  
+  
+  
 
-<h2 class="relative group">1. Premier Lemme (Convergence)
-    <div id="1-premier-lemme-convergence" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-premier-lemme-convergence" aria-label="Ancre">#</a>
-    </span>
-    
-</h2>
-<p><strong>Théorème :</strong> Si $\sum \mathbb{P}(A_n) &lt; +\infty$, alors $\mathbb{P}(A) = 0$.</p>
-<p><strong>Preuve :</strong>
-On sait que $A \subset \bigcup_{k \ge n} A_k$ pour tout $n$.
-Par sous-additivité de la mesure :
-$$\mathbb{P}(A) \leq \mathbb{P}\left(\bigcup_{k \ge n} A_k\right) \leq \sum_{k=n}^{+\infty} \mathbb{P}(A_k)$$</p>
-<p>Comme la série converge, le reste de la série tend vers 0 quand $n \to \infty$.
-$$\lim_{n \to \infty} \sum_{k=n}^{+\infty} \mathbb{P}(A_k) = 0$$
-Donc $\mathbb{P}(A) = 0$. $\blacksquare$</p>
 
-<h2 class="relative group">2. Second Lemme (Divergence / Indépendance)
-    <div id="2-second-lemme-divergence--indépendance" class="anchor"></div>
+
+<div
+  
+    class="flex px-4 py-3 rounded-md shadow bg-primary-100 dark:bg-primary-900"
+  
+  >
+  <span
     
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-second-lemme-divergence--ind%c3%a9pendance" aria-label="Ancre">#</a>
-    </span>
+      class="text-primary-400 pe-3 flex items-center"
     
-</h2>
-<p><strong>Théorème :</strong> Si les $(A_n)$ sont <strong>indépendants</strong> et $\sum \mathbb{P}(A_n) = +\infty$, alors $\mathbb{P}(A) = 1$.</p>
-<p><strong>Preuve :</strong>
-Il suffit de montrer que $\mathbb{P}(A^c) = 0$.
-$A^c = \{ \text{les } A_n \text{ ne se réalisent qu&rsquo;un nombre fini de fois} \} = \liminf A_n^c$.
-$$A^c = \bigcup_{n \ge 1} \bigcap_{k \ge n} A_k^c$$
-Calculons la probabilité de l&rsquo;intersection finie :
-$$\mathbb{P}\left( \bigcap_{k=n}^m A_k^c \right) = \prod_{k=n}^m (1 - \mathbb{P}(A_k))$$
-En utilisant l&rsquo;inégalité $1-x \le e^{-x}$ :
-$$\prod_{k=n}^m (1 - \mathbb{P}(A_k)) \le \prod_{k=n}^m e^{-\mathbb{P}(A_k)} = \exp\left( - \sum_{k=n}^m \mathbb{P}(A_k) \right)$$
-Quand $m \to \infty$, comme la série diverge, la somme tend vers $+\infty$, donc l&rsquo;exponentielle tend vers 0.
-Ainsi $\mathbb{P}(\bigcap_{k \ge n} A_k^c) = 0$.
-L&rsquo;union dénombrable d&rsquo;ensembles de mesure nulle étant de mesure nulle :
-$$\mathbb{P}(A^c) = 0 \implies \boxed{\mathbb{P}(A) = 1}$$</p>
+    >
+    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+
+  <span
+    
+      class="dark:text-neutral-300"
+    
+    ><p><em><strong>Énoncé :</strong></em> Soient $(E,\mathcal{T},P)$ un espace probabilisé et $(A_n)_{n \in \mathbb{N}}$ une suite d&rsquo;éléments de $\mathcal{T}$.
+On rappelle que $A=\limsup_{n \rightarrow \infty}A_n$.</p>
+<ol>
+<li>Montrer que si $\sum_{n \in \mathbb{N}}P(A_n)&lt; +\infty$ alors $P(A)=0$.</li>
+<li>On suppose que, pour tout $n \in \mathbb{N}$, les événements $A_0,&hellip;,A_n$ sont indépendants. On suppose aussi que $\sum_{n \in \mathbb{N}}P(A_n)=+\infty$. Montrer que $P(A)=1$.</li>
+</ol></span>
+</div>
+
+<p><strong>1.</strong> (On aura besoin de deux inégalités auxquelles il faut penser)
+Soient $n \in \mathbb{N}$ et $k \geq n$.
+On a
+$$ \bigcap_{p \geq n}A_p \subset A_k $$
+Donc $P(\bigcap_{p \geq n}A_p) \leq P(A_k)$
+Ainsi, $P(\bigcap_{k \geq n}A_k) \leq \inf_{k \geq n} P(A_k)$</p>
+<p>Or, $(\bigcap_{p \geq n}A_p)_{n \in \mathbb{N}}$ est une suite croissante.
+Donc, par passage à la limite,
+$$ \lim\limits_{n \rightarrow +\infty}P(\bigcap_{k \geq n}A_k)=P(\bigcup_{n \in \mathbb{N}}\bigcap_{k \geq n}A_k)\leq \lim_{n \rightarrow \infty}\inf_{k \geq n} P(A_k) $$</p>
+<p>Donc
+$$ \boxed{P(\liminf_{n \rightarrow \infty}A_n) \leq \liminf_{n \rightarrow \infty}P(A_n)} $$</p>
+<p>De la même manière, on obtient
+$$ \boxed{P(\limsup_{n \rightarrow \infty}A_n) \geq \limsup_{n \rightarrow \infty}P(A_n)} $$</p>
+<p>Utilisons maintenant la $\sigma$-additivité de la probabilité,
+$$ P(\bigcup_{k \geq n}A_k) \leq \sum_{k \geq n}P(A_k) $$
+La suite $(\bigcup_{k \geq n}A_k)_{n \in \mathbb{N}}$ est décroissante donc par passage à la limite, on a
+$$ \lim_{n \rightarrow +\infty}P(\bigcup_{k \geq n}A_k)=P(\bigcap_{n \in \mathbb{N}}\bigcup_{k \geq n}A_k)=P(\limsup_{n \rightarrow +\infty}A_n)\leq \lim_{n \rightarrow +\infty}\sum_{k \geq n}P(A_k)=0 $$
+Donc $\boxed{P(A)=0}$</p>
+<p><strong>2.</strong> On sait que $P(A)=\lim_{n \rightarrow +\infty}P(\bigcup_{k \geq n}A_k)$. Donc il suffit de montrer que $P(\bigcup_{k \geq n}A_k)=1$.
+Soit $n \in \mathbb{N}$.
+Supposons qu&rsquo;il existe $k \geq n$ tel que $P(A_k)=1$. Donc $P(\bigcup_{k \geq n}A_k) \geq P(A_k)$. Donc $P(\bigcup_{k \geq n}A_k)=1$.
+Maintenant supposons que pour tout $k \geq n$, $P(A_k) &lt; 1$. On a alors
+$$ (\bigcup_{k \geq n}A_k)^c=\bigcap_{k \geq n}A_k^c $$</p>
+<p>Donc
+$$ P((\bigcup_{k \geq n}A_k)^c)=P(\bigcap_{k \geq n}A_k^c)=\prod_{k \geq n}P(A_k^c)=\prod_{k \geq n}(1-P(A_k)) $$</p>
+<p>Soit $m \geq n$. En utilisant $\forall x&gt;0$, $ln(1+x)&lt;x$ et la continuité de $P$, on a
+$$ \lim_{m \rightarrow +\infty}ln(P((\bigcup_{k=n}^mA_k)^c))=\lim_{m \rightarrow +\infty}\sum_{k=n}^m ln(1-P(A_k)) &lt; -\lim_{m \rightarrow +\infty} \sum_{k=n}^m P(A_k)=-\infty $$</p>
+<p>Donc $\lim_{m \rightarrow +\infty}ln(P((\bigcup_{k=n}^mA_k)^c))=-\infty$
+Donc $P((\bigcup_{k \geq n}A_k)^c)=0$ et $P(\bigcup_{k \geq n}A_k)=1$.
+D&rsquo;où $\boxed{P(A)=1}$</p>
 
   </div>
 

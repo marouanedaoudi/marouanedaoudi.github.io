@@ -3,37 +3,51 @@ title: "Démonstration : Lemmes de Borel-Cantelli"
 date: 2025-02-14
 tags: ["Fondamental", "Borel-Cantelli", "Indépendance"]
 math: true
-summary: "Preuve complète des deux lemmes (Convergence et Divergence)."
+summary: "Preuve complète des deux lemmes."
 ---
 
-Soit $(A\_n)$ une suite d'événements. On note $A = \limsup A\_n = \\{ \omega : \omega \in A\_n \text{ pour une infinité de } n \\}$.
+{{< alert icon="circle-info" >}}
+***Énoncé :*** Soient $(E,\mathcal{T},P)$ un espace probabilisé et $(A\_n)\_{n \in \mathbb{N}}$ une suite d'éléments de $\mathcal{T}$.
+On rappelle que $A=\limsup\_{n \rightarrow \infty}A\_n$.
+1. Montrer que si $\sum\_{n \in \mathbb{N}}P(A\_n)< +\infty$ alors $P(A)=0$.
+2. On suppose que, pour tout $n \in \mathbb{N}$, les événements $A\_0,...,A\_n$ sont indépendants. On suppose aussi que $\sum\_{n \in \mathbb{N}}P(A\_n)=+\infty$. Montrer que $P(A)=1$.
+{{< /alert >}}
 
-## 1. Premier Lemme (Convergence)
+**1.** (On aura besoin de deux inégalités auxquelles il faut penser)
+Soient $n \in \mathbb{N}$ et $k \geq n$.
+On a
+$$ \bigcap\_{p \geq n}A\_p \subset A\_k $$
+Donc $P(\bigcap\_{p \geq n}A\_p) \leq P(A\_k)$
+Ainsi, $P(\bigcap\_{k \geq n}A\_k) \leq \inf\_{k \geq n} P(A\_k)$
 
-**Théorème :** Si $\sum \mathbb{P}(A\_n) < +\infty$, alors $\mathbb{P}(A) = 0$.
+Or, $(\bigcap\_{p \geq n}A\_p)\_{n \in \mathbb{N}}$ est une suite croissante.
+Donc, par passage à la limite,
+$$ \lim\limits\_{n \rightarrow +\infty}P(\bigcap\_{k \geq n}A\_k)=P(\bigcup\_{n \in \mathbb{N}}\bigcap\_{k \geq n}A\_k)\leq \lim\_{n \rightarrow \infty}\inf\_{k \geq n} P(A\_k) $$
 
-**Preuve :**
-On sait que $A \subset \bigcup_{k \ge n} A\_k$ pour tout $n$.
-Par sous-additivité de la mesure :
-$$\mathbb{P}(A) \leq \mathbb{P}\left(\bigcup_{k \ge n} A\_k\right) \leq \sum_{k=n}^{+\infty} \mathbb{P}(A\_k)$$
+Donc
+$$ \boxed{P(\liminf\_{n \rightarrow \infty}A\_n) \leq \liminf\_{n \rightarrow \infty}P(A\_n)} $$
 
-Comme la série converge, le reste de la série tend vers 0 quand $n \to \infty$.
-$$\lim_{n \to \infty} \sum_{k=n}^{+\infty} \mathbb{P}(A\_k) = 0$$
-Donc $\mathbb{P}(A) = 0$. $\blacksquare$
+De la même manière, on obtient
+$$ \boxed{P(\limsup\_{n \rightarrow \infty}A\_n) \geq \limsup\_{n \rightarrow \infty}P(A\_n)} $$
 
-## 2. Second Lemme (Divergence / Indépendance)
+Utilisons maintenant la $\sigma$-additivité de la probabilité,
+$$ P(\bigcup\_{k \geq n}A\_k) \leq \sum\_{k \geq n}P(A\_k) $$
+La suite $(\bigcup\_{k \geq n}A\_k)\_{n \in \mathbb{N}}$ est décroissante donc par passage à la limite, on a
+$$ \lim\_{n \rightarrow +\infty}P(\bigcup\_{k \geq n}A\_k)=P(\bigcap\_{n \in \mathbb{N}}\bigcup\_{k \geq n}A\_k)=P(\limsup\_{n \rightarrow +\infty}A\_n)\leq \lim\_{n \rightarrow +\infty}\sum\_{k \geq n}P(A\_k)=0 $$
+Donc $\boxed{P(A)=0}$
 
-**Théorème :** Si les $(A\_n)$ sont **indépendants** et $\sum \mathbb{P}(A\_n) = +\infty$, alors $\mathbb{P}(A) = 1$.
+**2.** On sait que $P(A)=\lim\_{n \rightarrow +\infty}P(\bigcup\_{k \geq n}A\_k)$. Donc il suffit de montrer que $P(\bigcup\_{k \geq n}A\_k)=1$.
+Soit $n \in \mathbb{N}$.
+Supposons qu'il existe $k \geq n$ tel que $P(A\_k)=1$. Donc $P(\bigcup\_{k \geq n}A\_k) \geq P(A\_k)$. Donc $P(\bigcup\_{k \geq n}A\_k)=1$.
+Maintenant supposons que pour tout $k \geq n$, $P(A\_k) < 1$. On a alors
+$$ (\bigcup\_{k \geq n}A\_k)^c=\bigcap\_{k \geq n}A\_k^c $$
 
-**Preuve :**
-Il suffit de montrer que $\mathbb{P}(A^c) = 0$.
-$A^c = \\{ \text{les } A\_n \text{ ne se réalisent qu'un nombre fini de fois} \\} = \liminf A\_n^c$.
-$$A^c = \bigcup_{n \ge 1} \bigcap_{k \ge n} A\_k^c$$
-Calculons la probabilité de l'intersection finie :
-$$\mathbb{P}\left( \bigcap_{k=n}^m A\_k^c \right) = \prod_{k=n}^m (1 - \mathbb{P}(A\_k))$$
-En utilisant l'inégalité $1-x \le e^{-x}$ :
-$$\prod_{k=n}^m (1 - \mathbb{P}(A\_k)) \le \prod_{k=n}^m e^{-\mathbb{P}(A\_k)} = \exp\left( - \sum_{k=n}^m \mathbb{P}(A\_k) \right)$$
-Quand $m \to \infty$, comme la série diverge, la somme tend vers $+\infty$, donc l'exponentielle tend vers 0.
-Ainsi $\mathbb{P}(\bigcap_{k \ge n} A\_k^c) = 0$.
-L'union dénombrable d'ensembles de mesure nulle étant de mesure nulle :
-$$\mathbb{P}(A^c) = 0 \implies \boxed{\mathbb{P}(A) = 1}$$
+Donc
+$$ P((\bigcup\_{k \geq n}A\_k)^c)=P(\bigcap\_{k \geq n}A\_k^c)=\prod\_{k \geq n}P(A\_k^c)=\prod\_{k \geq n}(1-P(A\_k)) $$
+
+Soit $m \geq n$. En utilisant $\forall x>0$, $ln(1+x)<x$ et la continuité de $P$, on a
+$$ \lim\_{m \rightarrow +\infty}ln(P((\bigcup\_{k=n}^mA\_k)^c))=\lim\_{m \rightarrow +\infty}\sum\_{k=n}^m ln(1-P(A\_k)) < -\lim\_{m \rightarrow +\infty} \sum\_{k=n}^m P(A\_k)=-\infty $$
+
+Donc $\lim\_{m \rightarrow +\infty}ln(P((\bigcup\_{k=n}^mA\_k)^c))=-\infty$
+Donc $P((\bigcup\_{k \geq n}A\_k)^c)=0$ et $P(\bigcup\_{k \geq n}A\_k)=1$.
+D'où $\boxed{P(A)=1}$

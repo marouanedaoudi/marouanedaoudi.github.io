@@ -21,7 +21,7 @@
 
   
   
-    <meta name="description" content="Démonstration : Si Xn -&gt; X en loi et Yn -&gt; 0 en proba, alors Xn &#43; Yn -&gt; X en loi.">
+    <meta name="description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
   
   
     <meta name="keywords" content="Slutsky,Convergence,">
@@ -39,7 +39,7 @@
   <meta property="og:url" content="http://localhost:1313/notes/slutsky/">
   <meta property="og:site_name" content="Marouane Daoudi">
   <meta property="og:title" content="Convergence en Loi et en Probabilité">
-  <meta property="og:description" content="Démonstration : Si Xn -&gt; X en loi et Yn -&gt; 0 en proba, alors Xn &#43; Yn -&gt; X en loi.">
+  <meta property="og:description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -51,7 +51,7 @@
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Convergence en Loi et en Probabilité">
-  <meta name="twitter:description" content="Démonstration : Si Xn -&gt; X en loi et Yn -&gt; 0 en proba, alors Xn &#43; Yn -&gt; X en loi.">
+  <meta name="twitter:description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
 
   
   
@@ -219,7 +219,7 @@
     "keywords": ["Slutsky","Convergence"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "206"
+    "wordCount": "295"
   }]
   </script>
 
@@ -591,7 +591,12 @@
               prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
               prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
-    
+    <p>On va d&rsquo;abord rappeler les définitions avant d&rsquo;aborder des exercices pour une meilleure compréhension.</p>
+<p><em><strong>Définition :</strong></em> On dit que $(X_n)$ converge vers $X$ en loi si pour toute fonction $f$ à valeurs réelles, continue et bornée
+$$ \lim_{n \rightarrow +\infty}\mathbb{E}[f(X_n)]=\mathbb{E}[f(X)] $$</p>
+<p><em><strong>Définition :</strong></em> On dit que $(X_n)$ converge vers $X$ en probabilité si
+$$ \forall \epsilon &gt; 0,\lim_{n \rightarrow +\infty}P(|X_n-X| \geq \epsilon)=0 $$</p>
+
   
   
   
@@ -617,56 +622,33 @@
     
       class="dark:text-neutral-300"
     
-    ><p><strong>Énoncé :</strong>
-Soit $X$ une variable aléatoire et $(X_n)$, $(Y_n)$ deux suites telles que :</p>
-<ul>
-<li>$X_n \xrightarrow{\mathcal{L}} X$ (en loi)</li>
-<li>$Y_n \xrightarrow{\mathbb{P}} 0$ (en probabilité)</li>
-</ul>
-<p>Montrer que $X_n + Y_n \xrightarrow{\mathcal{L}} X$.</p>
-</span>
+    ><em><strong>Énoncé :</strong></em> Soit $(\Omega,\mathcal A,P)$ un espace probabilisé, $X$ une variable aléatoire réelle et $(X_n)_{n \in \mathbb{N}}$, $(Y_n)_{n \in \mathbb{N}}$ deux suites de variables aléatoires réelles telles que $X_n \rightarrow X$ en loi, $Y_n \rightarrow 0$ en probabilité, quand $n \rightarrow +\infty$.
+Montrer que $X_n+Y_n \rightarrow X$ en loi, quand $n \rightarrow +\infty$.</span>
 </div>
 
-
-<h2 class="relative group">Démonstration
-    <div id="démonstration" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#d%c3%a9monstration" aria-label="Ancre">#</a>
-    </span>
-    
-</h2>
-<p>Pour montrer la convergence en loi, il suffit de montrer que pour toute fonction $\phi$ continue bornée ($\phi \in C_b(\mathbb{R})$), on a convergence des espérances.
-Soit $\phi \in C_b(\mathbb{R})$ uniformément continue.</p>
-<p>Décomposons la différence :</p>
-<p>$$
-\left| \mathbb{E}[\phi(X_n+Y_n)] - \mathbb{E}[\phi(X)] \right| \leq \underbrace{\left| \mathbb{E}[\phi(X_n+Y_n)] - \mathbb{E}[\phi(X_n)] \right|}_{A_n} + \underbrace{\left| \mathbb{E}[\phi(X_n)] - \mathbb{E}[\phi(X)] \right|}_{B_n}
-$$</p>
-<ul>
-<li>
-<p><strong>Terme $B_n$ :</strong> Comme $X_n \xrightarrow{\mathcal{L}} X$, par définition $\lim_{n \to \infty} B_n = 0$.</p>
-</li>
-<li>
-<p><strong>Terme $A_n$ :</strong>
-Soit $\epsilon &gt; 0$. Il existe $\eta &gt; 0$ tel que $|x-y| &lt; \eta \implies |\phi(x)-\phi(y)| &lt; \epsilon$.</p>
-<p>$$
-A_n \leq \mathbb{E}\left[ \left| \phi(X_n+Y_n) - \phi(X_n) \right| \mathbb{1}_{|Y_n| \le \eta} \right] + \mathbb{E}\left[ \left| \phi(X_n+Y_n) - \phi(X_n) \right| \mathbb{1}_{|Y_n| &gt; \eta} \right]
-$$</p>
-<ul>
-<li>Si $|Y_n| \le \eta$, alors $|\phi(X_n+Y_n) - \phi(X_n)| &lt; \epsilon$.</li>
-<li>Si $|Y_n| &gt; \eta$, on majore par $2 |\phi|_\infty$.</li>
-</ul>
+<p><em><strong>Corrigé :</strong></em>
+D&rsquo;après le cours, il suffit de montrer que $\forall \phi \in C_{c}(\mathbb{R},\mathbb{R})$,
+$$ \lim_{n \rightarrow +\infty} \int_{\Omega} \phi(X_n+Y_n)dP=\int_{\Omega} \phi(X)dP $$</p>
+<p>Soit $\phi \in C_{c}(\mathbb{R},\mathbb{R})$.
+On a :
+$$ \int_{\Omega} \phi(X_n+Y_n)dP-\int_{\Omega} \phi(X)dP=A_n+B_n $$</p>
+<p>où
+$$ A_n=\int_{\Omega} \phi(X_n+Y_n)dP-\int_{\Omega}\phi(X_n)dP \quad , \quad B_n=\int_{\Omega}\phi(X_n)dP-\int_{\Omega} \phi(X)dP $$</p>
+<p>On sait déjà que $\lim_{n \rightarrow +\infty}B_n=0$ car $X_n \rightarrow X$ en loi.
+Il reste à montrer que $\lim_{n \rightarrow +\infty}A_n=0$.
+La fonction $\phi$ est continue sur un compact de $\mathbb{R}$ qu&rsquo;on note $\mathcal{K}$ donc, par le théorème de Heine, la fonction $\phi$ est uniformément continue sur $\mathcal{K}$.
+Autrement dit, pour $\epsilon&gt;0$, il existe $\eta&gt;0$, $\forall (x,y) \in \mathcal{K}, |x-y|&lt;\eta \Longrightarrow |\phi(x)-\phi(y)|&lt;\epsilon$.</p>
 <p>Donc :
-$$
-A_n \leq \epsilon + 2 |\phi|_\infty \mathbb{P}(|Y_n| &gt; \eta)
-$$</p>
-<p>Comme $Y_n \xrightarrow{\mathbb{P}} 0$, pour $n$ assez grand, $\mathbb{P}(|Y_n| &gt; \eta)$ tend vers 0.
-Ainsi $A_n \to 0$.</p>
-</li>
-</ul>
-<p>Conclusion :
-$$\boxed{X_n + Y_n \xrightarrow{\mathcal{L}} X}$$</p>
+$$ |A_n|=\Bigg|\int_{\Omega} \phi(X_n+Y_n)dP-\int_{\Omega}\phi(X_n)dP\Bigg|\leq\int_{\Omega} \Bigg|\phi(X_n+Y_n)-\phi(X_n)\Bigg|dP $$</p>
+<p>$$ =\int_{\{|Y_n|\leq\eta\}} \Bigg|\phi(X_n+Y_n)-\phi(X_n)\Bigg|dP+\int_{\{|Y_n|&gt;\eta\}} \Bigg|\phi(X_n+Y_n)-\phi(X_n)\Bigg|dP $$</p>
+<p>$$ \leq \epsilon + 2\max_{x \in \mathbb{R}}\phi(x)P(|Y_n|&gt;\eta) $$</p>
+<p>Or, $Y_n \rightarrow 0$ en probabilité, donc il existe $n_0$ tel que
+$$ n \geq n_0 \Longrightarrow 2\max_{x \in \mathbb{R}}\phi(x)P(|Y_n|&gt;\eta) \leq \epsilon $$</p>
+<p>Donc $n \geq n_0 \Longrightarrow |A_n| \leq 2\epsilon$
+Ce qui prouve que $\lim_{n \rightarrow +\infty}A_n=0$.</p>
+<p>Donc :
+$$ \boxed{X_n+Y_n \rightarrow X \text{ en loi, quand }n \rightarrow +\infty} $$
+$\blacksquare$</p>
 
   </div>
 

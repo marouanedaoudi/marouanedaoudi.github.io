@@ -3,32 +3,31 @@ title: "Inégalité de Covariance"
 date: 2025-02-14
 tags: ["Inégalité", "Covariance"]
 math: true
-summary: "Majoration de la covariance entre deux événements indicateurs."
+summary: "Majoration de la covariance entre deux événements."
 ---
 
 {{< alert icon="circle-info" >}}
-**Énoncé :**
-Montrer que pour deux événements \\(X\\) et \\(Y\\) :
-$$\big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4}$$
+**Énoncé :** Soient $X$ et $Y$ deux événements.
+Montrer que
+$$ \big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4} $$
 {{< /alert >}}
 
-## Démonstration
+Que se passe-t-il si $X=Y$ ?
+On a $\big|P(X)-P(X)^2\big|=\big|P(X)\big|\big|1-P(X)\big|$.
+Soit $f:[0,1] \rightarrow [0,1]$ une fonction telle que $f(x)=x(1-x)$
+La fonction $f$ est dérivable, par composition de fonctions dérivables, ainsi $f'(x)=1-2x$.
+Donc $f$ atteint son maximum en $\frac{1}{4}$.
+Ainsi, $\big|P(X)\big|\big|1-P(X)\big| \leq \frac{1}{2}$.
 
-Réécrivons cette expression en termes de variables aléatoires indicatrices \\(\mathbb{1}_X\\) et \\(\mathbb{1}_Y\\).
-$$\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y) = \mathbb{E}[\mathbb{1}_X \mathbb{1}_Y] - \mathbb{E}[\mathbb{1}_X]\mathbb{E}[\mathbb{1}_Y] = P(X \cap Y) - P(X)P(Y)$$
+Revenons à notre inégalité et réécrivons l'inégalité sous forme d'espérance.
+On a
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|=\big|\mathbb{E}(\mathbb{1}\_{X}\mathbb{1}\_{Y})-E(\mathbb{1}\_{X})E(\mathbb{1}\_{Y})\big|=\big|\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))(\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))\big| $$
 
-On cherche donc à majorer \\(|\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y)|\\).
-Par l'inégalité de Cauchy-Schwarz appliquée à la covariance :
-$$|\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y)| \leq \sqrt{\text{Var}(\mathbb{1}_X)} \sqrt{\text{Var}(\mathbb{1}_Y)}$$
+Maintenant, on applique l'inégalité de Cauchy-Schwartz.
+Il faudrait éventuellement montrer que c'est une forme quadratique auquel on peut associer un produit scalaire et la norme associée pour pouvoir appliquer l'inégalité.
+Donc, on obtient
+$$ \big|\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))(\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))\big|\leq\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))^2)^\frac{1}{2}\mathbb{E}((\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))^2)^\frac{1}{2}\leq\mathbb{V}(\mathbb{1}\_{X})^\frac{1}{2}\mathbb{V}(\mathbb{1}\_{Y})^\frac{1}{2} $$
 
-La variance d'une variable de Bernoulli de paramètre \\(p = P(X)\\) est \\(p(1-p)\\).
-Étudions la fonction \\(f(p) = p(1-p)\\) sur \\([0, 1]\\).
-Sa dérivée est \\(1-2p\\), qui s'annule en \\(p=1/2\\). Le maximum est donc \\(f(1/2) = 1/4\\).
-
-Ainsi :
-$$\text{Var}(\mathbb{1}_X) \leq \frac{1}{4} \quad \text{et} \quad \text{Var}(\mathbb{1}_Y) \leq \frac{1}{4}$$
-
-En reportant dans l'inégalité :
-$$\big|P(X \cap Y)-P(X)P(Y)\big| \leq \sqrt{\frac{1}{4}} \sqrt{\frac{1}{4}} = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$$
-
-$$\boxed{\big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4}}$$
+Par la formule de Koenig-Huygens,
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|\leq \sqrt{P(X)-P(X)^2}\sqrt{P(Y)-P(Y)^2}\leq\frac{1}{4} $$
+$\blacksquare$

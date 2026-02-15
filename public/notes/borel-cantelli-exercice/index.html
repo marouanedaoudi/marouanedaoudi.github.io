@@ -21,7 +21,7 @@
 
   
   
-    <meta name="description" content="Application du lemme de Borel-Cantelli.">
+    <meta name="description" content="Utilisation évidente du lemme de Borel-Cantelli.">
   
   
     <meta name="keywords" content="Borel-Cantelli,Convergence p.s.,">
@@ -39,7 +39,7 @@
   <meta property="og:url" content="http://localhost:1313/notes/borel-cantelli-exercice/">
   <meta property="og:site_name" content="Marouane Daoudi">
   <meta property="og:title" content="Exercice : Convergence p.s. et Borel-Cantelli">
-  <meta property="og:description" content="Application du lemme de Borel-Cantelli.">
+  <meta property="og:description" content="Utilisation évidente du lemme de Borel-Cantelli.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -51,7 +51,7 @@
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Exercice : Convergence p.s. et Borel-Cantelli">
-  <meta name="twitter:description" content="Application du lemme de Borel-Cantelli.">
+  <meta name="twitter:description" content="Utilisation évidente du lemme de Borel-Cantelli.">
 
   
   
@@ -219,7 +219,7 @@
     "keywords": ["Borel-Cantelli","Convergence p.s."],
     
     "mainEntityOfPage": "true",
-    "wordCount": "214"
+    "wordCount": "159"
   }]
   </script>
 
@@ -617,42 +617,29 @@
     
       class="dark:text-neutral-300"
     
-    ><p><strong>Énoncé :</strong>
-Soit $(X_n)_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles. On suppose qu&rsquo;il existe une suite de réels $(a_n)_{n \in \mathbb{N}}$ telle que les séries suivantes soient convergentes :</p>
-<ol>
-<li>$\sum_{n \in \mathbb{N}} a_n$</li>
-<li>$\sum_{n \in \mathbb{N}} P(X_n \neq a_n)$</li>
-</ol>
-<p>Démontrer que la série $\sum_{n \in \mathbb{N}} X_n$ est convergente presque sûrement.</p>
-</span>
+    ><strong>Énoncé :</strong>
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles sur un espace probabilisé $(\Omega, \mathcal{A}, P)$. On suppose qu&rsquo;il existe une suite de réels $(a_n)_{n \in \mathbb{N}}$ telle que les séries
+$$ \sum_{n \in \mathbb{N}}a_n ; ; \text{et} ; ; \sum_{n \in \mathbb{N}}P(X_n \not= a_n) $$
+soient convergentes. Démontrer que la série $\sum_{n \in \mathbb{N}}X_n$ est $p.s$ convergente.</span>
 </div>
 
 
-<h2 class="relative group">Solution
-    <div id="solution" class="anchor"></div>
+<h2 class="relative group">Ma solution :
+    <div id="ma-solution-" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#solution" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ma-solution-" aria-label="Ancre">#</a>
     </span>
     
 </h2>
-<p>Nous allons utiliser le <strong>premier lemme de Borel-Cantelli</strong>.</p>
-<p>Posons l&rsquo;événement $A_n = {X_n \neq a_n}$.
-L&rsquo;hypothèse nous dit que $\sum_{n \in \mathbb{N}} P(A_n) &lt; +\infty$.</p>
-<p>D&rsquo;après le lemme de Borel-Cantelli, cela implique que la probabilité que $A_n$ se réalise une infinité de fois est nulle :
-$$P(\limsup_{n \rightarrow +\infty} A_n) = 0$$</p>
-<p>Cela signifie que pour presque tout $\omega \in \Omega$, l&rsquo;événement $A_n$ ne se réalise qu&rsquo;un nombre fini de fois.
-Autrement dit, pour presque tout $\omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que :
-$$\forall n \geq N(\omega), \quad X_n(\omega) = a_n$$</p>
-<p>Regardons maintenant la série $\sum X_n$. Pour un $\omega$ fixé (dans l&rsquo;ensemble de mesure 1), on peut découper la somme :
-$$\sum_{n=0}^{+\infty} X_n(\omega) = \sum_{n=0}^{N(\omega)-1} X_n(\omega) + \sum_{n=N(\omega)}^{+\infty} a_n$$</p>
-<ul>
-<li>Le premier terme est une somme finie.</li>
-<li>Le second terme est le reste d&rsquo;une série numérique convergente.</li>
-</ul>
-<p>La somme de deux termes finis étant finie, la série converge p.s.</p>
-<p>$$\boxed{\sum_{n \in \mathbb{N}}X_n \quad \text{converge p.s.}}$$</p>
+<p>Il est évident d&rsquo;utiliser le lemme de Borel-Cantelli ici.
+Comme $\sum_{n \in \mathbb{N}}P(X_n \not= a_n)&lt;+\infty$, alors $P(\limsup_{n \rightarrow +\infty}\{X_n\not=a_n\})=0$.</p>
+<p>Cela signifie que l&rsquo;ensemble des $\omega \in \Omega$ tel que $X_n(\omega)\not=a_n$ pour une infinité de $n$ est de mesure nulle. Par conséquent, pour presque tout $\omega \in \Omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que pour tout $n \geq N(\omega)$, on a $X_n=a_n$.</p>
+<p>Donc :
+$$ \sum_{n \in \mathbb{N}}X_n=\sum_{n &lt;N}X_n+\sum_{n \geq N}a_n&lt;+\infty $$</p>
+<p>Car $\sum_{n &lt;N}X_n$ est une somme finie de réels et donc elle est finie presque sûrement.
+Ce qui conclut. $\blacksquare$</p>
 
   </div>
 

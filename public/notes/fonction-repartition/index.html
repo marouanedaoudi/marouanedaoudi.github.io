@@ -15,13 +15,13 @@
 
   
   
-    <title>Continuité de la Fonction de Répartition &middot; Marouane Daoudi</title>
-    <meta name="title" content="Continuité de la Fonction de Répartition &middot; Marouane Daoudi">
+    <title>Continuité de la fonction de répartition &middot; Marouane Daoudi</title>
+    <meta name="title" content="Continuité de la fonction de répartition &middot; Marouane Daoudi">
   
 
   
   
-    <meta name="description" content="Lien entre la continuité de F et la probabilité des singletons.">
+    <meta name="description" content="Lien entre la continuité de F et la probabilité des points.">
   
   
     <meta name="keywords" content="Fonction de répartition,Mesure,">
@@ -38,8 +38,8 @@
   
   <meta property="og:url" content="http://localhost:1313/notes/fonction-repartition/">
   <meta property="og:site_name" content="Marouane Daoudi">
-  <meta property="og:title" content="Continuité de la Fonction de Répartition">
-  <meta property="og:description" content="Lien entre la continuité de F et la probabilité des singletons.">
+  <meta property="og:title" content="Continuité de la fonction de répartition">
+  <meta property="og:description" content="Lien entre la continuité de F et la probabilité des points.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -50,8 +50,8 @@
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Continuité de la Fonction de Répartition">
-  <meta name="twitter:description" content="Lien entre la continuité de F et la probabilité des singletons.">
+  <meta name="twitter:title" content="Continuité de la fonction de répartition">
+  <meta name="twitter:description" content="Lien entre la continuité de F et la probabilité des points.">
 
   
   
@@ -201,8 +201,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Mes Notes \u0026 Exercices",
-    "name": "Continuité de la Fonction de Répartition",
-    "headline": "Continuité de la Fonction de Répartition",
+    "name": "Continuité de la fonction de répartition",
+    "headline": "Continuité de la fonction de répartition",
     
     "inLanguage": "fr",
     "url" : "http://localhost:1313/notes/fonction-repartition/",
@@ -219,7 +219,7 @@
     "keywords": ["Fonction de répartition","Mesure"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "151"
+    "wordCount": "130"
   }]
   </script>
 
@@ -566,7 +566,7 @@
 <article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
   
   <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Continuité de la Fonction de Répartition</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Continuité de la fonction de répartition</h1>
     
     <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
       <span class="text-neutral-500 font-medium">14 Feb 2025</span>
@@ -617,33 +617,16 @@
     
       class="dark:text-neutral-300"
     
-    ><strong>Propriété :</strong>
-Soit $F$ la fonction de répartition d&rsquo;une mesure de probabilité $\mathbb{P}$.
-Montrer que $F$ est continue en $a$ si et seulement si $\mathbb{P}(\{a\}) = 0$.</span>
+    ><em><strong>Énoncé :</strong></em> Soient $p$ une probabilité sur $\mathcal{B}(\mathbb{R})$ et $F$ la fonction de répartition de $p$, et soit $a \in \mathbb{R}$. Montrer que $F$ est continue en $a$ si et seulement si $p(\{a\})=0$. En déduire que $F$ est continue sur $\mathbb{R}$ si $p$ ne charge pas les points.</span>
 </div>
 
-
-<h2 class="relative group">Démonstration
-    <div id="démonstration" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#d%c3%a9monstration" aria-label="Ancre">#</a>
-    </span>
-    
-</h2>
-<p>Rappelons que la fonction de répartition est définie par $F(x) = \mathbb{P}(]-\infty, x])$.
-Elle est toujours <strong>continue à droite</strong>. La question porte sur la continuité à gauche.</p>
-<p>Soit $(a_n)$ une suite strictement croissante convergeant vers $a$. On a :
-$$\bigcup_{n \in \mathbb{N}} ]-\infty, a_n] = ]-\infty, a[$$</p>
-<p>Par continuité croissante de la mesure :
-$$\lim_{n \to \infty} F(a_n) = \lim_{n \to \infty} \mathbb{P}(]-\infty, a_n]) = \mathbb{P}(]-\infty, a[)$$</p>
-<p>Or, nous savons que :
-$$F(a) = \mathbb{P}(]-\infty, a]) = \mathbb{P}(]-\infty, a[) + \mathbb{P}(\{a\})$$</p>
-<p>Ainsi, la limite à gauche est égale à la valeur en $a$ ($F(a^-) = F(a)$) si et seulement si :
-$$\mathbb{P}(]-\infty, a[) = \mathbb{P}(]-\infty, a[) + \mathbb{P}(\{a\})$$
-$$\iff \mathbb{P}(\{a\}) = 0$$</p>
-<p>$$\boxed{F \text{ continue en } a \iff \mathbb{P}(\{a\}) = 0}$$</p>
+<p><em><strong>Corrigé :</strong></em> Par théorème, la fonction de répartition $F$ est continue à droite. Montrons alors qu&rsquo;elle est continue à gauche.
+Soit $(a_n)_{n \in \mathbb{N}}$ une suite réelle croissante telle que $\lim\limits_{n \rightarrow +\infty} a_n = a$.
+Alors
+$$ \bigcup_{n \in \mathbb{N}} ]-\infty,a_n]=]-\infty,a[ $$</p>
+<p>Donc, par continuité croissante de la mesure,
+$$ \lim\limits_{n \rightarrow +\infty} F(a_n)=\lim\limits_{n \rightarrow +\infty}p(]-\infty,a_n])=p(]-\infty,a[) $$</p>
+<p>Or, $F(a)=p(]-\infty,a])=p(]-\infty,a[)+p(\{a\})$. Et donc, $F$ est continue à gauche en $a$ si et seulement si $p(\{a\})=0$. La continuité sur $\mathbb{R}$ en découle immédiatement. $\blacksquare$</p>
 
   </div>
 

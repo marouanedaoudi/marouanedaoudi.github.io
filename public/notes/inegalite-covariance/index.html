@@ -21,7 +21,7 @@
 
   
   
-    <meta name="description" content="Majoration de la covariance entre deux événements indicateurs.">
+    <meta name="description" content="Majoration de la covariance entre deux événements.">
   
   
     <meta name="keywords" content="Inégalité,Covariance,">
@@ -39,7 +39,7 @@
   <meta property="og:url" content="http://localhost:1313/notes/inegalite-covariance/">
   <meta property="og:site_name" content="Marouane Daoudi">
   <meta property="og:title" content="Inégalité de Covariance">
-  <meta property="og:description" content="Majoration de la covariance entre deux événements indicateurs.">
+  <meta property="og:description" content="Majoration de la covariance entre deux événements.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -51,7 +51,7 @@
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Inégalité de Covariance">
-  <meta name="twitter:description" content="Majoration de la covariance entre deux événements indicateurs.">
+  <meta name="twitter:description" content="Majoration de la covariance entre deux événements.">
 
   
   
@@ -219,7 +219,7 @@
     "keywords": ["Inégalité","Covariance"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "134"
+    "wordCount": "123"
   }]
   </script>
 
@@ -617,34 +617,27 @@
     
       class="dark:text-neutral-300"
     
-    ><strong>Énoncé :</strong>
-Montrer que pour deux événements \(X\) et \(Y\) :
-$$\big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4}$$</span>
+    ><strong>Énoncé :</strong> Soient $X$ et $Y$ deux événements.
+Montrer que
+$$ \big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4} $$</span>
 </div>
 
-
-<h2 class="relative group">Démonstration
-    <div id="démonstration" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#d%c3%a9monstration" aria-label="Ancre">#</a>
-    </span>
-    
-</h2>
-<p>Réécrivons cette expression en termes de variables aléatoires indicatrices \(\mathbb{1}_X\) et \(\mathbb{1}_Y\).
-$$\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y) = \mathbb{E}[\mathbb{1}_X \mathbb{1}_Y] - \mathbb{E}[\mathbb{1}_X]\mathbb{E}[\mathbb{1}_Y] = P(X \cap Y) - P(X)P(Y)$$</p>
-<p>On cherche donc à majorer \(|\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y)|\).
-Par l&rsquo;inégalité de Cauchy-Schwarz appliquée à la covariance :
-$$|\text{Cov}(\mathbb{1}_X, \mathbb{1}_Y)| \leq \sqrt{\text{Var}(\mathbb{1}_X)} \sqrt{\text{Var}(\mathbb{1}_Y)}$$</p>
-<p>La variance d&rsquo;une variable de Bernoulli de paramètre \(p = P(X)\) est \(p(1-p)\).
-Étudions la fonction \(f(p) = p(1-p)\) sur \([0, 1]\).
-Sa dérivée est \(1-2p\), qui s&rsquo;annule en \(p=1/2\). Le maximum est donc \(f(1/2) = 1/4\).</p>
-<p>Ainsi :
-$$\text{Var}(\mathbb{1}_X) \leq \frac{1}{4} \quad \text{et} \quad \text{Var}(\mathbb{1}_Y) \leq \frac{1}{4}$$</p>
-<p>En reportant dans l&rsquo;inégalité :
-$$\big|P(X \cap Y)-P(X)P(Y)\big| \leq \sqrt{\frac{1}{4}} \sqrt{\frac{1}{4}} = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}$$</p>
-<p>$$\boxed{\big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4}}$$</p>
+<p>Que se passe-t-il si $X=Y$ ?
+On a $\big|P(X)-P(X)^2\big|=\big|P(X)\big|\big|1-P(X)\big|$.
+Soit $f:[0,1] \rightarrow [0,1]$ une fonction telle que $f(x)=x(1-x)$
+La fonction $f$ est dérivable, par composition de fonctions dérivables, ainsi $f&rsquo;(x)=1-2x$.
+Donc $f$ atteint son maximum en $\frac{1}{4}$.
+Ainsi, $\big|P(X)\big|\big|1-P(X)\big| \leq \frac{1}{2}$.</p>
+<p>Revenons à notre inégalité et réécrivons l&rsquo;inégalité sous forme d&rsquo;espérance.
+On a
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|=\big|\mathbb{E}(\mathbb{1}_{X}\mathbb{1}_{Y})-E(\mathbb{1}_{X})E(\mathbb{1}_{Y})\big|=\big|\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))(\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))\big| $$</p>
+<p>Maintenant, on applique l&rsquo;inégalité de Cauchy-Schwartz.
+Il faudrait éventuellement montrer que c&rsquo;est une forme quadratique auquel on peut associer un produit scalaire et la norme associée pour pouvoir appliquer l&rsquo;inégalité.
+Donc, on obtient
+$$ \big|\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))(\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))\big|\leq\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))^2)^\frac{1}{2}\mathbb{E}((\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))^2)^\frac{1}{2}\leq\mathbb{V}(\mathbb{1}_{X})^\frac{1}{2}\mathbb{V}(\mathbb{1}_{Y})^\frac{1}{2} $$</p>
+<p>Par la formule de Koenig-Huygens,
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|\leq \sqrt{P(X)-P(X)^2}\sqrt{P(Y)-P(Y)^2}\leq\frac{1}{4} $$
+$\blacksquare$</p>
 
   </div>
 

@@ -21,7 +21,7 @@
 
   
   
-    <meta name="description" content="Démonstration via les fonctions caractéristiques.">
+    <meta name="description" content="Démonstration de la convergence en loi d&#39;une suite de variables gaussiennes via les fonctions caractéristiques.">
   
   
     <meta name="keywords" content="Gaussienne,Convergence en loi,">
@@ -39,7 +39,7 @@
   <meta property="og:url" content="http://localhost:1313/notes/convergence-gaussienne/">
   <meta property="og:site_name" content="Marouane Daoudi">
   <meta property="og:title" content="Convergence d&#39;une suite de Gaussiennes">
-  <meta property="og:description" content="Démonstration via les fonctions caractéristiques.">
+  <meta property="og:description" content="Démonstration de la convergence en loi d’une suite de variables gaussiennes via les fonctions caractéristiques.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="notes">
@@ -51,7 +51,7 @@
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Convergence d&#39;une suite de Gaussiennes">
-  <meta name="twitter:description" content="Démonstration via les fonctions caractéristiques.">
+  <meta name="twitter:description" content="Démonstration de la convergence en loi d’une suite de variables gaussiennes via les fonctions caractéristiques.">
 
   
   
@@ -219,7 +219,7 @@
     "keywords": ["Gaussienne","Convergence en loi"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "237"
+    "wordCount": "274"
   }]
   </script>
 
@@ -617,59 +617,40 @@
     
       class="dark:text-neutral-300"
     
-    ><p><strong>Énoncé :</strong>
-Soit $(X_n)_{n \in \mathbb{N}}$ une famille de variables aléatoires gaussiennes, centrées, de variance $(\sigma_n^2)_{n \in \mathbb{N}}$ convergeant en loi vers une variable aléatoire $X$.</p>
-<ol>
-<li>Montrer que la suite $(\sigma_n^2)_{n \in \mathbb{N}}$ est convergente et en déduire que $X$ suit une loi gaussienne.</li>
-<li>On suppose que $X_n \to X$ en probabilité. Démontrer que $X_n$ converge vers $X$ dans tous les espaces $L^p$.</li>
-</ol></span>
+    ><strong>Énoncé :</strong>
+Soit $(X_n)_{n \in \mathbb{N}}$ une famille de variables aléatoires gaussiennes, centrées, de variance $(\sigma_n^2)_{n \in \mathbb{N}}$ convergeant en loi vers une variable aléatoire $X$.
+a) Montrer que la suite $(\sigma_n^2)_{n \in \mathbb{N}}$ est convergente et en déduire que $X$ suit une loi gaussienne.
+b) On suppose que $X_n \rightarrow X$ en probabilité. Démontrer que $X_n$ converge vers $X$ dans tous les espaces $L^p$.</span>
 </div>
 
 
-<h2 class="relative group">Solution
-    <div id="solution" class="anchor"></div>
+<h2 class="relative group">Ma solution :
+    <div id="ma-solution-" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#solution" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#ma-solution-" aria-label="Ancre">#</a>
     </span>
     
 </h2>
-
-<h3 class="relative group">1. Convergence de la variance et loi de X
-    <div id="1-convergence-de-la-variance-et-loi-de-x" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-convergence-de-la-variance-et-loi-de-x" aria-label="Ancre">#</a>
-    </span>
-    
-</h3>
-<p>Calculons la fonction caractéristique de $X_n$.
-La fonction caractéristique de $X_n \sim \mathcal{N}(0, \sigma_n^2)$ est donnée par :</p>
-<p>$$\forall t \in \mathbb{R}, \quad \varphi_{X_n}(t) = e^{-\frac{t^2\sigma_n^2}{2}}$$</p>
-<p>On sait que la suite $(X_n)$ converge en loi vers $X$. Par le théorème de Lévy, la suite des fonctions caractéristiques converge ponctuellement vers la fonction caractéristique de $X$ :
-$$\lim_{n \rightarrow +\infty}\varphi_{X_n}(t) = \varphi_X(t)$$</p>
-<p>Fixons $t \neq 0$. Par continuité du logarithme :
-$$\lim_{n \rightarrow +\infty} -\frac{t^2\sigma_n^2}{2} = \ln(\varphi_{X}(t))$$</p>
-<p>On en déduit que la suite $(\sigma_n^2)$ converge vers une limite $\sigma^2$.
-En repassant à la limite :
-$$\varphi_X(t) = e^{-\frac{t^2\sigma^2}{2}}$$
-Ceci est la fonction caractéristique d&rsquo;une variable aléatoire gaussienne $\mathcal{N}(0, \sigma^2)$.</p>
-<p>$$\boxed{X \sim \mathcal{N}(0, \sigma^2)}$$</p>
-
-<h3 class="relative group">2. Convergence dans $L^p$
-    <div id="2-convergence-dans-lp" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-convergence-dans-lp" aria-label="Ancre">#</a>
-    </span>
-    
-</h3>
-<p>On suppose maintenant que $X_n \xrightarrow{\mathbb{P}} X$.
-Pour montrer la convergence dans $L^p$, il suffit de montrer que la suite $(|X_n|^p)_n$ est uniformément intégrable.
-Pour des gaussiennes, la convergence des moments (due à la convergence des variances $\sigma_n \to \sigma$) suffit à assurer l&rsquo;uniforme intégrabilité.</p>
+<p><strong>a)</strong> Calculons la fonction caractéristique de $X_n$ pour pouvoir utiliser la convergence en loi sur celle-ci.
+La fonction caractéristique de $X_n$ est, $\forall t \in \mathbb{R}$,</p>
+<p>$$
+\varphi_{X_n}(t)=\frac{1}{\sigma_n\sqrt{2\pi}}\int_{\mathbb{R}}e^{-\frac{x^2}{2(\sigma_n)^2}}e^{itx}dx=\frac{1}{\sigma_n\sqrt{2\pi}}\int_{\mathbb{R}}e^{-\frac{x^2}{2(\sigma_n)^2}+itx}dx
+$$</p>
+<p>$$
+=\frac{1}{\sigma_n\sqrt{2\pi}}\int_{\mathbb{R}}e^{-(\frac{x}{\sqrt{2}\sigma_n}-\frac{it\sigma_n}{\sqrt{2}})^2-\frac{t^2\sigma_n^2}{2}}dx=\frac{e^{-\frac{t^2\sigma_n^2}{2}}}{\sigma_n\sqrt{2\pi}}\int_{\mathbb{R}}e^{-(\frac{x}{\sqrt{2}\sigma_n}-\frac{it\sigma_n}{\sqrt{2}})^2}dx
+$$</p>
+<p>Maintenant, on procède à un changement de variable pour faire apparaître l&rsquo;intégrale de Gauss.
+La fonction $x \longmapsto \frac{x}{\sqrt{2}\sigma_n}-\frac{it\sigma_n}{\sqrt{2}}$ est de classe $\mathcal{C}^1$ sur $\mathbb{R}$ et la fonction $x \longmapsto -x^2$ est continue sur $\mathbb{R}$. Donc le théorème de changement de variable est ici applicable.
+On a $u(x)=\frac{x}{\sqrt{2}\sigma_n}-\frac{it\sigma_n}{\sqrt{2}}$ donc $u&rsquo;(x)=\frac{1}{\sqrt{2}\sigma_n}$. Les bornes restent inchangées car $u$ parcourt tout $\mathbb{R}$.</p>
+<p>Donc :
+$$ \forall t \in \mathbb{R}, ; ; ; \varphi_{X_n}(t)=\frac{1}{\sqrt{\pi}e^{\frac{t^2\sigma_n^2}{2}}}\int_{\mathbb{R}}e^{-u^2}du=e^{-\frac{t^2\sigma_n^2}{2}} $$</p>
+<p>On sait que la suite $(X_n)_{n \in \mathbb{R}}$ converge en loi vers $X$.
+Donc $\lim_{n \rightarrow +\infty}\varphi_{X_n}(t)=\varphi_X(t)$. Par continuité de $\ln$ sur tout $\mathbb{R_+^*}$ et par caractérisation séquentielle de la limite, $\lim_{n \rightarrow +\infty}\ln(\varphi_{X_n}(t))=\ln(\varphi_{X}(t))$.</p>
+<p>Donc, pour $t \not = 0$, $(\sigma_n^2)_{n \in \mathbb{N}}=\Bigg(-\frac{2}{t^2}\ln\big(\varphi_{X_n}(t)\big)\Bigg)_{n \in \mathbb{N}}$ converge et on note $\sigma := \lim_{n \rightarrow +\infty}\sigma_n$.
+De plus, la fonction caractéristique détermine de façon unique la loi de la variable aléatoire. Donc $X$ est une gaussienne de variance $\sigma^2$. $\blacksquare$</p>
+<p><strong>b)</strong> On suppose maintenant que $X_n \rightarrow X$ en probabilité. Autrement dit, pour tout $\epsilon &gt; 0$, $\lim_{n \rightarrow +\infty}P(\rvert X_n-X \rvert &gt; \epsilon)=0$.</p>
 
   </div>
 
