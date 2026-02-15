@@ -219,7 +219,7 @@
     "keywords": ["Borel-Cantelli","Convergence p.s."],
     
     "mainEntityOfPage": "true",
-    "wordCount": "159"
+    "wordCount": "157"
   }]
   </script>
 
@@ -619,7 +619,7 @@
     
     ><strong>Énoncé :</strong>
 Soit $(X_n)_{n \in \mathbb{N}}$ une suite de variables aléatoires réelles sur un espace probabilisé $(\Omega, \mathcal{A}, P)$. On suppose qu&rsquo;il existe une suite de réels $(a_n)_{n \in \mathbb{N}}$ telle que les séries
-$$ \sum_{n \in \mathbb{N}}a_n ; ; \text{et} ; ; \sum_{n \in \mathbb{N}}P(X_n \not= a_n) $$
+$$\sum_{n \in \mathbb{N}}a_n \quad \text{et} \quad \sum_{n \in \mathbb{N}}P(X_n \neq a_n)$$
 soient convergentes. Démontrer que la série $\sum_{n \in \mathbb{N}}X_n$ est $p.s$ convergente.</span>
 </div>
 
@@ -634,10 +634,10 @@ soient convergentes. Démontrer que la série $\sum_{n \in \mathbb{N}}X_n$ est $
     
 </h2>
 <p>Il est évident d&rsquo;utiliser le lemme de Borel-Cantelli ici.
-Comme $\sum_{n \in \mathbb{N}}P(X_n \not= a_n)&lt;+\infty$, alors $P(\limsup_{n \rightarrow +\infty}\{X_n\not=a_n\})=0$.</p>
-<p>Cela signifie que l&rsquo;ensemble des $\omega \in \Omega$ tel que $X_n(\omega)\not=a_n$ pour une infinité de $n$ est de mesure nulle. Par conséquent, pour presque tout $\omega \in \Omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que pour tout $n \geq N(\omega)$, on a $X_n=a_n$.</p>
+Comme $\sum_{n \in \mathbb{N}}P(X_n \neq a_n)&lt;+\infty$, alors $P(\limsup_{n \rightarrow +\infty}\{X_n \neq a_n\})=0$.</p>
+<p>Cela signifie que l&rsquo;ensemble des $\omega \in \Omega$ tel que $X_n(\omega) \neq a_n$ pour une infinité de $n$ est de mesure nulle. Par conséquent, pour presque tout $\omega \in \Omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que pour tout $n \geq N(\omega)$, on a $X_n=a_n$.</p>
 <p>Donc :
-$$ \sum_{n \in \mathbb{N}}X_n=\sum_{n &lt;N}X_n+\sum_{n \geq N}a_n&lt;+\infty $$</p>
+$$\sum_{n \in \mathbb{N}}X_n=\sum_{n &lt;N}X_n+\sum_{n \geq N}a_n&lt;+\infty$$</p>
 <p>Car $\sum_{n &lt;N}X_n$ est une somme finie de réels et donc elle est finie presque sûrement.
 Ce qui conclut. $\blacksquare$</p>
 
