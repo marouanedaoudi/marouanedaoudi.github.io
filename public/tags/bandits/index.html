@@ -15,43 +15,35 @@
 
   
   
-    <title>Convergence en Loi et en Probabilité &middot; Marouane Daoudi</title>
-    <meta name="title" content="Convergence en Loi et en Probabilité &middot; Marouane Daoudi">
-  
-
-  
-  
-    <meta name="description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
-  
-  
-    <meta name="keywords" content="Slutsky,Convergence,">
-  
-  
-  
-  <link rel="canonical" href="http://localhost:1313/notes/slutsky/">
+    <title>Bandits &middot; Marouane Daoudi</title>
+    <meta name="title" content="Bandits &middot; Marouane Daoudi">
   
 
   
   
   
+  
+  
+  <link rel="canonical" href="http://localhost:1313/tags/bandits/">
+  
+    
+      <link rel="alternate" type="application/rss+xml" href="/tags/bandits/index.xml" title="Marouane Daoudi" />
+  
 
   
-  <meta property="og:url" content="http://localhost:1313/notes/slutsky/">
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/tags/bandits/">
   <meta property="og:site_name" content="Marouane Daoudi">
-  <meta property="og:title" content="Convergence en Loi et en Probabilité">
-  <meta property="og:description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
+  <meta property="og:title" content="Bandits">
   <meta property="og:locale" content="fr">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="notes">
-    <meta property="article:published_time" content="2025-02-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-02-14T00:00:00+00:00">
-    <meta property="article:tag" content="Slutsky">
-    <meta property="article:tag" content="Convergence">
+  <meta property="og:type" content="website">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Convergence en Loi et en Probabilité">
-  <meta name="twitter:description" content="Rappels de définitions et démonstration de Xn &#43; Yn.">
+  <meta name="twitter:title" content="Bandits">
 
   
   
@@ -200,12 +192,12 @@
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Mes Notes \u0026 Exercices",
-    "name": "Convergence en Loi et en Probabilité",
-    "headline": "Convergence en Loi et en Probabilité",
+    "articleSection": "Tags",
+    "name": "Bandits",
+    "headline": "Bandits",
     
     "inLanguage": "fr",
-    "url" : "http://localhost:1313/notes/slutsky/",
+    "url" : "http://localhost:1313/tags/bandits/",
     "author" : {
       "@type": "Person",
       "name": ""
@@ -216,10 +208,10 @@
     
     "dateModified": "2025-02-14T00:00:00\u002b00:00",
     
-    "keywords": ["Slutsky","Convergence"],
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "287"
+    "wordCount": "0"
   }]
   </script>
 
@@ -545,113 +537,212 @@
     <div class="relative flex flex-col grow">
       <main id="main-content" class="grow">
         
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},   
-                {left: '$', right: '$', display: false},    
-                {left: '\\(', right: '\\)', display: false},
-                {left: '\\[', right: '\\]', display: true}
-            ],
-            throwOnError : false
-        });
-    });
-</script>
-
-<article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
   
-  <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Convergence en Loi et en Probabilité</h1>
+  
+  <header class="mt-5">
     
-    <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
-      <span class="text-neutral-500 font-medium">14 Feb 2025</span>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Bandits</h1>
+    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
-      
-        <div class="flex gap-2">
-          
-            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
-              Slutsky
-            </span>
-          
-            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
-              Convergence
-            </span>
-          
-        </div>
-      
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+  </div>
+
+
     </div>
   </header>
 
-  <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed 
-              prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
-              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
-    <p>On va d&rsquo;abord rappeler les définitions avant d&rsquo;aborder des exercices pour une meilleure compréhension.</p>
-<p><em><strong>Définition :</strong></em> On dit que $(X\_n)$ converge vers $X$ en loi si pour toute fonction $f$ à valeurs réelles, continue et bornée
-</p>
-$$ \lim\_{n \rightarrow +\infty}\mathbb{E}[f(X\_n)]=\mathbb{E}[f(X)] $$<p><em><strong>Définition :</strong></em> On dit que $(X\_n)$ converge vers $X$ en probabilité si
-</p>
-$$ \forall \epsilon > 0,\lim\_{n \rightarrow +\infty}P(|X\_n-X| \geq \epsilon)=0 $$
-  
-  
-  
-  
-
-
-
-<div
-  
-    class="flex px-4 py-3 rounded-md shadow bg-primary-100 dark:bg-primary-900"
-  
-  >
-  <span
+  <section class="flex flex-col max-w-full mt-0 mb-5 prose dark:prose-invert lg:flex-row">
     
-      class="text-primary-400 pe-3 flex items-center"
-    
-    >
-    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span>
-  </span>
+  </section>
 
-  <span
+  
     
-      class="dark:text-neutral-300"
     
-    ><em><strong>Énoncé :</strong></em> Soit $(\Omega,\mathcal A,P)$ un espace probabilisé, $X$ une variable aléatoire réelle et $(X\_n)\_{n \in \mathbb{N}}$, $(Y\_n)\_{n \in \mathbb{N}}$ deux suites de variables aléatoires réelles telles que $X\_n \rightarrow X$ en loi, $Y\_n \rightarrow 0$ en probabilité, quand $n \rightarrow +\infty$.
-Montrer que $X\_n+Y\_n \rightarrow X$ en loi, quand $n \rightarrow +\infty$.</span>
-</div>
+    
 
-<p><em><strong>Corrigé :</strong></em>
-D&rsquo;après le cours, il suffit de montrer que $\forall \phi \in C\_{c}(\mathbb{R},\mathbb{R})$,
-</p>
-$$ \lim\_{n \rightarrow +\infty} \int\_{\Omega} \phi(X\_n+Y\_n)dP=\int\_{\Omega} \phi(X)dP $$<p>Soit $\phi \in C\_{c}(\mathbb{R},\mathbb{R})$.
-On a :
-</p>
-$$ \int\_{\Omega} \phi(X\_n+Y\_n)dP-\int\_{\Omega} \phi(X)dP=A\_n+B\_n $$<p>où
-</p>
-$$ A\_n=\int\_{\Omega} \phi(X\_n+Y\_n)dP-\int\_{\Omega}\phi(X\_n)dP \quad , \quad B\_n=\int\_{\Omega}\phi(X\_n)dP-\int\_{\Omega} \phi(X)dP $$<p>On sait déjà que $\lim\_{n \rightarrow +\infty}B\_n=0$ car $X\_n \rightarrow X$ en loi.
-Il reste à montrer que $\lim\_{n \rightarrow +\infty}A\_n=0$.
-La fonction $\phi$ est continue sur un compact de $\mathbb{R}$ qu&rsquo;on note $\mathcal{K}$ donc, par le théorème de Heine, la fonction $\phi$ est uniformément continue sur $\mathcal{K}$.
-Autrement dit, pour $\epsilon>0$, il existe $\eta>0$, $\forall (x,y) \in \mathcal{K}, |x-y|<\eta \Longrightarrow |\phi(x)-\phi(y)|<\epsilon$.</p>
-<p>Donc :
-</p>
-$$ |A\_n|=\Bigg|\int\_{\Omega} \phi(X\_n+Y\_n)dP-\int\_{\Omega}\phi(X\_n)dP\Bigg|\leq\int\_{\Omega} \Bigg|\phi(X\_n+Y\_n)-\phi(X\_n)\Bigg|dP $$$$ =\int\_{\\{|Y\_n|\leq\eta\\}} \Bigg|\phi(X\_n+Y\_n)-\phi(X\_n)\Bigg|dP+\int\_{\\{|Y\_n|>\eta\\}} \Bigg|\phi(X\_n+Y\_n)-\phi(X\_n)\Bigg|dP $$$$ \leq \epsilon + 2\max\_{x \in \mathbb{R}}\phi(x)P(|Y\_n|>\eta) $$<p>Or, $Y\_n \rightarrow 0$ en probabilité, donc il existe $n\_0$ tel que
-</p>
-$$ n \geq n\_0 \Longrightarrow 2\max\_{x \in \mathbb{R}}\phi(x)P(|Y\_n|>\eta) \leq \epsilon $$<p>Donc $n \geq n\_0 \Longrightarrow |A\_n| \leq 2\epsilon$
-Ce qui prouve que $\lim\_{n \rightarrow +\infty}A\_n=0$.</p>
-<p>Donc :
-</p>
-$$ \boxed{X\_n+Y\_n \rightarrow X \text{ en loi, quand }n \rightarrow +\infty} $$<p>
-$\blacksquare$</p>
+    
 
+      <section class="space-y-10 w-full">
+        
+          
+          
+            
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+    
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+
+    
+    
+      
+        
+        
+          
+        
+      
+    
+  
+
+
+
+<article class="article-link--simple flex flex-col md:flex-row relative">
+  
+    <div class="flex-none relative overflow-hidden  thumbnail-shadow md:mr-7 thumbnail">
+      <img
+        src="/projets/bandit-simulation/feature_hu_5a28c1b7886ed1ea.png"
+        role="presentation"
+        loading="lazy"
+        decoding="async"
+        class="not-prose absolute inset-0 w-full h-full object-cover">
+    </div>
+  
+  <div class=" mt-3 md:mt-0">
+    <header class="items-center text-start text-xl font-semibold">
+      <a
+        
+          href="/projets/bandit-simulation/"
+        
+        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
+        <h2>
+          Algorithmes de Bandits Adaptatifs pour les Méga-études
+          
+        </h2>
+      </a>
+      
+      
+    </header>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <span>948 mots</span><span class="px-2 text-primary-500">&middot;</span><span title="Temps de lecture">5 mins</span>
+    
+
+    
+    
   </div>
 
+  
+
+  
+  
+
+  
+  
+
+
+
+    </div>
+    
+  </div>
+  <div class="px-6 pt-4 pb-2"></div>
 </article>
+
+          
+        
+      </section>
+    
+
+  
+
+  
 
         
 

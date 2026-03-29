@@ -15,16 +15,16 @@
 
   
   
-    <title>Algorithmes de Bandits et Analyse du Regret &middot; Marouane Daoudi</title>
-    <meta name="title" content="Algorithmes de Bandits et Analyse du Regret &middot; Marouane Daoudi">
+    <title>Algorithmes de Bandits Adaptatifs pour les Méga-études &middot; Marouane Daoudi</title>
+    <meta name="title" content="Algorithmes de Bandits Adaptatifs pour les Méga-études &middot; Marouane Daoudi">
   
 
   
   
-    <meta name="description" content="Simulation d&#39;environnements stochastiques pour comparer l&#39;efficacité des politiques d&#39;allocation de ressources sous incertitude.">
+    <meta name="description" content="Algorithme bandit adaptatif inspiré de Jamieson &amp; Jain (2019) pour identifier les traitements efficaces tout en contrôlant le taux de fausses découvertes à tout instant.">
   
   
-    <meta name="keywords" content="Stochastique,Python,Reinforcement Learning,">
+    <meta name="keywords" content="Stochastique,Python,Tests Multiples,Bandits,">
   
   
   
@@ -38,8 +38,8 @@
   
   <meta property="og:url" content="http://localhost:1313/projets/bandit-simulation/">
   <meta property="og:site_name" content="Marouane Daoudi">
-  <meta property="og:title" content="Algorithmes de Bandits et Analyse du Regret">
-  <meta property="og:description" content="Étude comparative des stratégies d&#39;exploration (UCB, Thompson Sampling) et analyse de la convergence du regret cumulé.">
+  <meta property="og:title" content="Algorithmes de Bandits Adaptatifs pour les Méga-études">
+  <meta property="og:description" content="Application des bandits multi-bras au contrôle du FDR dans les méga-études : implémentation, simulation et analyse de la complexité échantillonnale.">
   <meta property="og:locale" content="fr">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projets">
@@ -47,14 +47,15 @@
     <meta property="article:modified_time" content="2025-02-14T00:00:00+00:00">
     <meta property="article:tag" content="Stochastique">
     <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="Reinforcement Learning">
+    <meta property="article:tag" content="Tests Multiples">
+    <meta property="article:tag" content="Bandits">
     <meta property="og:image" content="http://localhost:1313/projets/bandit-simulation/feature.png">
 
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/projets/bandit-simulation/feature.png">
-  <meta name="twitter:title" content="Algorithmes de Bandits et Analyse du Regret">
-  <meta name="twitter:description" content="Étude comparative des stratégies d&#39;exploration (UCB, Thompson Sampling) et analyse de la convergence du regret cumulé.">
+  <meta name="twitter:title" content="Algorithmes de Bandits Adaptatifs pour les Méga-études">
+  <meta name="twitter:description" content="Application des bandits multi-bras au contrôle du FDR dans les méga-études : implémentation, simulation et analyse de la complexité échantillonnale.">
 
   
   
@@ -204,9 +205,9 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Projets \u0026 Recherche",
-    "name": "Algorithmes de Bandits et Analyse du Regret",
-    "headline": "Algorithmes de Bandits et Analyse du Regret",
-    "description": "Étude comparative des stratégies d\u0027exploration (UCB, Thompson Sampling) et analyse de la convergence du regret cumulé.",
+    "name": "Algorithmes de Bandits Adaptatifs pour les Méga-études",
+    "headline": "Algorithmes de Bandits Adaptatifs pour les Méga-études",
+    "description": "Application des bandits multi-bras au contrôle du FDR dans les méga-études : implémentation, simulation et analyse de la complexité échantillonnale.",
     "inLanguage": "fr",
     "url" : "http://localhost:1313/projets/bandit-simulation/",
     "author" : {
@@ -219,10 +220,10 @@
     
     "dateModified": "2025-02-14T00:00:00\u002b00:00",
     
-    "keywords": ["Stochastique","Python","Reinforcement Learning"],
+    "keywords": ["Stochastique","Python","Tests Multiples","Bandits"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "249"
+    "wordCount": "948"
   }]
   </script>
 
@@ -569,7 +570,7 @@
 <article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
   
   <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Algorithmes de Bandits et Analyse du Regret</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Algorithmes de Bandits Adaptatifs pour les Méga-études</h1>
     
     <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
       <span class="text-neutral-500 font-medium">14 Feb 2025</span>
@@ -586,7 +587,11 @@
             </span>
           
             <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
-              Reinforcement Learning
+              Tests Multiples
+            </span>
+          
+            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+              Bandits
             </span>
           
         </div>
@@ -623,78 +628,221 @@
     
       class="dark:text-neutral-300"
     
-    ><strong>Projet en cours.</strong> L&rsquo;implémentation vise à vérifier empiriquement les bornes de regret logarithmiques théoriques.</span>
+    ><strong>Projet de recherche M1 SSD</strong> — Université de Montpellier, 2025–2026.
+Réalisé avec Ines Bahraoui et Chams-Eddine Bouaziz, sous la supervision d&rsquo;Adrien Nguyen-Huu et Luka Boisgibault.</span>
 </div>
 
 
-<h2 class="relative group">1. Contexte Théorique
-    <div id="1-contexte-théorique" class="anchor"></div>
+<h2 class="relative group">1. Motivation : des machines à sous aux méga-études
+    <div id="1-motivation--des-machines-à-sous-aux-méga-études" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-contexte-th%c3%a9orique" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-motivation--des-machines-%c3%a0-sous-aux-m%c3%a9ga-%c3%a9tudes" aria-label="Ancre">#</a>
     </span>
     
 </h2>
-<p>Le problème du <strong>Bandit Manchot (Multi-Armed Bandit)</strong> modélise un agent devant choisir séquentiellement parmi $K$ bras pour maximiser ses gains cumulés. Chaque bras $k$ suit une distribution de probabilité inconnue de moyenne $\mu_k$.</p>
-<p>On cherche à minimiser le <strong>regret cumulé</strong> $R_T$ après $T$ tirages :</p>
-<p>$$
-R_T = T \mu^* - \sum_{t=1}^T \mathbb{E}[r_t]
-$$</p>
-<p>Où $\mu^* = \max_k \mu_k$ est la moyenne du bras optimal.</p>
+<p>Imaginez un casino proposant 5 machines à sous et un budget de 100 pièces. L&rsquo;approche classique alloue 20 pièces par machine, calcule la moyenne empirique et teste les hypothèses. Problème : une fois la meilleure machine identifiée, le budget est épuisé — on n&rsquo;a pas pu exploiter l&rsquo;information découverte.</p>
+<p>L&rsquo;algorithme du <strong>bandit multi-bras</strong> résout ce dilemme en adaptant l&rsquo;allocation des tirages en temps réel selon les résultats observés. Cette logique dépasse largement le casino : dans les <strong>méga-études</strong> (expériences comportementales testant des dizaines ou centaines d&rsquo;interventions simultanément), il est crucial d&rsquo;identifier rapidement les traitements efficaces tout en minimisant le nombre de sujets exposés à des interventions sous-optimales.</p>
 
-<h2 class="relative group">2. Algorithmes Implémentés
-    <div id="2-algorithmes-implémentés" class="anchor"></div>
+<h2 class="relative group">2. Cadre Théorique
+    <div id="2-cadre-théorique" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-algorithmes-impl%c3%a9ment%c3%a9s" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-cadre-th%c3%a9orique" aria-label="Ancre">#</a>
     </span>
     
 </h2>
 
-<h3 class="relative group">Upper Confidence Bound (UCB1)
-    <div id="upper-confidence-bound-ucb1" class="anchor"></div>
+<h3 class="relative group">Formalisation du problème
+    <div id="formalisation-du-problème" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#upper-confidence-bound-ucb1" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#formalisation-du-probl%c3%a8me" aria-label="Ancre">#</a>
     </span>
     
 </h3>
-<p>Cette approche déterministe repose sur le principe d&rsquo;<strong>optimisme face à l&rsquo;incertitude</strong>. À l&rsquo;instant $t$, on choisit le bras $j$ qui maximise la borne supérieure de l&rsquo;intervalle de confiance :</p>
-<p>$$
-A_t = \underset{j}{\operatorname{argmax}} \left( \hat{\mu}_j(t) + \sqrt{\frac{2 \ln t}{N_j(t)}} \right)
-$$</p>
-<p>Le terme de droite force l&rsquo;exploration des bras peu visités ($N_j(t)$ faible), garantissant une borne de regret en $O(\ln T)$.</p>
+<p>On dispose de $n$ bras (traitements) indexés par $i \in [n]$. À chaque instant $t$, l&rsquo;agent choisit un bras $i_t$ et observe une récompense $X_{i_t,t} \sim \mathcal{N}(\mu_i, \sigma^2)$. Pour un seuil de référence $\mu_0$, on partitionne les bras en :</p>
+$$
+H_1 = \{i : \mu_i > \mu_0\}, \qquad H_0 = [n] \setminus H_1
+$$<p>L&rsquo;algorithme produit à chaque temps $t$ un ensemble de découvertes $S_t \subseteq [n]$. On note $k = |H_1|$ le nombre de traitements réellement efficaces et $\Delta = \min_{i \in H_1}(\mu_i - \mu_0)$ l&rsquo;écart minimal au seuil.</p>
 
-<h3 class="relative group">Thompson Sampling
-    <div id="thompson-sampling" class="anchor"></div>
+<h3 class="relative group">Contrôle des erreurs et puissance
+    <div id="contrôle-des-erreurs-et-puissance" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#thompson-sampling" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#contr%c3%b4le-des-erreurs-et-puissance" aria-label="Ancre">#</a>
     </span>
     
 </h3>
-<p>Approche bayésienne probabiliste. On modélise la connaissance sur chaque bras par une distribution Beta (pour des récompenses de Bernoulli). À chaque étape :</p>
-<ol>
-<li>On tire un échantillon $\theta_k \sim \text{Beta}(\alpha_k, \beta_k)$ pour chaque bras.</li>
-<li>On choisit le bras maximisant $\theta_k$.</li>
-<li>On met à jour la distribution a posteriori selon la récompense observée (Bayes Update).</li>
-</ol>
+<p>Contrairement à un test classique sur données fixes, l&rsquo;algorithme doit garantir ses propriétés statistiques <strong>à tout instant</strong> $t$ (contrôle <em>anytime</em>). On définit quatre critères :</p>
+<table>
+  <thead>
+      <tr>
+          <th>Critère</th>
+          <th>Définition</th>
+          <th>Interprétation</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>FDR-$\delta$</strong></td>
+          <td>$\mathbb{E}\!\left[\frac{\lvert S_t \cap H_0 \rvert}{\lvert S_t \rvert \vee 1}\right] \leq \delta$</td>
+          <td>Proportion espérée de fausses découvertes</td>
+      </tr>
+      <tr>
+          <td><strong>FWER-$\delta$</strong></td>
+          <td>$\mathbb{P}\!\left(\exists\, t,\; S_t \cap H_0 \neq \emptyset\right) \leq \delta$</td>
+          <td>Probabilité d&rsquo;au moins une fausse découverte</td>
+      </tr>
+      <tr>
+          <td><strong>TPR-$\delta,\tau$</strong></td>
+          <td>$\mathbb{E}\!\left[\frac{\lvert S_t \cap H_1 \rvert}{\lvert H_1 \rvert}\right] \geq 1-\delta \;\forall t \geq \tau$</td>
+          <td>Proportion espérée de vrais positifs détectés</td>
+      </tr>
+      <tr>
+          <td><strong>FWPD-$\delta,\tau$</strong></td>
+          <td>$\mathbb{P}(H_1 \subseteq S_t) \geq 1-\delta \;\forall t \geq \tau$</td>
+          <td>Probabilité de détecter tous les vrais positifs</td>
+      </tr>
+  </tbody>
+</table>
+<p>Les implications $\text{FWER} \Rightarrow \text{FDR}$ et $\text{FWPD} \Rightarrow \text{TPR}$ montrent que les critères FWER et FWPD sont plus exigeants.</p>
 
-<h2 class="relative group">3. Résultats de Simulation
-    <div id="3-résultats-de-simulation" class="anchor"></div>
+<h3 class="relative group">Borne LIL et intervalles de confiance anytime
+    <div id="borne-lil-et-intervalles-de-confiance-anytime" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-r%c3%a9sultats-de-simulation" aria-label="Ancre">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#borne-lil-et-intervalles-de-confiance-anytime" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<p>Pour garantir le contrôle du FDR à tout instant, les découvertes reposent sur des intervalles de confiance valides <strong>uniformément en $t$</strong>, construits via la <strong>Loi du Logarithme Itéré</strong> (LIL) :</p>
+$$
+\phi_{\mathrm{LIL}}(s, \delta) = \sqrt{\frac{2\sigma^2 \log\!\left(\log(2s)/\delta\right)}{s}}
+$$<p>Ce qui garantit que :</p>
+$$
+\mathbb{P}\!\left(\forall s \geq 1,\; |\hat{\mu}_i^s - \mu_i| \leq \phi_{\mathrm{LIL}}(s,\delta)\right) \geq 1-\delta
+$$<p>Le bras $i$ est ajouté à $S_t$ dès que sa borne inférieure de confiance dépasse le seuil :</p>
+$$
+\hat{\mu}_i^{n_i} - \phi_{\mathrm{LIL}}(n_i,\, \delta/n) > \mu_0
+$$
+<h3 class="relative group">Complexité échantillonnale : le gain adaptatif
+    <div id="complexité-échantillonnale--le-gain-adaptatif" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#complexit%c3%a9-%c3%a9chantillonnale--le-gain-adaptatif" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<p>L&rsquo;avantage central de l&rsquo;approche adaptative réside dans sa <strong>complexité échantillonnale</strong> — le nombre d&rsquo;observations nécessaires pour détecter une proportion $1-\delta$ des traitements efficaces tout en contrôlant le FDR :</p>
+$$
+\tau_{\text{uniforme}} = \mathcal{O}\!\left(\sum_{i=1}^n \frac{1}{\Delta_i^2} \log\!\left(\frac{n}{k\delta}\right)\right)
+$$$$
+\tau_{\text{adaptatif}} = \mathcal{O}\!\left(\sum_{i=1}^n \frac{1}{\Delta_i^2} \log\!\left(\frac{1}{\delta}\right)\right)
+$$<p>Le gain est d&rsquo;un facteur $\log(n/k)$ — multiplicatif. Dans les méga-études où $n$ est grand et $k$ petit, ce facteur peut être considérable : si $n=500$ traitements et $k=10$ efficaces, le gain est d&rsquo;un facteur $\log(50) \approx 3.9$.</p>
+
+<h2 class="relative group">3. Algorithme
+    <div id="3-algorithme" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-algorithme" aria-label="Ancre">#</a>
     </span>
     
 </h2>
-<p>Les simulations Monte-Carlo (1000 itérations) montrent que le Thompson Sampling converge généralement plus vite que l&rsquo;UCB dans des environnements stationnaires, bien que les deux respectent la borne logarithmique asymptotique.</p>
-<p><a href="https://github.com/marouanedaoudi"  target="_blank" rel="noreferrer">Voir le code sur GitHub</a></p>
+
+<h3 class="relative group">Règle d&rsquo;échantillonnage adaptatif
+    <div id="règle-déchantillonnage-adaptatif" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#r%c3%a8gle-d%c3%a9chantillonnage-adaptatif" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<p>À chaque étape, l&rsquo;algorithme maintient un ensemble de bras <strong>actifs</strong> (ni validés dans $S_t$, ni éliminés). Il concentre ses tirages sur les bras dont la moyenne empirique est la plus <strong>proche du seuil</strong> $\mu_0$ relativement à leur intervalle de confiance — ceux sur lesquels il y a le plus d&rsquo;incertitude à lever.</p>
+<p>Le seuil de confiance est ajusté dynamiquement en fonction du nombre de découvertes déjà validées :</p>
+$$
+\delta_t = \frac{\delta}{n - |S_t|}
+$$<p>Cet ajustement évite la correction de Bonferroni trop conservative et maximise la puissance statistique au fur et à mesure que des traitements sont identifiés.</p>
+
+<h3 class="relative group">Pseudo-code
+    <div id="pseudo-code" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#pseudo-code" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Entrée : n bras, seuil μ₀, niveau de confiance δ
+</span></span><span style="display:flex;"><span>Initialisation : tirer chaque bras init_pulls fois
+</span></span><span style="display:flex;"><span>S ← ∅
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Tant que le budget n&#39;est pas atteint :
+</span></span><span style="display:flex;"><span>    Identifier les bras actifs (non classés)
+</span></span><span style="display:flex;"><span>    Sélectionner le bras i_t le plus proche de μ₀
+</span></span><span style="display:flex;"><span>    Observer X_{i_t,t}, mettre à jour μ̂_{i_t}, n_{i_t}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    δ_t ← δ / (n - |S|)
+</span></span><span style="display:flex;"><span>    Pour chaque bras j ∉ S :
+</span></span><span style="display:flex;"><span>        Si μ̂_j - φ_LIL(n_j, δ_t) ≥ μ₀ :
+</span></span><span style="display:flex;"><span>            S ← S ∪ {j}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sortie : S (ensemble des découvertes)</span></span></code></pre></div></div>
+
+<h3 class="relative group">Implémentation de la borne LIL
+    <div id="implémentation-de-la-borne-lil" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#impl%c3%a9mentation-de-la-borne-lil" aria-label="Ancre">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">phi_function</span>(t, delta):
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Intervalle de confiance anytime basé sur la LIL.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Valide uniformément en t : P(∀s≥1, |μ̂ - μ| ≤ φ(s,δ)) ≥ 1-δ
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> float(<span style="color:#e6db74">&#39;inf&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    delta <span style="color:#f92672">=</span> min(delta, <span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>    log_delta    <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> delta)
+</span></span><span style="display:flex;"><span>    log_log_delta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(log_delta <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)
+</span></span><span style="display:flex;"><span>    log_log_t    <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>log(np<span style="color:#f92672">.</span>log(np<span style="color:#f92672">.</span>e <span style="color:#f92672">*</span> t <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    numerator <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> log_delta <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> log_log_delta <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> log_log_t
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>sqrt(numerator <span style="color:#f92672">/</span> t)</span></span></code></pre></div></div>
+<p>Le terme <code>1e-10</code> à l&rsquo;intérieur des logarithmes itérés prévient les instabilités numériques aux premières étapes, sans altérer la validité asymptotique de la borne.</p>
+
+<h2 class="relative group">4. Résultats
+    <div id="4-résultats" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-r%c3%a9sultats" aria-label="Ancre">#</a>
+    </span>
+    
+</h2>
+<p>Les simulations comparent l&rsquo;algorithme adaptatif à une allocation uniforme (type Bonferroni) sur des environnements gaussiens avec $n \in \{50, 200, 500\}$ bras. Les métriques suivies à chaque instant $t$ sont le FDR, le TPR, et le nombre total de tirages jusqu&rsquo;à détection complète.</p>
+<p>Les résultats empiriques confirment le gain théorique en $\log(n/k)$ : l&rsquo;algorithme adaptatif atteint un TPR de $1-\delta$ avec significativement moins d&rsquo;observations que l&rsquo;allocation uniforme, particulièrement lorsque $k \ll n$.</p>
+<hr>
+<p><strong>Références principales :</strong></p>
+<ul>
+<li>Jamieson &amp; Jain (2019). <em>A Bandit Approach to Multiple Testing with False Discovery Control</em>. NeurIPS 2018.</li>
+<li>Benjamini &amp; Hochberg (1995). <em>Controlling the false discovery rate</em>. JRSS-B.</li>
+<li>Milkman et al. (2021). <em>Megastudies improve the impact of applied behavioural science</em>. Nature.</li>
+</ul>
 
   </div>
 

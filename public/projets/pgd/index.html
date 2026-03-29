@@ -610,10 +610,9 @@
 </h2>
 <p>Ce projet traite de la minimisation d&rsquo;une fonction convexe $f$ (perte quadratique) sous une contrainte de norme $\ell_1$. Cette contrainte induit la <strong>sparsité</strong> des solutions, propriété fondamentale pour la sélection de variables en grande dimension.</p>
 <p>Le problème d&rsquo;optimisation s&rsquo;écrit :</p>
-<p>$$
-\min_{x \in \mathbb{R}^n} f(x) \quad \text{s.c.} \quad |x|_1 \leq \tau
-$$</p>
-
+$$
+\min_{x \in \mathbb{R}^n} f(x) \quad \text{s.c.} \quad \|x\|_1 \leq \tau
+$$
 <h2 class="relative group">2. Algorithme PGD (Projected Gradient Descent)
     <div id="2-algorithme-pgd-projected-gradient-descent" class="anchor"></div>
     
@@ -623,11 +622,10 @@ $$</p>
     </span>
     
 </h2>
-<p>La méthode itérative combine une descente de gradient standard et une projection sur l&rsquo;ensemble admissible $\mathcal{C} = {x : |x|_1 \leq \tau}$ :</p>
-<p>$$
+<p>La méthode itérative combine une descente de gradient standard et une projection sur l&rsquo;ensemble admissible $\mathcal{C} = \{x : \|x\|_1 \leq \tau\}$ :</p>
+$$
 x_{k+1} = \Pi_{\mathcal{C}} \left( x_k - \eta \nabla f(x_k) \right)
-$$</p>
-
+$$
 <h3 class="relative group">La Projection sur la Boule L1
     <div id="la-projection-sur-la-boule-l1" class="anchor"></div>
     

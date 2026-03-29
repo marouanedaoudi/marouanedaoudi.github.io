@@ -219,7 +219,7 @@
     "keywords": ["Inégalité","Covariance"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "123"
+    "wordCount": "121"
   }]
   </script>
 
@@ -617,26 +617,28 @@
     
       class="dark:text-neutral-300"
     
-    ><strong>Énoncé :</strong> Soient $X$ et $Y$ deux événements.
+    ><p><strong>Énoncé :</strong> Soient $X$ et $Y$ deux événements.
 Montrer que
+</p>
 $$ \big|P(X \cap Y)-P(X)P(Y)\big| \leq \frac{1}{4} $$</span>
 </div>
 
 <p>Que se passe-t-il si $X=Y$ ?
 On a $\big|P(X)-P(X)^2\big|=\big|P(X)\big|\big|1-P(X)\big|$.
 Soit $f:[0,1] \rightarrow [0,1]$ une fonction telle que $f(x)=x(1-x)$
-La fonction $f$ est dérivable, par composition de fonctions dérivables, ainsi $f&rsquo;(x)=1-2x$.
+La fonction $f$ est dérivable, par composition de fonctions dérivables, ainsi $f'(x)=1-2x$.
 Donc $f$ atteint son maximum en $\frac{1}{4}$.
 Ainsi, $\big|P(X)\big|\big|1-P(X)\big| \leq \frac{1}{2}$.</p>
 <p>Revenons à notre inégalité et réécrivons l&rsquo;inégalité sous forme d&rsquo;espérance.
 On a
-$$ \big|P(X \cap Y)-P(X)P(Y)\big|=\big|\mathbb{E}(\mathbb{1}_{X}\mathbb{1}_{Y})-E(\mathbb{1}_{X})E(\mathbb{1}_{Y})\big|=\big|\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))(\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))\big| $$</p>
-<p>Maintenant, on applique l&rsquo;inégalité de Cauchy-Schwartz.
+</p>
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|=\big|\mathbb{E}(\mathbb{1}\_{X}\mathbb{1}\_{Y})-E(\mathbb{1}\_{X})E(\mathbb{1}\_{Y})\big|=\big|\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))(\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))\big| $$<p>Maintenant, on applique l&rsquo;inégalité de Cauchy-Schwartz.
 Il faudrait éventuellement montrer que c&rsquo;est une forme quadratique auquel on peut associer un produit scalaire et la norme associée pour pouvoir appliquer l&rsquo;inégalité.
 Donc, on obtient
-$$ \big|\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))(\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))\big|\leq\mathbb{E}((\mathbb{1}_{X}-\mathbb{E}(\mathbb{1}_{X}))^2)^\frac{1}{2}\mathbb{E}((\mathbb{1}_{Y}-\mathbb{E}(\mathbb{1}_{Y}))^2)^\frac{1}{2}\leq\mathbb{V}(\mathbb{1}_{X})^\frac{1}{2}\mathbb{V}(\mathbb{1}_{Y})^\frac{1}{2} $$</p>
-<p>Par la formule de Koenig-Huygens,
-$$ \big|P(X \cap Y)-P(X)P(Y)\big|\leq \sqrt{P(X)-P(X)^2}\sqrt{P(Y)-P(Y)^2}\leq\frac{1}{4} $$
+</p>
+$$ \big|\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))(\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))\big|\leq\mathbb{E}((\mathbb{1}\_{X}-\mathbb{E}(\mathbb{1}\_{X}))^2)^\frac{1}{2}\mathbb{E}((\mathbb{1}\_{Y}-\mathbb{E}(\mathbb{1}\_{Y}))^2)^\frac{1}{2}\leq\mathbb{V}(\mathbb{1}\_{X})^\frac{1}{2}\mathbb{V}(\mathbb{1}\_{Y})^\frac{1}{2} $$<p>Par la formule de Koenig-Huygens,
+</p>
+$$ \big|P(X \cap Y)-P(X)P(Y)\big|\leq \sqrt{P(X)-P(X)^2}\sqrt{P(Y)-P(Y)^2}\leq\frac{1}{4} $$<p>
 $\blacksquare$</p>
 
   </div>

@@ -7,12 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
     <copyright>© 2026 </copyright>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Bandits</title>
+      <link>http://localhost:1313/tags/bandits/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/bandits/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>Borel-Cantelli</title>
       <link>http://localhost:1313/tags/borel-cantelli/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/borel-cantelli/</guid>
       <description></description>
@@ -22,7 +32,7 @@
     <item>
       <title>Convergence</title>
       <link>http://localhost:1313/tags/convergence/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/convergence/</guid>
       <description></description>
@@ -32,7 +42,7 @@
     <item>
       <title>Convergence en Loi</title>
       <link>http://localhost:1313/tags/convergence-en-loi/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/convergence-en-loi/</guid>
       <description></description>
@@ -42,7 +52,7 @@
     <item>
       <title>Convergence P.s.</title>
       <link>http://localhost:1313/tags/convergence-p.s./</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/convergence-p.s./</guid>
       <description></description>
@@ -52,7 +62,7 @@
     <item>
       <title>Covariance</title>
       <link>http://localhost:1313/tags/covariance/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/covariance/</guid>
       <description></description>
@@ -60,19 +70,9 @@
     </item>
     
     <item>
-      <title>Data Science</title>
-      <link>http://localhost:1313/tags/data-science/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/data-science/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Fonction De Répartition</title>
       <link>http://localhost:1313/tags/fonction-de-r%C3%A9partition/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/fonction-de-r%C3%A9partition/</guid>
       <description></description>
@@ -82,7 +82,7 @@
     <item>
       <title>Fondamental</title>
       <link>http://localhost:1313/tags/fondamental/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/fondamental/</guid>
       <description></description>
@@ -92,7 +92,7 @@
     <item>
       <title>Gaussienne</title>
       <link>http://localhost:1313/tags/gaussienne/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/gaussienne/</guid>
       <description></description>
@@ -102,7 +102,7 @@
     <item>
       <title>Indépendance</title>
       <link>http://localhost:1313/tags/ind%C3%A9pendance/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/ind%C3%A9pendance/</guid>
       <description></description>
@@ -112,7 +112,7 @@
     <item>
       <title>Inégalité</title>
       <link>http://localhost:1313/tags/in%C3%A9galit%C3%A9/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/in%C3%A9galit%C3%A9/</guid>
       <description></description>
@@ -122,7 +122,7 @@
     <item>
       <title>Mesure</title>
       <link>http://localhost:1313/tags/mesure/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/mesure/</guid>
       <description></description>
@@ -130,9 +130,49 @@
     </item>
     
     <item>
+      <title>Python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/python/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Slutsky</title>
+      <link>http://localhost:1313/tags/slutsky/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/slutsky/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Stochastique</title>
+      <link>http://localhost:1313/tags/stochastique/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/stochastique/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Tests Multiples</title>
+      <link>http://localhost:1313/tags/tests-multiples/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/tests-multiples/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>NumPy</title>
       <link>http://localhost:1313/tags/numpy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/numpy/</guid>
       <description></description>
@@ -142,7 +182,7 @@
     <item>
       <title>Optimisation</title>
       <link>http://localhost:1313/tags/optimisation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/optimisation/</guid>
       <description></description>
@@ -150,11 +190,11 @@
     </item>
     
     <item>
-      <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Data Science</title>
+      <link>http://localhost:1313/tags/data-science/</link>
+      <pubDate>Sat, 10 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>http://localhost:1313/tags/data-science/</guid>
       <description></description>
       
     </item>
@@ -162,7 +202,7 @@
     <item>
       <title>R</title>
       <link>http://localhost:1313/tags/r/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/r/</guid>
       <description></description>
@@ -170,41 +210,11 @@
     </item>
     
     <item>
-      <title>Reinforcement Learning</title>
-      <link>http://localhost:1313/tags/reinforcement-learning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/reinforcement-learning/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Slutsky</title>
-      <link>http://localhost:1313/tags/slutsky/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/slutsky/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Statistiques</title>
       <link>http://localhost:1313/tags/statistiques/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Feb 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/statistiques/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Stochastique</title>
-      <link>http://localhost:1313/tags/stochastique/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/stochastique/</guid>
       <description></description>
       
     </item>

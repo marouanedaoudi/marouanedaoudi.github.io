@@ -7,15 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
     <copyright>© 2026 </copyright>
-    <atom:link href="http://localhost:1313/tags/stochastique/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/stochastique/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Algorithmes de Bandits et Analyse du Regret</title>
+      <title>Algorithmes de Bandits Adaptatifs pour les Méga-études</title>
       <link>http://localhost:1313/projets/bandit-simulation/</link>
       <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/projets/bandit-simulation/</guid>
-      <description>Simulation d&amp;rsquo;environnements stochastiques pour comparer l&amp;rsquo;efficacité des politiques d&amp;rsquo;allocation de ressources sous incertitude.</description>
+      <description>Algorithme bandit adaptatif inspiré de Jamieson &amp;amp; Jain (2019) pour identifier les traitements efficaces tout en contrôlant le taux de fausses découvertes à tout instant.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/projets/bandit-simulation/feature.png" />
     </item>
     
