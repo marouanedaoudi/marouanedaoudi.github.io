@@ -7,11 +7,6 @@ tags: ["Stochastique", "Python", "Tests Multiples", "Bandits"]
 math: true
 ---
 
-{{< alert icon="flask" >}}
-**Projet de recherche M1 SSD** — Université de Montpellier, 2025–2026.
-Réalisé avec Ines Bahraoui et Chams-Eddine Bouaziz, sous la supervision d'Adrien Nguyen-Huu et Luka Boisgibault.
-{{< /alert >}}
-
 ## 1. Motivation : des machines à sous aux méga-études
 
 Imaginez un casino proposant 5 machines à sous et un budget de 100 pièces. L'approche classique alloue 20 pièces par machine, calcule la moyenne empirique et teste les hypothèses. Problème : une fois la meilleure machine identifiée, le budget est épuisé — on n'a pas pu exploiter l'information découverte.
