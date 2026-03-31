@@ -13,43 +13,49 @@ On rappelle que $A=\limsup\_{n \rightarrow \infty}A\_n$.
 2. On suppose que, pour tout $n \in \mathbb{N}$, les événements $A\_0,...,A\_n$ sont indépendants. On suppose aussi que $\sum\_{n \in \mathbb{N}}P(A\_n)=+\infty$. Montrer que $P(A)=1$.
 {{< /alert >}}
 
-**1.** (On aura besoin de deux inégalités auxquelles il faut penser)
-Soient $n \in \mathbb{N}$ et $k \geq n$.
-On a
-$$ \bigcap\_{p \geq n}A\_p \subset A\_k $$
-Donc $P(\bigcap\_{p \geq n}A\_p) \leq P(A\_k)$
-Ainsi, $P(\bigcap\_{k \geq n}A\_k) \leq \inf\_{k \geq n} P(A\_k)$
+## Lemme préliminaire
 
-Or, $(\bigcap\_{p \geq n}A\_p)\_{n \in \mathbb{N}}$ est une suite croissante.
-Donc, par passage à la limite,
-$$ \lim\limits\_{n \rightarrow +\infty}P(\bigcap\_{k \geq n}A\_k)=P(\bigcup\_{n \in \mathbb{N}}\bigcap\_{k \geq n}A\_k)\leq \lim\_{n \rightarrow \infty}\inf\_{k \geq n} P(A\_k) $$
+Avant de prouver les deux lemmes, établissons deux inégalités générales qui seront utiles et qui constituent en elles-mêmes un analogue mesuré du lemme de Fatou.
 
-Donc
+Soient $n \in \mathbb{N}$ et $k \geq n$. On a $\bigcap\_{p \geq n}A\_p \subset A\_k$, donc $P(\bigcap\_{p \geq n}A\_p) \leq P(A\_k)$, et en passant à l'infimum sur $k \geq n$ :
+$$P\!\left(\bigcap\_{k \geq n}A\_k\right) \leq \inf\_{k \geq n} P(A\_k)$$
+
+La suite $\left(\bigcap\_{p \geq n}A\_p\right)\_{n \in \mathbb{N}}$ est croissante, donc par continuité croissante de $P$ :
+$$ \lim\_{n \rightarrow +\infty}P\!\left(\bigcap\_{k \geq n}A\_k\right)=P\!\left(\bigcup\_{n \in \mathbb{N}}\bigcap\_{k \geq n}A\_k\right)\leq \liminf\_{n \rightarrow \infty} P(A\_n) $$
+
+On obtient ainsi :
 $$ \boxed{P(\liminf\_{n \rightarrow \infty}A\_n) \leq \liminf\_{n \rightarrow \infty}P(A\_n)} $$
 
-De la même manière, on obtient
+Un raisonnement analogue sur les unions donne :
 $$ \boxed{P(\limsup\_{n \rightarrow \infty}A\_n) \geq \limsup\_{n \rightarrow \infty}P(A\_n)} $$
 
-Utilisons maintenant la $\sigma$-additivité de la probabilité,
-$$ P(\bigcup\_{k \geq n}A\_k) \leq \sum\_{k \geq n}P(A\_k) $$
-La suite $(\bigcup\_{k \geq n}A\_k)\_{n \in \mathbb{N}}$ est décroissante donc par passage à la limite, on a
-$$ \lim\_{n \rightarrow +\infty}P(\bigcup\_{k \geq n}A\_k)=P(\bigcap\_{n \in \mathbb{N}}\bigcup\_{k \geq n}A\_k)=P(\limsup\_{n \rightarrow +\infty}A\_n)\leq \lim\_{n \rightarrow +\infty}\sum\_{k \geq n}P(A\_k)=0 $$
-Donc $\boxed{P(A)=0}$
+## Preuve du lemme 1
 
-**2.** On sait que $P(A)=\lim\_{n \rightarrow +\infty}P(\bigcup\_{k \geq n}A\_k)$. Donc il suffit de montrer que $P(\bigcup\_{k \geq n}A\_k)=1$.
-Soit $n \in \mathbb{N}$.
-Supposons qu'il existe $k \geq n$ tel que $P(A\_k)=1$. Donc $P(\bigcup\_{k \geq n}A\_k) \geq P(A\_k)$. Donc $P(\bigcup\_{k \geq n}A\_k)=1$.
-Maintenant supposons que pour tout $k \geq n$, $P(A\_k) < 1$. On a alors
-$$ (\bigcup\_{k \geq n}A\_k)^c=\bigcap\_{k \geq n}A\_k^c $$
+Pour majorer $P(A) = P(\limsup A\_n)$, on utilise la $\sigma$-sous-additivité de $P$ plutôt que les inégalités ci-dessus, ce qui donne une borne explicite en fonction de la série.
 
-Donc
-$$ P((\bigcup\_{k \geq n}A\_k)^c)=P(\bigcap\_{k \geq n}A\_k^c)=\lim\_{m \rightarrow +\infty}P\!\left(\bigcap\_{k=n}^m A\_k^c\right)=\lim\_{m \rightarrow +\infty}\prod\_{k=n}^m P(A\_k^c)=\prod\_{k \geq n}(1-P(A\_k)) $$
+Par $\sigma$-sous-additivité :
+$$ P\!\left(\bigcup\_{k \geq n}A\_k\right) \leq \sum\_{k \geq n}P(A\_k) $$
 
-où la troisième égalité utilise l'indépendance des événements $A\_n, A\_{n+1}, \ldots$ (et donc de leurs complémentaires), et la deuxième la continuité décroissante de la mesure.
+La suite $\left(\bigcup\_{k \geq n}A\_k\right)\_{n \in \mathbb{N}}$ est décroissante, donc par continuité décroissante de $P$ :
+$$ P(A) = P\!\left(\limsup\_{n \rightarrow +\infty}A\_n\right) = \lim\_{n \rightarrow +\infty}P\!\left(\bigcup\_{k \geq n}A\_k\right) \leq \lim\_{n \rightarrow +\infty}\sum\_{k \geq n}P(A\_k) = 0 $$
 
-Soit $m \geq n$. En utilisant $\forall x \in (-1, 0]$, $\ln(1+x) \leq x$ (qui s'applique ici car $-P(A\_k) \in (-1, 0]$) et la continuité croissante de $P$, on a
-$$ \lim\_{m \rightarrow +\infty}\ln\!\left(P\!\left(\left(\bigcup\_{k=n}^mA\_k\right)^c\right)\right)=\lim\_{m \rightarrow +\infty}\sum\_{k=n}^m \ln(1-P(A\_k)) \leq -\lim\_{m \rightarrow +\infty} \sum\_{k=n}^m P(A\_k)=-\infty $$
+La dernière limite vaut $0$ car $\sum\_{n}P(A\_n) < +\infty$ par hypothèse, donc son reste tend vers $0$. Ainsi $\boxed{P(A)=0}$.
 
-Donc $\lim\_{m \rightarrow +\infty}ln(P((\bigcup\_{k=n}^mA\_k)^c))=-\infty$
-Donc $P((\bigcup\_{k \geq n}A\_k)^c)=0$ et $P(\bigcup\_{k \geq n}A\_k)=1$.
-D'où $\boxed{P(A)=1}$
+## Preuve du lemme 2
+
+On sait que $P(A)=\lim\_{n \rightarrow +\infty}P(\bigcup\_{k \geq n}A\_k)$. Il suffit donc de montrer que $P(\bigcup\_{k \geq n}A\_k)=1$ pour tout $n \in \mathbb{N}$.
+
+Soit $n \in \mathbb{N}$. Si $P(A\_k)=1$ pour un certain $k \geq n$, alors $P(\bigcup\_{k \geq n}A\_k) \geq P(A\_k) = 1$ et on conclut immédiatement.
+
+Supposons maintenant que $P(A\_k) < 1$ pour tout $k \geq n$. On travaille sur le complémentaire :
+$$ \left(\bigcup\_{k \geq n}A\_k\right)^c=\bigcap\_{k \geq n}A\_k^c $$
+
+Par continuité décroissante de $P$ et indépendance des $(A\_k^c)\_{k\geq n}$ :
+$$ P\!\left(\left(\bigcup\_{k \geq n}A\_k\right)^c\right) = \lim\_{m \rightarrow +\infty}P\!\left(\bigcap\_{k=n}^m A\_k^c\right) = \lim\_{m \rightarrow +\infty}\prod\_{k=n}^m P(A\_k^c) = \prod\_{k \geq n}(1-P(A\_k)) $$
+
+Pour évaluer ce produit infini, on passe au logarithme. En utilisant $\ln(1+x) \leq x$ pour tout $x \in (-1, 0]$ (ce qui s'applique ici car $-P(A\_k) \in (-1, 0]$) :
+
+$$ \ln\!\left(P\!\left(\left(\bigcup\_{k=n}^m A\_k\right)^c\right)\right) = \sum\_{k=n}^m \ln(1-P(A\_k)) \leq -\sum\_{k=n}^m P(A\_k) \xrightarrow[m \to +\infty]{} -\infty $$
+
+car $\sum\_{n}P(A\_n)=+\infty$ par hypothèse. Donc $P\!\left(\left(\bigcup\_{k \geq n}A\_k\right)^c\right) = 0$ et $P(\bigcup\_{k \geq n}A\_k) = 1$.
+D'où $\boxed{P(A)=1}$. $\blacksquare$

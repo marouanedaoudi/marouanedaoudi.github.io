@@ -33,7 +33,7 @@ On a $u(x)=\frac{x}{\sqrt{2}\sigma\_n}-\frac{it\sigma\_n}{\sqrt{2}}$ donc $u'(x)
 Donc :
 $$ \forall t \in \mathbb{R}, \; \; \; \varphi\_{X\_n}(t)=\frac{1}{\sqrt{\pi}e^{\frac{t^2\sigma\_n^2}{2}}}\int\_{\mathbb{R}}e^{-u^2}du=e^{-\frac{t^2\sigma\_n^2}{2}} $$
 
-On sait que la suite $(X\_n)\_{n \in \mathbb{R}}$ converge en loi vers $X$.
+On sait que la suite $(X\_n)\_{n \in \mathbb{N}}$ converge en loi vers $X$.
 Donc $\lim\_{n \rightarrow +\infty}\varphi\_{X\_n}(t)=\varphi\_X(t)$. Par continuité de $\ln$ sur tout $\mathbb{R\_+^*}$ et par caractérisation séquentielle de la limite, $\lim\_{n \rightarrow +\infty}\ln(\varphi\_{X\_n}(t))=\ln(\varphi\_{X}(t))$.
 
 Donc, pour $t \not = 0$, $(\sigma\_n^2)\_{n \in \mathbb{N}}=\Bigg(-\frac{2}{t^2}\ln\big(\varphi\_{X\_n}(t)\big)\Bigg)\_{n \in \mathbb{N}}$ converge et on note $\sigma := \lim\_{n \rightarrow +\infty}\sigma\_n$.

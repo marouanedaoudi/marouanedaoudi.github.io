@@ -18,4 +18,4 @@ $$ \bigcup\_{n \in \mathbb{N}} ]-\infty,a\_n]=]-\infty,a[ $$
 Donc, par continuité croissante de la mesure,
 $$ \lim\limits\_{n \rightarrow +\infty} F(a\_n)=\lim\limits\_{n \rightarrow +\infty}p(]-\infty,a\_n])=p(]-\infty,a[) $$
 
-Or, $F(a)=p(]-\infty,a])=p(]-\infty,a[)+p(\\{a\\})$. Et donc, $F$ est continue à gauche en $a$ si et seulement si $p(\\{a\\})=0$. La continuité sur $\mathbb{R}$ en découle immédiatement. $\blacksquare$
+Or, $F(a)=p(]-\infty,a])=p(]-\infty,a[)+p(\\{a\\})$. Donc $F(a) = \lim\_{n}F(a\_n)$ si et seulement si $p(\\{a\\})=0$, ce qui montre que $F$ est continue à gauche en $a$ si et seulement si $p(\\{a\\})=0$. Combiné avec la continuité à droite, $F$ est continue en $a$ si et seulement si $p(\\{a\\})=0$. Si $p$ ne charge aucun point, alors $p(\\{a\\})=0$ pour tout $a \in \mathbb{R}$, donc $F$ est continue sur $\mathbb{R}$. $\blacksquare$
