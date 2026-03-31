@@ -16,7 +16,7 @@ soient convergentes. Démontrer que la série $\sum\_{n \in \mathbb{N}}X\_n$ est
 ## Ma solution :
 
 La convergence de $\sum P(X\_n \neq a\_n)$ oriente naturellement vers le lemme de Borel-Cantelli.
-Comme $\sum\_{n \in \mathbb{N}}P(X\_n \neq a\_n)<+\infty$, alors $P(\limsup\_{n \rightarrow +\infty}\\{X\_n \neq a\_n\\})=0$.
+Comme $\sum\_{n \in \mathbb{N}}P(X\_n \neq a\_n)<+\infty$, alors $P(\limsup\_{n \rightarrow +\infty}\{X\_n \neq a\_n\})=0$.
 
 Cela signifie que l'ensemble des $\omega \in \Omega$ tel que $X\_n(\omega) \neq a\_n$ pour une infinité de $n$ est de mesure nulle. Par conséquent, pour presque tout $\omega \in \Omega$, il existe un rang $N(\omega) \in \mathbb{N}$ tel que pour tout $n \geq N(\omega)$, on a $X\_n=a\_n$.
 
