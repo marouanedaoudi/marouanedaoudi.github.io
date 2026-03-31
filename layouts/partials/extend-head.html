@@ -1,3 +1,44 @@
+<!-- ── SEO : meta description ── -->
+<meta name="description" content="{{ if .IsHome }}Site personnel de Marouane Daoudi, étudiant en Master de Mathématiques Appliquées à l'Université de Montpellier. Projets en optimisation, statistique et data science.{{ else if .Description }}{{ .Description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<meta name="author" content="Marouane Daoudi">
+
+<!-- ── SEO : Open Graph ── -->
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}Marouane Daoudi{{ else }}{{ .Title }} — Marouane Daoudi{{ end }}">
+<meta property="og:description" content="{{ if .IsHome }}Site personnel de Marouane Daoudi, étudiant en Master de Mathématiques Appliquées à l'Université de Montpellier.{{ else if .Description }}{{ .Description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="Marouane Daoudi">
+<meta property="og:image" content="https://github.com/marouanedaoudi.png">
+<meta property="og:locale" content="fr_FR">
+
+<!-- ── SEO : Twitter Card ── -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ if .IsHome }}Marouane Daoudi{{ else }}{{ .Title }} — Marouane Daoudi{{ end }}">
+<meta name="twitter:description" content="{{ if .IsHome }}Site personnel de Marouane Daoudi, étudiant en Master de Mathématiques Appliquées à l'Université de Montpellier.{{ else if .Description }}{{ .Description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<meta name="twitter:image" content="https://github.com/marouanedaoudi.png">
+
+<!-- ── SEO : JSON-LD Person ── -->
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marouane Daoudi",
+  "url": "https://marouanedaoudi.github.io/",
+  "image": "https://github.com/marouanedaoudi.png",
+  "jobTitle": "Étudiant en Master de Mathématiques Appliquées",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Université de Montpellier"
+  },
+  "sameAs": [
+    "https://github.com/marouanedaoudi"
+  ],
+  "knowsAbout": ["Optimisation convexe", "Statistique", "Data Science", "Machine Learning", "Python", "R"]
+}
+</script>
+{{ end }}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>

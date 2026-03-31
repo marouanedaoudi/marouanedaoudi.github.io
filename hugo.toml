@@ -31,9 +31,14 @@ theme = "blowfish"
     weight = 40
 
 # --- CONFIGURATION PRINCIPALE ---
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
 [params]
   colorScheme = "ocean"
   defaultAppearance = "dark"
+  description = "Site personnel de Marouane Daoudi, étudiant en Master de Mathématiques Appliquées à l'Université de Montpellier. Projets en optimisation, statistique et data science."
   
   # Footer : On désactive les deux crédits
   footer.showPoweredBy = false
