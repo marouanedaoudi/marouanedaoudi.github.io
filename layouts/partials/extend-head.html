@@ -3,38 +3,48 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
 <style>
-  /* ── Header nav → pill buttons ── */
+  /* ── Header nav → pill buttons toujours visibles ── */
   .main-menu nav a {
     padding: 6px 14px;
     border-radius: 999px;
-    border: 1px solid transparent;
-    transition: background 0.2s, border-color 0.2s;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.06);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
     font-weight: 500;
   }
+  html.dark .main-menu nav a {
+    border-color: rgba(129, 140, 248, 0.2);
+    background: rgba(129, 140, 248, 0.07);
+  }
   .main-menu nav a:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.5);
     color: #4f46e5;
   }
   html.dark .main-menu nav a:hover {
-    background: rgba(129, 140, 248, 0.15);
-    border-color: rgba(129, 140, 248, 0.3);
+    background: rgba(129, 140, 248, 0.2);
+    border-color: rgba(129, 140, 248, 0.5);
     color: #a5b4fc;
   }
 
-  /* ── Header appearance switcher button ── */
+  /* ── Appearance switcher ── */
   #appearance-switcher {
     padding: 6px;
     border-radius: 999px;
-    border: 1px solid transparent;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.06);
     transition: background 0.2s, border-color 0.2s;
   }
+  html.dark #appearance-switcher {
+    border-color: rgba(129, 140, 248, 0.2);
+    background: rgba(129, 140, 248, 0.07);
+  }
   #appearance-switcher:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.5);
   }
   html.dark #appearance-switcher:hover {
-    background: rgba(129, 140, 248, 0.15);
-    border-color: rgba(129, 140, 248, 0.3);
+    background: rgba(129, 140, 248, 0.2);
+    border-color: rgba(129, 140, 248, 0.5);
   }
 </style>
