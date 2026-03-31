@@ -6,68 +6,105 @@ summary: "Package R implémentant un solveur de Slitherlink (propagation de cont
 tags: ["R", "Shiny", "Optimisation", "Contraintes"]
 ---
 
-## Présentation
+## Le puzzle
 
-**Slitherlink** est un puzzle logique de contraintes : il s'agit de relier des points sur une grille pour former une **boucle fermée unique**, en respectant les chiffres indiqués dans chaque cellule (chaque chiffre indique combien de ses quatre côtés font partie de la boucle).
+**Slitherlink** est un puzzle logique japonais joué sur une grille de points. L'objectif est de relier des points adjacents pour former une **boucle fermée unique** — sans branchement, sans croisement, sans impasse. Les chiffres dans les cellules indiquent exactement combien de leurs quatre côtés appartiennent à la boucle.
 
-Ce projet propose un package R complet pour jouer et résoudre ce puzzle, articulé autour de deux composantes : un **solveur algorithmique** et une **interface interactive Shiny**.
+```
+· — · — ·        · — · — ·
+        |        |       |
+·   · — ·   →   ·   · — ·
+|   |            |   |
+· — ·   ·        · — ·   ·
+```
 
-Le code source est disponible sur [GitHub](https://github.com/marouanedaoudi/slitherlink-shiny).
+*Exemple : une cellule `3` force trois de ses côtés à être tracés.*
 
-## Fonctionnement du solveur
+## Package R
 
-### Modélisation
-
-Une grille $n \times m$ définit :
-- $(n+1) \times (m+1)$ **nœuds** (les points de la grille),
-- $n \times (m+1)$ **segments horizontaux** et $(n+1) \times m$ **segments verticaux**,
-- $n \times m$ **cellules**, chacune associée à une contrainte $c_{i,j} \in \{0, 1, 2, 3, \text{vide}\}$.
-
-Chaque segment $s$ a un état $x_s \in \{0, 1\}$ (absent ou présent). La solution vérifie :
-
-$$
-\forall (i,j),\; \sum_{s \in \partial(i,j)} x_s = c_{i,j}
-$$
-
-et forme une boucle simple connexe (chaque nœud appartenant à la boucle a exactement degré 2).
-
-### Algorithme : propagation de contraintes + backtracking
-
-Le solveur procède en deux phases :
-
-1. **Propagation de contraintes** — À chaque itération, pour chaque cellule, on déduit l'état de certains segments à partir de son chiffre et du nombre de segments déjà fixés. Par exemple, une cellule `0` force tous ses segments à être absents ; une cellule `3` avec un segment absent force les trois autres à être présents. On répète jusqu'à stabilisation.
-
-2. **Backtracking** — Si la propagation seule ne suffit pas, on choisit un segment indéterminé, on lui assigne une valeur, et on relance la propagation. En cas de contradiction, on revient en arrière.
+Le package `slitherlinkshiny` s'installe depuis GitHub :
 
 ```r
-solve_slitherlink <- function(grid) {
+devtools::install_github("marouanedaoudi/slitherlink-shiny")
+```
+
+### API principale
+
+**Gestion des grilles**
+```r
+init_grid(clues)                         # construire une grille depuis une matrice de chiffres
+get_puzzle("medium_4x4")                 # charger un puzzle intégré
+random_puzzle(n = 5, m = 5, seed = 42)  # générer un puzzle aléatoire résolvable
+list_puzzles()                           # lister la bibliothèque intégrée
+```
+
+**Manipulation & validation**
+```r
+toggle_segment(g, type = "h", i = 1, j = 1)  # basculer un segment
+check_clues(g)                                 # vérifier qu'aucune contrainte n'est dépassée
+check_clues(g, strict = TRUE)                  # vérifier que toutes les contraintes sont satisfaites
+check_loop(g)                                  # vérifier que les segments forment une boucle unique
+is_solved(g)                                   # solution complète ?
+```
+
+**Résolution**
+```r
+solve_grid(g)  # solveur automatique (NULL si aucune solution)
+```
+
+### Représentation interne
+
+Chaque objet grille contient trois matrices :
+
+| Matrice | Dimensions | Contenu |
+|---------|-----------|---------|
+| `clues` | $n \times m$ | chiffres des cellules (`NA` = sans contrainte) |
+| `seg_h` | $(n+1) \times m$ | segments horizontaux |
+| `seg_v` | $n \times (m+1)$ | segments verticaux |
+
+Les segments prennent la valeur `0` (vide), `1` (tracé) ou `-1` (barré).
+
+## Solveur
+
+Le solveur combine deux stratégies :
+
+1. **Propagation de contraintes** — pour chaque cellule, on déduit l'état des segments à partir du chiffre et des segments déjà fixés (ex. cellule `0` : tous ses segments sont forcés à vide ; cellule `3` avec un segment absent : les trois autres sont forcés à tracé). On répète jusqu'à stabilisation.
+
+2. **Backtracking** — si la propagation seule bloque, on fixe un segment indéterminé, on relance la propagation, et on revient en arrière en cas de contradiction.
+
+```r
+solve_grid <- function(g) {
   repeat {
-    changed <- propagate_constraints(grid)
+    changed <- propagate_constraints(g)
     if (!changed) break
   }
-  if (is_solved(grid)) return(grid)
-  # Backtracking sur le premier segment indéterminé
-  seg <- find_undecided(grid)
-  for (val in c(1, 0)) {
-    candidate <- set_segment(grid, seg, val)
-    result <- solve_slitherlink(candidate)
+  if (is_solved(g)) return(g)
+  seg <- find_undecided(g)
+  for (val in c(1L, 0L)) {
+    result <- solve_grid(set_segment(g, seg, val))
     if (!is.null(result)) return(result)
   }
-  return(NULL)
+  NULL
 }
 ```
 
 ## Application Shiny
 
-L'interface propose :
+Lancée via `run_app()`, l'interface propose :
 
-- **Sélection de puzzle** — bibliothèque intégrée avec niveaux facile (3×3), moyen (4×4) et difficile (5×5), ainsi qu'une génération aléatoire de grilles résolubles.
-- **Interaction** — clic sur un segment pour basculer entre les états vide → tracé → barré.
-- **Validation en temps réel** — vérification immédiate des contraintes de cellule et de la topologie de la boucle.
-- **Système d'indices** — révèle progressivement un segment correct.
-- **Annulation** — historique des coups avec retour arrière.
-- **Résolution automatique** — lance le solveur et affiche la solution.
+- **Bibliothèque de puzzles** — niveaux facile (3×3), moyen (4×4) et difficile (5×5)
+- **Génération aléatoire** — puzzles résolvables à la volée
+- **Interaction directe** — clic sur un segment pour basculer entre vide → tracé → barré
+- **Validation en temps réel** — statut affiché : *En cours*, *Contrainte violée* ou *Puzzle résolu !*
+- **Chronomètre** — démarre au premier clic, se fige à la résolution
+- **Indices progressifs** — révèle un segment correct à la demande
+- **Annulation** — retour arrière coup par coup
+- **Résolution automatique** — affiche la solution complète
 
 ## Tests
 
 Le package inclut **72 tests unitaires** couvrant la logique de grille, la propagation de contraintes, la validation de boucle et la génération de puzzles.
+
+---
+
+**Documentation complète :** [marouanedaoudi.github.io/slitherlink-shiny](https://marouanedaoudi.github.io/slitherlink-shiny/) · **Code source :** [GitHub](https://github.com/marouanedaoudi/slitherlink-shiny)
