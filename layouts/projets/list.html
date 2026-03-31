@@ -7,15 +7,17 @@
 
 <style>
   :root {
-    --primary: #3b82f6;
+    --primary: #818cf8;
+    --primary-glow: rgba(129, 140, 248, 0.2);
     --bg-card: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #cbd5e1;
-    --border: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.08);
   }
-  
+
   html:not(.dark) {
-    --primary: #2563eb;
+    --primary: #4f46e5;
+    --primary-glow: rgba(79, 70, 229, 0.2);
     --bg-card: #ffffff;
     --text-main: #0f172a;
     --text-muted: #475569;
@@ -68,13 +70,13 @@
   .project-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 3px var(--primary-glow), 0 12px 24px rgba(0,0,0,0.12);
   }
 
   .img-wrapper {
     height: 200px;
     width: 100%;
-    background: #ffffff;
+    background: var(--bg-card);
     padding: 20px;
     display: flex;
     align-items: center;

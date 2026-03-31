@@ -3,6 +3,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<style>
+  .article-tag {
+    background: rgba(79, 70, 229, 0.1);
+    color: #4f46e5;
+  }
+  html.dark .article-tag {
+    background: rgba(129, 140, 248, 0.15);
+    color: #a5b4fc;
+  }
+</style>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
@@ -28,7 +39,7 @@
       {{ if .Params.tags }}
         <div class="flex gap-2">
           {{ range .Params.tags }}
-            <span class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md font-bold text-xs uppercase tracking-wider">
+            <span class="article-tag px-2 py-1 rounded-md font-bold text-xs uppercase tracking-wider">
               {{ . }}
             </span>
           {{ end }}

@@ -7,23 +7,23 @@
 
 <style>
   :root {
-    --primary: #2563eb;
-    --github: #1f2937;
-    --contact: #059669;
-    
-    --bg-card: #ffffff;       
+    --primary: #4f46e5;
+    --primary-glow: rgba(79, 70, 229, 0.2);
+
+    --bg-card: #ffffff;
     --text-main: #0f172a;
     --text-muted: #475569;
     --border: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
   }
 
   html.dark {
-    --primary: #3b82f6;
+    --primary: #818cf8;
+    --primary-glow: rgba(129, 140, 248, 0.2);
     --bg-card: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #cbd5e1;
-    --border: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.08);
     --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
   }
 
@@ -115,6 +115,7 @@
   .btn-cv { background-color: var(--primary); }
   .btn-gh { background-color: #1e293b; }
   .btn-mail { background-color: #1e293b; }
+  html.dark .btn-cv { background-color: #6366f1; }
   html.dark .btn-gh, html.dark .btn-mail { background-color: #334155; }
 
   .main-content {
@@ -175,6 +176,7 @@
   .project-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow), 0 12px 24px rgba(0,0,0,0.12);
   }
 
   .project-img-container {
