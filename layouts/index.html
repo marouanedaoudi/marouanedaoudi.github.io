@@ -292,8 +292,11 @@
               {{ .Description | default .Summary | default "Projet d'analyse mathématique et d'implémentation algorithmique." }}
             </p>
             
-            <div style="margin-top: auto; font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">
-               {{ .Date.Format "2006" }} &bull; Voir détails →
+            <div style="margin-top: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              {{ range first 2 .Params.tags }}
+              <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 7px; border-radius: 4px; background: rgba(37,99,235,0.1); color: var(--primary);">{{ . }}</span>
+              {{ end }}
+              <span style="margin-left: auto; font-size: 0.8rem; color: var(--text-muted); font-family: monospace; white-space: nowrap;">{{ .Date.Format "2006" }} →</span>
             </div>
           </div>
         </a>
