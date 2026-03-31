@@ -9,41 +9,46 @@ math: true
 
 ## Le puzzle
 
-**Slitherlink** est un puzzle logique japonais : sur une grille de points $( n+1) \times (m+1)$, il faut relier des points adjacents pour former une **boucle fermée unique** — sans branchement, sans croisement, sans impasse. Les chiffres inscrits dans les cellules contraignent le nombre de leurs côtés appartenant à la boucle.
+**Slitherlink** est un puzzle logique japonais : sur une grille de points $(n+1) \times (m+1)$, il faut relier des points adjacents pour former une **boucle fermée unique** — sans branchement, sans croisement, sans impasse. Les chiffres inscrits dans les cellules contraignent le nombre de leurs côtés appartenant à la boucle.
 
-Ce qui semble simple en surface cache une structure combinatoire riche. Une grille $5 \times 5$ sans aucun chiffre admet un nombre astronomique de boucles valides — les indices réduisent l'espace de recherche, parfois jusqu'à une solution unique.
+Ce qui semble simple en surface cache une structure combinatoire riche. Une grille $n \times m$ compte $n(m+1) + m(n+1) = 2nm + n + m$ segments, chacun pouvant être tracé ou non — l'espace de recherche brut est donc de taille $2^{2nm+n+m}$. Les indices réduisent cet espace, parfois jusqu'à une solution unique.
 
 ## Modélisation
 
-Une grille $n \times m$ définit :
-- $n \times (m+1)$ **segments horizontaux** et $(n+1) \times m$ **segments verticaux**, chacun d'état $x_s \in \{0, 1\}$,
-- $n \times m$ **cellules**, chacune portant une contrainte $c_{i,j} \in \{0,1,2,3\}$ ou nulle.
-
-Le problème se formule comme un **système de contraintes entières** :
+On associe à chaque segment un état $x_s \in \{0, 1\}$. Les contraintes de cellule s'écrivent :
 
 $$
 \forall (i,j),\quad \sum_{s \in \partial(i,j)} x_s = c_{i,j}
 $$
 
-où $\partial(i,j)$ désigne les quatre segments bordant la cellule $(i,j)$. Ces contraintes locales sont nécessaires mais pas suffisantes : la solution doit aussi former une **boucle simple**, c'est-à-dire que chaque nœud appartenant à la boucle a exactement degré 2, et que l'ensemble des segments tracés est connexe.
+où $\partial(i,j)$ désigne les quatre segments bordant la cellule $(i,j)$. Ces contraintes locales sont nécessaires mais pas suffisantes : la solution doit aussi former une **boucle simple**. Formellement, en notant $G = (V, E)$ le graphe dont les sommets sont les nœuds de la grille et les arêtes les segments tracés ($x_s = 1$), on exige :
+
+$$
+\forall v \in V,\quad \deg_G(v) \in \{0, 2\} \quad \text{et} \quad G \text{ est connexe sur } \{v : \deg_G(v) > 0\}
+$$
+
+La condition de degré $\{0,2\}$ garantit l'absence de branchement et d'impasse ; la connexité assure l'unicité de la boucle.
 
 ## Résolution : propagation de contraintes + backtracking
 
-Le solveur exploite la structure locale du puzzle avant de recourir à la recherche exhaustive.
-
 ### Propagation de contraintes
 
-Pour chaque cellule, si le nombre de segments déjà tracés et le nombre de segments encore indéterminés permettent de conclure sur l'état des segments restants, on les fixe. Par exemple :
+Pour chaque cellule $(i,j)$, notons $k$ le nombre de segments déjà tracés ($x_s = 1$) et $u$ le nombre de segments encore indéterminés parmi ses quatre bords. La contrainte $\sum_{s \in \partial(i,j)} x_s = c_{i,j}$ permet de déduire :
 
-- une cellule $0$ force tous ses segments à $0$,
-- une cellule $3$ avec un segment à $0$ force les trois autres à $1$,
-- une cellule $c_{i,j}$ avec exactement $c_{i,j}$ segments à $1$ force le reste à $0$.
+- si $k = c_{i,j}$ : les $u$ segments indéterminés sont tous forcés à $0$,
+- si $k + u = c_{i,j}$ : les $u$ segments indéterminés sont tous forcés à $1$.
 
-On itère jusqu'à stabilisation. Sur les puzzles bien conçus, cette phase seule suffit souvent à résoudre la grille — ou à réduire drastiquement l'espace de recherche.
+On propage ces déductions cellule par cellule, et on recommence tant qu'au moins un segment est fixé à chaque passe — c'est un point fixe du système de contraintes. Sur les puzzles bien construits, cette phase résout souvent la grille en totalité, ou ramène le nombre de segments indéterminés à une poignée.
 
 ### Backtracking
 
-Quand la propagation bloque sur un segment indéterminé, on lui assigne une valeur, on relance la propagation, et on revient en arrière en cas de contradiction. La profondeur du backtracking est en pratique très faible grâce à l'efficacité de la propagation.
+Lorsque la propagation atteint son point fixe sans avoir tout résolu, on se retrouve avec un sous-ensemble $\mathcal{U}$ de segments indéterminés. Le solveur choisit un $s^* \in \mathcal{U}$ et explore les deux branches $x_{s^*} = 1$ puis $x_{s^*} = 0$ en relançant la propagation à chaque fois. En cas de contradiction — une cellule dont les segments fixés excèdent déjà son chiffre, ou au contraire ne peuvent plus l'atteindre — on remonte.
+
+L'arbre de recherche a une profondeur au plus $|\mathcal{U}|$, mais grâce à la propagation, chaque branchement fixe en cascade de nombreux autres segments : en pratique, le backtracking n'atteint jamais qu'une faible profondeur.
+
+### Vérification de la topologie
+
+La validation de boucle repose sur un **parcours en profondeur** du graphe $G$ des segments tracés. On vérifie simultanément que chaque nœud actif est de degré exactement $2$ et que le parcours depuis n'importe quel nœud actif visite exactement tous les nœuds actifs — ce qui est équivalent à dire que $G$ est un cycle hamiltonien sur ses propres sommets.
 
 ## Application Shiny
 
