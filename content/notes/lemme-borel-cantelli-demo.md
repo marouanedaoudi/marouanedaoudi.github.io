@@ -43,10 +43,12 @@ Maintenant supposons que pour tout $k \geq n$, $P(A\_k) < 1$. On a alors
 $$ (\bigcup\_{k \geq n}A\_k)^c=\bigcap\_{k \geq n}A\_k^c $$
 
 Donc
-$$ P((\bigcup\_{k \geq n}A\_k)^c)=P(\bigcap\_{k \geq n}A\_k^c)=\prod\_{k \geq n}P(A\_k^c)=\prod\_{k \geq n}(1-P(A\_k)) $$
+$$ P((\bigcup\_{k \geq n}A\_k)^c)=P(\bigcap\_{k \geq n}A\_k^c)=\lim\_{m \rightarrow +\infty}P\!\left(\bigcap\_{k=n}^m A\_k^c\right)=\lim\_{m \rightarrow +\infty}\prod\_{k=n}^m P(A\_k^c)=\prod\_{k \geq n}(1-P(A\_k)) $$
 
-Soit $m \geq n$. En utilisant $\forall x>0$, $ln(1+x)<x$ et la continuité de $P$, on a
-$$ \lim\_{m \rightarrow +\infty}ln(P((\bigcup\_{k=n}^mA\_k)^c))=\lim\_{m \rightarrow +\infty}\sum\_{k=n}^m ln(1-P(A\_k)) < -\lim\_{m \rightarrow +\infty} \sum\_{k=n}^m P(A\_k)=-\infty $$
+où la troisième égalité utilise l'indépendance des événements $A\_n, A\_{n+1}, \ldots$ (et donc de leurs complémentaires), et la deuxième la continuité décroissante de la mesure.
+
+Soit $m \geq n$. En utilisant $\forall x \in (-1, 0]$, $\ln(1+x) \leq x$ (qui s'applique ici car $-P(A\_k) \in (-1, 0]$) et la continuité croissante de $P$, on a
+$$ \lim\_{m \rightarrow +\infty}\ln\!\left(P\!\left(\left(\bigcup\_{k=n}^mA\_k\right)^c\right)\right)=\lim\_{m \rightarrow +\infty}\sum\_{k=n}^m \ln(1-P(A\_k)) \leq -\lim\_{m \rightarrow +\infty} \sum\_{k=n}^m P(A\_k)=-\infty $$
 
 Donc $\lim\_{m \rightarrow +\infty}ln(P((\bigcup\_{k=n}^mA\_k)^c))=-\infty$
 Donc $P((\bigcup\_{k \geq n}A\_k)^c)=0$ et $P(\bigcup\_{k \geq n}A\_k)=1$.
