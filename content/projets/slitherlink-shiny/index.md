@@ -10,15 +10,6 @@ tags: ["R", "Shiny", "Optimisation", "Contraintes"]
 
 **Slitherlink** est un puzzle logique japonais joué sur une grille de points. L'objectif est de relier des points adjacents pour former une **boucle fermée unique** — sans branchement, sans croisement, sans impasse. Les chiffres dans les cellules indiquent exactement combien de leurs quatre côtés appartiennent à la boucle.
 
-```
-· — · — ·        · — · — ·
-        |        |       |
-·   · — ·   →   ·   · — ·
-|   |            |   |
-· — ·   ·        · — ·   ·
-```
-
-*Exemple : une cellule `3` force trois de ses côtés à être tracés.*
 
 ## Package R
 
