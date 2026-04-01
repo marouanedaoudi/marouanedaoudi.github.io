@@ -7,6 +7,8 @@ tags: ["R", "Shiny", "Optimisation", "Contraintes"]
 math: true
 ---
 
+![Démonstration Slitherlink Shiny](feature.gif)
+
 ## Le puzzle
 
 **Slitherlink** est un puzzle logique japonais : sur une grille de points $(n+1) \times (m+1)$, il faut relier des points adjacents pour former une **boucle fermée unique** — sans branchement, sans croisement, sans impasse. Les chiffres inscrits dans les cellules contraignent le nombre de leurs côtés appartenant à la boucle.
