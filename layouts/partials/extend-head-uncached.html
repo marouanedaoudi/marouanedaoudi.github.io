@@ -58,48 +58,104 @@
 </script>
 
 <style>
-  /* ── Header nav → pill buttons toujours visibles ── */
+  /* ── Site title → gradient text ── */
+  .main-menu a.shrink {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity 0.2s ease;
+  }
+  html.dark .main-menu a.shrink {
+    background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .main-menu a.shrink:hover { opacity: 0.72; }
+
+  /* ── Nav pills ── */
   .main-menu nav a {
     padding: 6px 14px;
     border-radius: 999px;
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    background: rgba(99, 102, 241, 0.06);
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.05);
     font-weight: 500;
+    transition:
+      background  0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      color        0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      transform    0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow   0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   html.dark .main-menu nav a {
-    border-color: rgba(129, 140, 248, 0.2);
-    background: rgba(129, 140, 248, 0.07);
+    border-color: rgba(129, 140, 248, 0.15);
+    background: rgba(129, 140, 248, 0.06);
   }
   .main-menu nav a:hover {
-    background: rgba(99, 102, 241, 0.15);
-    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.4);
     color: #4f46e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
   }
   html.dark .main-menu nav a:hover {
-    background: rgba(129, 140, 248, 0.2);
-    border-color: rgba(129, 140, 248, 0.5);
+    background: rgba(129, 140, 248, 0.12);
+    border-color: rgba(129, 140, 248, 0.4);
     color: #a5b4fc;
+    box-shadow: 0 4px 12px rgba(129, 140, 248, 0.2);
+  }
+
+  /* ── Active nav pill ── */
+  .main-menu nav a.nav-active {
+    background: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 2px 14px rgba(79, 70, 229, 0.4);
+    transform: none !important;
+  }
+  html.dark .main-menu nav a.nav-active {
+    background: #6366f1 !important;
+    border-color: #6366f1 !important;
+    box-shadow: 0 2px 14px rgba(99, 102, 241, 0.45);
   }
 
   /* ── Appearance switcher ── */
   #appearance-switcher {
     padding: 6px;
     border-radius: 999px;
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    background: rgba(99, 102, 241, 0.06);
-    transition: background 0.2s, border-color 0.2s;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.05);
+    transition:
+      background   0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      transform    0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   html.dark #appearance-switcher {
-    border-color: rgba(129, 140, 248, 0.2);
-    background: rgba(129, 140, 248, 0.07);
+    border-color: rgba(129, 140, 248, 0.15);
+    background: rgba(129, 140, 248, 0.06);
   }
   #appearance-switcher:hover {
-    background: rgba(99, 102, 241, 0.15);
-    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: scale(1.1) rotate(12deg);
   }
   html.dark #appearance-switcher:hover {
-    background: rgba(129, 140, 248, 0.2);
-    border-color: rgba(129, 140, 248, 0.5);
+    background: rgba(129, 140, 248, 0.12);
+    border-color: rgba(129, 140, 248, 0.4);
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var path = window.location.pathname;
+    document.querySelectorAll(".main-menu nav a").forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (href === path || (href !== "/" && path.startsWith(href))) {
+        link.classList.add("nav-active");
+      }
+    });
+  });
+</script>
