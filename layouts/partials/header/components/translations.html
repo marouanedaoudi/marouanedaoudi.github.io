@@ -1,0 +1,13 @@
+{{- $currentLang := .Language.Lang -}}
+<div class="lang-switcher">
+  <span class="lang-pill lang-active">{{ upper $currentLang }}</span>
+  {{- if .IsTranslated -}}
+    {{- range .Translations -}}
+      <a href="{{ .RelPermalink }}" class="lang-pill">{{ upper .Language.Lang }}</a>
+    {{- end -}}
+  {{- else if eq $currentLang "en" -}}
+    <a href="/fr/" class="lang-pill">FR</a>
+  {{- else -}}
+    <a href="/" class="lang-pill">EN</a>
+  {{- end -}}
+</div>

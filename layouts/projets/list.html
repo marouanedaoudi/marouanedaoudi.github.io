@@ -165,10 +165,8 @@
 <div class="projects-container">
   
   <header class="page-header">
-    <h1 class="page-title">Projets & Recherche</h1>
-    <p class="page-desc">
-      Une sélection de mes travaux en optimisation convexe, modélisation stochastique et data science.
-    </p>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-desc">{{ .Content | plainify }}</p>
   </header>
 
   <div class="projects-grid">

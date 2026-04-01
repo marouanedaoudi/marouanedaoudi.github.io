@@ -291,12 +291,12 @@
     <img src="https://github.com/marouanedaoudi.png" class="profile-img" alt="Profil">
     
     <h1 style="font-size: 1.6rem; color: var(--text-main); margin: 0 0 5px 0; font-weight: 800;">Marouane Daoudi</h1>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">M1 Mathématiques Appliquées<br>Université de Montpellier</p>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">{{ T "bio_subtitle" }}</p>
 
     <div class="tag-container">
-      <span class="tag">Optimisation</span>
-      <span class="tag">Statistique</span>
-      <span class="tag">Python / R</span>
+      <span class="tag">{{ T "tag_optimization" }}</span>
+      <span class="tag">{{ T "tag_statistics" }}</span>
+      <span class="tag">{{ T "tag_python_r" }}</span>
     </div>
 
     <div class="buttons-stack">
@@ -318,15 +318,13 @@
   <main class="main-content">
     
     <section class="bio-section">
-      <h2>À propos</h2>
-      <p class="bio-text">
-        Étudiant en <strong>Master 1</strong> de mathématiques appliquées à l'Université de Montpellier, spécialisé en <strong>statistique et science des données</strong>.
-      </p>
+      <h2>{{ T "bio_title" }}</h2>
+      <p class="bio-text">{{ T "bio_text" | safeHTML }}</p>
     </section>
 
     <section>
       <div class="project-header">
-        Projets Récents
+        {{ T "projects_header" }}
       </div>
 
       <div class="project-grid">
@@ -362,8 +360,8 @@
       </div>
 
       <div style="margin-top: 30px; text-align: right;">
-        <a href="/projets/" class="btn-all-projects">
-          Voir tous les projets
+        <a href="{{ if eq .Language.Lang "fr" }}/fr/projets/{{ else }}/projets/{{ end }}" class="btn-all-projects">
+          {{ T "view_all_projects" }}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>

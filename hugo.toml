@@ -1,5 +1,6 @@
 baseURL = "https://marouanedaoudi.github.io/"
-languageCode = "fr"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 title = "Marouane Daoudi"
 theme = "blowfish"
 
@@ -12,46 +13,68 @@ theme = "blowfish"
     block = [['$$', '$$'], ['\[', '\]']]
     inline = [['$', '$'], ['\(', '\)']]
 
-[menu]
-  [[menu.main]]
-    name = "Accueil"
-    url = "/"
-    weight = 10
-  [[menu.main]]
-    name = "Notes"
-    url = "/notes/"
-    weight = 20
-  [[menu.main]]
-    name = "Projets"
-    url = "/projets/"
-    weight = 30
-  [[menu.main]]
-    name = "Contact"
-    url = "mailto:marouane.daoudi@etu.umontpellier.fr"
-    weight = 40
+# --- MULTILINGUAL ---
 
-# --- CONFIGURATION PRINCIPALE ---
-[sitemap]
-  changefreq = "weekly"
-  priority = 0.5
+[languages]
+
+  [languages.en]
+    languageCode = "en"
+    languageName = "English"
+    weight = 1
+    [[languages.en.menu.main]]
+      name = "Home"
+      url = "/"
+      weight = 10
+    [[languages.en.menu.main]]
+      name = "Notes"
+      url = "/notes/"
+      weight = 20
+    [[languages.en.menu.main]]
+      name = "Projects"
+      url = "/projets/"
+      weight = 30
+    [[languages.en.menu.main]]
+      name = "Contact"
+      url = "mailto:marouane.daoudi@etu.umontpellier.fr"
+      weight = 40
+
+  [languages.fr]
+    languageCode = "fr"
+    languageName = "Français"
+    weight = 2
+    [[languages.fr.menu.main]]
+      name = "Accueil"
+      url = "/fr/"
+      weight = 10
+    [[languages.fr.menu.main]]
+      name = "Notes"
+      url = "/fr/notes/"
+      weight = 20
+    [[languages.fr.menu.main]]
+      name = "Projets"
+      url = "/fr/projets/"
+      weight = 30
+    [[languages.fr.menu.main]]
+      name = "Contact"
+      url = "mailto:marouane.daoudi@etu.umontpellier.fr"
+      weight = 40
+
+# --- PARAMS (communs) ---
 
 [params]
   colorScheme = "ocean"
   defaultAppearance = "dark"
-  description = "Site personnel de Marouane Daoudi, étudiant en Master de Mathématiques Appliquées à l'Université de Montpellier. Projets en optimisation, statistique et data science."
-  
-  # Footer : On désactive les deux crédits
-  footer.showPoweredBy = false
-  footer.showTheme = false
-  footer.showCopyright = true
-  
-  # Le reste de tes params...
   homepage.layout = "simple"
   homepage.showTitle = false
   homepage.showRecent = false
-
   article.math = true
   article.showDate = false
   article.showAuthor = false
-
   mathematics.enable = true
+  footer.showPoweredBy = false
+  footer.showTheme = false
+  footer.showCopyright = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
