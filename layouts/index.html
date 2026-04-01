@@ -103,13 +103,15 @@
     font-size: 0.95rem;
     text-decoration: none !important;
     color: white !important;
-    transition: transform 0.2s, opacity 0.2s;
+    transition:
+      transform   0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow  0.25s ease;
     border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
   }
   .btn-uniform:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 
   .btn-cv { background-color: var(--primary); }
@@ -161,22 +163,46 @@
     gap: 25px;
   }
 
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   .project-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     text-decoration: none !important;
-    transition: transform 0.2s, border-color 0.2s, background 0.3s;
+    transition:
+      transform     0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-color  0.3s ease,
+      box-shadow    0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      background    0.3s ease;
     height: 100%;
     box-shadow: var(--shadow);
+    animation: fadeSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
+  .project-card:nth-child(1) { animation-delay: 0.05s; }
+  .project-card:nth-child(2) { animation-delay: 0.12s; }
+  .project-card:nth-child(3) { animation-delay: 0.19s; }
+  .project-card:nth-child(4) { animation-delay: 0.26s; }
+
   .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-7px) scale(1.015);
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-glow), 0 12px 24px rgba(0,0,0,0.12);
+    box-shadow:
+      0 0 0 1px var(--primary),
+      0 20px 40px -8px rgba(79, 70, 229, 0.2),
+      0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+  html.dark .project-card:hover {
+    box-shadow:
+      0 0 0 1px var(--primary),
+      0 20px 40px -8px rgba(99, 102, 241, 0.3),
+      0 8px 20px rgba(0, 0, 0, 0.45);
   }
 
   .project-img-container {
@@ -218,6 +244,36 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .btn-all-projects {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.06);
+    transition:
+      background    0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color  0.25s ease,
+      transform     0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow    0.25s ease;
+  }
+  .btn-all-projects:hover {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.5);
+    transform: translateX(3px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+  }
+  html.dark .btn-all-projects:hover {
+    background: rgba(129, 140, 248, 0.12);
+    border-color: rgba(129, 140, 248, 0.45);
+    box-shadow: 0 4px 12px rgba(129, 140, 248, 0.2);
   }
 
   @media (max-width: 1024px) {
@@ -306,22 +362,7 @@
       </div>
 
       <div style="margin-top: 30px; text-align: right;">
-        <a href="/projets/" style="
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 0.95rem;
-          font-weight: 600;
-          color: var(--primary);
-          text-decoration: none;
-          padding: 8px 16px;
-          border-radius: 8px;
-          border: 1px solid rgba(99,102,241,0.25);
-          background: rgba(99,102,241,0.06);
-          transition: background 0.2s, border-color 0.2s, transform 0.2s;
-        "
-        onmouseover="this.style.background='rgba(99,102,241,0.12)';this.style.borderColor='rgba(99,102,241,0.5)';this.style.transform='translateX(2px)'"
-        onmouseout="this.style.background='rgba(99,102,241,0.06)';this.style.borderColor='rgba(99,102,241,0.25)';this.style.transform='none'">
+        <a href="/projets/" class="btn-all-projects">
           Voir tous les projets
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
