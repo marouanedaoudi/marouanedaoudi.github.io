@@ -3,7 +3,7 @@ title: "L1-Ball Projected Gradient Descent"
 date: 2025-05-20
 description: "Implémentation de la Descente de Gradient Projetée sur la boule L1 pour l'optimisation convexe sparse."
 summary: "Résolution du problème Lasso contraint via un algorithme de projection euclidienne efficace en O(n log n)."
-tags: ["Optimisation", "Python", "NumPy"]
+tags: ["Optimisation", "Python", "NumPy", "FISTA"]
 math: true
 ---
 
@@ -49,6 +49,17 @@ $$
 
 Le ratio $L/\mu$ est le **nombre de condition** du problème — plus il est grand, plus la convergence est lente.
 
+## Accélération : FISTA
+
+La vitesse $\mathcal{O}(1/k)$ de la PGD peut être améliorée sans surcoût notable par itération. **FISTA** (*Fast Iterative Shrinkage-Thresholding Algorithm*) ajoute un terme d'inertie de Nesterov : le gradient est évalué non pas en $x_k$, mais en un point extrapolé $z_k$.
+
+$$
+x_{k+1} = \Pi_{\mathcal{C}}\!\left(z_k - \eta \nabla f(z_k)\right), \qquad
+z_{k+1} = x_{k+1} + \frac{\theta_k - 1}{\theta_{k+1}}\left(x_{k+1} - x_k\right)
+$$
+
+avec $\theta_{k+1} = \tfrac{1}{2}\big(1 + \sqrt{1 + 4\theta_k^2}\big)$. Au même coût par itération, la borne de convergence passe de $\mathcal{O}(1/k)$ à $\mathcal{O}(1/k^2)$. Le dépôt fournit les deux solveurs (PGD et FISTA), partageant la même projection.
+
 ## Projection sur la boule $\ell_1$
 
 C'est le cœur algorithmique du projet. Contrairement à la boule $\ell_2$ (projection par simple normalisation) ou à la boîte $\ell_\infty$ (clipping coordonné), la projection sur la boule $\ell_1$ n'admet pas de forme fermée immédiate.
@@ -85,7 +96,13 @@ La boule $\ell_1$ est un polytope (en 2D, un carré orienté à 45°) dont les s
 
 ## Implémentation et validation
 
-L'algorithme est implémenté en Python avec NumPy (vectorisation intégrale). Les résultats sont comparés à ceux de `cvxpy` sur des instances synthétiques : convergence de la valeur objective, sparsité de la solution, et temps de calcul.
+Les deux solveurs sont implémentés en Python avec NumPy (vectorisation intégrale), couverts par une suite de tests `pytest` exécutée en intégration continue (GitHub Actions).
+
+La correction est vérifiée contre `scikit-learn` en exploitant l'équivalence entre Lasso pénalisé et Lasso contraint : si $\beta^\star$ résout le problème pénalisé, il résout aussi le problème contraint de rayon $\tau = \|\beta^\star\|_1$. On ajuste `sklearn.linear_model.Lasso`, on lit le rayon $\tau$, puis on résout le problème contraint — les solutions coïncident à $\sim 10^{-7}$ près.
+
+![Convergence PGD vs FISTA et support reconstruit](benchmark.png)
+
+Sur données synthétiques ($n = 100$, $p = 200$, sparsité $10$), les deux méthodes convergent vers le même optimum et reconstruisent le support ; FISTA atteint une précision donnée en nettement moins d'itérations.
 
 ---
 

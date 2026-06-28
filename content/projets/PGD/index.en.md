@@ -3,7 +3,7 @@ title: "L1-Ball Projected Gradient Descent"
 date: 2025-05-20
 description: "Implementation of Projected Gradient Descent on the L1 ball for sparse convex optimization."
 summary: "Solving the constrained Lasso problem via an efficient O(n log n) Euclidean projection algorithm."
-tags: ["Optimization", "Python", "NumPy"]
+tags: ["Optimization", "Python", "NumPy", "FISTA"]
 math: true
 ---
 
@@ -49,6 +49,17 @@ $$
 
 The ratio $L/\mu$ is the **condition number** of the problem — the larger it is, the slower the convergence.
 
+## Acceleration: FISTA
+
+The $\mathcal{O}(1/k)$ rate of PGD can be improved at essentially no extra per-iteration cost. **FISTA** (*Fast Iterative Shrinkage-Thresholding Algorithm*) adds a Nesterov momentum term: the gradient is evaluated not at $x_k$, but at an extrapolated point $z_k$.
+
+$$
+x_{k+1} = \Pi_{\mathcal{C}}\!\left(z_k - \eta \nabla f(z_k)\right), \qquad
+z_{k+1} = x_{k+1} + \frac{\theta_k - 1}{\theta_{k+1}}\left(x_{k+1} - x_k\right)
+$$
+
+with $\theta_{k+1} = \tfrac{1}{2}\big(1 + \sqrt{1 + 4\theta_k^2}\big)$. At the same cost per iteration, the convergence bound improves from $\mathcal{O}(1/k)$ to $\mathcal{O}(1/k^2)$. The repository ships both solvers (PGD and FISTA), sharing the same projection.
+
 ## Projection onto the $\ell_1$ Ball
 
 This is the algorithmic core of the project. Unlike the $\ell_2$ ball (projection by simple normalization) or the $\ell_\infty$ box (coordinate-wise clipping), projection onto the $\ell_1$ ball has no immediate closed form.
@@ -85,7 +96,13 @@ The $\ell_1$ ball is a polytope (in 2D, a square rotated 45°) whose vertices li
 
 ## Implementation and Validation
 
-The algorithm is implemented in Python with NumPy (full vectorization). Results are compared against `cvxpy` on synthetic instances: convergence of the objective value, solution sparsity, and computation time.
+Both solvers are implemented in Python with NumPy (full vectorization), covered by a `pytest` test suite running in continuous integration (GitHub Actions).
+
+Correctness is checked against `scikit-learn` by exploiting the equivalence between the penalized and constrained Lasso: if $\beta^\star$ solves the penalized problem, it also solves the constrained problem with radius $\tau = \|\beta^\star\|_1$. We fit `sklearn.linear_model.Lasso`, read off the radius $\tau$, then solve the constrained problem — the solutions agree to within $\sim 10^{-7}$.
+
+![PGD vs FISTA convergence and recovered support](benchmark.png)
+
+On synthetic data ($n = 100$, $p = 200$, sparsity $10$), both methods converge to the same optimum and recover the support; FISTA reaches a given accuracy in markedly fewer iterations.
 
 ---
 
