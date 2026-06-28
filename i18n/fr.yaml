@@ -4,7 +4,37 @@ bio_text: "Étudiant en <strong>Master 1</strong> de mathématiques appliquées 
 tag_optimization: "Optimisation"
 tag_statistics: "Statistique"
 tag_python_r: "Python / R"
-projects_header: "Projets Récents"
+
+# ── Accueil : header / hero ──
+header_left: "Portfolio · Mathématiques Appliquées"
+header_right: "Montpellier · 2026"
+hero_aff: "Université de Montpellier · M1 Mathématiques Appliquées"
+hero_fields: "Probabilités · Statistique · Data Science · Optimisation"
+formula_caption: "Densité de la loi normale"
+abstract_label: "Résumé"
+abstract_text: "Étudiant en Master 1 de mathématiques appliquées à l'Université de Montpellier, spécialisé en probabilités, statistique et science des données. J'attache une importance particulière à la rigueur mathématique et à des implémentations propres et efficaces — de l'optimisation stochastique aux tests multiples, en passant par l'économétrie appliquée. Ci-dessous : une sélection de projets, de notes et d'outils."
+
+# ── Accueil : sections ──
+sec_projects: "Projets & Modélisation"
+sec_notes: "Notes & Démonstrations"
+sec_expertise: "Expertise Technique"
+sec_refs: "Références & Contact"
+figure_label: "Figure"
+table_label: "Table"
+key_result: "Résultat clé"
+expertise_caption: "Outils & environnement de recherche"
+notes_caption: "Fiches et exercices corrigés — probabilités, mesure & intégration"
+
+# ── Liens ──
 view_all_projects: "Voir tous les projets"
+view_all_notes: "Voir toutes les notes"
+ref_cv: "Curriculum Vitæ"
+ref_github: "GitHub — Code source"
+ref_contact: "Contact"
+
+# ── Listes ──
+projects_header: "Projets Récents"
 projects_page_title: "Projets & Recherche"
 projects_page_desc: "Une sélection de mes travaux en optimisation convexe, modélisation stochastique et data science."
+read_more: "Lire"
+back_home: "Accueil"

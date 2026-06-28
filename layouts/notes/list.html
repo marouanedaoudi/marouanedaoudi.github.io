@@ -1,201 +1,82 @@
 {{ define "main" }}
 
 <style>
-  :root {
-    --primary: #4f46e5;
-    --primary-glow: rgba(79, 70, 229, 0.15);
-    --bg-card: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --border: #e2e8f0;
-    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  .list-head { text-align: left; padding: 2.4rem 0 1.6rem; }
+  .list-title {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(2rem, 5vw, 2.8rem); letter-spacing: -0.015em;
+    color: var(--ink); margin: 0.6rem 0 0.7rem;
   }
-  html.dark {
-    --primary: #818cf8;
-    --primary-glow: rgba(129, 140, 248, 0.15);
-    --bg-card: #1e293b;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: rgba(255,255,255,0.08);
-    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  .list-desc {
+    font-family: var(--serif); font-size: 1.15rem; line-height: 1.55;
+    color: var(--ink-soft); max-width: 60ch; margin: 0;
   }
 
-  .notes-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  }
+  @keyframes paperRise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-  .page-header {
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid var(--border);
+  .nlist { list-style: none; margin: 1rem 0 0; padding: 0; }
+  .nentry {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr auto;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+    padding: 1rem 0.3rem;
+    border-bottom: 1px solid var(--hair);
+    text-decoration: none;
+    transition: padding-left 0.22s ease, background 0.22s ease;
+    animation: paperRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .page-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
+  .nentry:first-child { border-top: 1px solid var(--hair); }
+  .nentry:hover { padding-left: 0.7rem; background: var(--accent-soft); }
+  .n-num { font-family: var(--mono); font-size: 0.74rem; color: var(--accent); }
+  .n-main { grid-column: 2; }
+  .n-title { font-family: var(--serif); font-size: 1.18rem; color: var(--ink); line-height: 1.3; }
+  .nentry:hover .n-title { color: var(--accent); }
+  .n-summary { font-family: var(--serif); font-size: 0.98rem; color: var(--ink-soft); line-height: 1.45; margin-top: 0.2rem; }
+  .n-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  .n-date {
+    grid-column: 3; grid-row: 1;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--ink-faint); white-space: nowrap;
   }
-  .page-desc {
-    font-size: 1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
+  .n-arrow { font-family: var(--mono); color: var(--ink-faint); transition: transform 0.2s, color 0.2s; }
+  .nentry:hover .n-arrow { color: var(--accent); transform: translate(2px,-2px); }
 
-  .notes-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  @keyframes fadeSlideUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .note-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-left: 3px solid transparent;
-    border-radius: 12px;
-    padding: 20px 24px;
-    text-decoration: none !important;
-    box-shadow: var(--shadow);
-    transition:
-      transform      0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-      border-color   0.25s ease,
-      border-left-color 0.25s ease,
-      box-shadow     0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: fadeSlideUp 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
-  }
-  .note-card:nth-child(1) { animation-delay: 0.04s; }
-  .note-card:nth-child(2) { animation-delay: 0.09s; }
-  .note-card:nth-child(3) { animation-delay: 0.14s; }
-  .note-card:nth-child(4) { animation-delay: 0.19s; }
-  .note-card:nth-child(5) { animation-delay: 0.24s; }
-  .note-card:nth-child(6) { animation-delay: 0.29s; }
-
-  .note-card:hover {
-    transform: translateX(6px);
-    border-color: var(--border);
-    border-left-color: var(--primary);
-    box-shadow:
-      -3px 0 0 var(--primary),
-      0 8px 24px rgba(79, 70, 229, 0.12),
-      var(--shadow);
-  }
-  html.dark .note-card:hover {
-    box-shadow:
-      -3px 0 0 var(--primary),
-      0 8px 24px rgba(99, 102, 241, 0.2),
-      var(--shadow);
-  }
-
-  .note-date {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    white-space: nowrap;
-    min-width: 70px;
-  }
-
-  .note-content {
-    flex-grow: 1;
-  }
-  .note-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 4px;
-    transition: color 0.2s;
-  }
-  .note-card:hover .note-title {
-    color: var(--primary);
-  }
-  .note-summary {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .note-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-  .note-tag {
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 3px 8px;
-    border-radius: 4px;
-    background: rgba(79,70,229,0.1);
-    color: var(--primary);
-  }
-  html.dark .note-tag {
-    background: rgba(129,140,248,0.12);
-  }
-
-  .note-arrow {
-    color: var(--text-muted);
-    font-size: 1rem;
-    transition: transform 0.2s, color 0.2s;
-    flex-shrink: 0;
-  }
-  .note-card:hover .note-arrow {
-    transform: translateX(4px);
-    color: var(--primary);
-  }
-
-  @media (max-width: 600px) {
-    .note-date { display: none; }
+  @media (max-width: 560px) {
+    .nentry { grid-template-columns: 2.2rem 1fr; }
+    .n-date { grid-column: 2; grid-row: auto; margin-top: 0.4rem; }
   }
 </style>
 
-<div class="notes-container">
+<div class="paper">
 
-  <header class="page-header">
-    <h1 class="page-title">{{ .Title }}</h1>
-    <p class="page-desc">{{ .Content | plainify }}</p>
+  <div class="meta-rule">
+    <span>{{ T "header_left" }}</span>
+    <span>{{ T "header_right" }}</span>
+  </div>
+
+  <header class="list-head">
+    <span class="label-mono">&sect; {{ T "sec_notes" }}</span>
+    <h1 class="list-title">{{ .Title }}</h1>
+    <p class="list-desc">{{ .Content | plainify }}</p>
   </header>
 
-  <div class="notes-list">
-    {{ range .Pages.ByDate.Reverse }}
-    <a href="{{ .RelPermalink }}" class="note-card">
-
-      <span class="note-date">{{ .Date.Format "Jan 2006" }}</span>
-
-      <div class="note-content">
-        <div class="note-title">{{ .Title }}</div>
-        {{ with .Summary }}
-          <div class="note-summary">{{ . | plainify }}</div>
-        {{ end }}
-        {{ if .Params.tags }}
-        <div class="note-tags">
-          {{ range .Params.tags }}
-            <span class="note-tag">{{ . }}</span>
-          {{ end }}
-        </div>
+  <div class="nlist">
+    {{ range $i, $n := .Pages.ByDate.Reverse }}
+    <a class="nentry" href="{{ .RelPermalink }}">
+      <span class="n-num">[{{ printf "%02d" (add $i 1) }}]</span>
+      <span class="n-date">{{ .Date.Format "Jan 2006" }}</span>
+      <div class="n-main">
+        <div class="n-title">{{ .Title }}</div>
+        {{ with .Summary }}<div class="n-summary">{{ . | plainify | truncate 130 }}</div>{{ end }}
+        {{ with .Params.tags }}
+        <div class="n-tags">{{ range . }}<span class="pill">{{ . }}</span>{{ end }}</div>
         {{ end }}
       </div>
-
-      <span class="note-arrow">→</span>
+      <span class="n-arrow">&#8599;</span>
     </a>
     {{ end }}
   </div>
 
 </div>
-
 {{ end }}

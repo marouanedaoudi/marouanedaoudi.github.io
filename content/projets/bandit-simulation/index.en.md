@@ -1,6 +1,6 @@
 ---
 title: "Adaptive Bandit Algorithms for Mega-Studies"
-date: 2025-02-14
+date: 2026-04-01
 description: "Application of multi-armed bandits to FDR control in mega-studies: implementation, simulation and sample complexity analysis."
 summary: "Adaptive bandit algorithm inspired by Jamieson & Jain (2019) to identify effective treatments while controlling the false discovery rate at all times."
 tags: ["Stochastic", "Python", "Multiple Testing", "Bandits"]

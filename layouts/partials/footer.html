@@ -1,9 +1,11 @@
-<footer class="py-10 print:hidden">
-  <div class="container mx-auto px-6 max-w-7xl">
-    <div class="flex items-center justify-center">
-      <p class="text-sm text-neutral-500 dark:text-neutral-400">
-        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
-      </p>
+<footer class="print:hidden" style="margin-top: 4rem; padding-bottom: 2.5rem;">
+  <div class="paper">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;
+                font-family: var(--mono); font-size:0.66rem; letter-spacing:0.18em;
+                text-transform:uppercase; color:var(--ink-faint);
+                padding-top:12px; border-top:2.5px solid var(--rule);">
+      <span>Marouane Daoudi · {{ now.Format "2006" }}</span>
+      <span>Université de Montpellier</span>
     </div>
   </div>
 </footer>

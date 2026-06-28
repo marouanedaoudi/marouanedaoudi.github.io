@@ -1,40 +1,97 @@
 {{ define "main" }}
 
 <style>
-  .article-tag {
-    background: rgba(79, 70, 229, 0.1);
-    color: #4f46e5;
+  .art { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  .art-back {
+    display: inline-block; margin: 1.6rem 0 0;
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
   }
-  html.dark .article-tag {
-    background: rgba(129, 140, 248, 0.15);
-    color: #a5b4fc;
+  .art-back:hover { color: var(--ink); border-color: var(--ink); }
+
+  .art-head { padding: 1.8rem 0 1.6rem; margin-bottom: 1.8rem; border-bottom: 2.5px solid var(--rule); }
+  .art-kicker { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+  .art-title {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1.9rem, 4.6vw, 2.7rem); line-height: 1.12; letter-spacing: -0.015em;
+    color: var(--ink); margin: 0.7rem 0 0.9rem;
   }
+  .art-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+  .art-date { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
+  .art-dot { color: var(--ink-faint); }
+
+  /* ── Prose (serif manuscript body) ── */
+  .art-body { font-family: var(--serif); font-size: 1.2rem; line-height: 1.72; color: var(--ink); }
+  .art-body p { margin: 1.1rem 0; }
+  .art-body h2, .art-body h3, .art-body h4 {
+    font-family: var(--display); font-weight: 700; color: var(--ink);
+    line-height: 1.25; margin: 2.2rem 0 0.8rem; letter-spacing: -0.01em;
+  }
+  .art-body h2 { font-size: 1.6rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--hair); }
+  .art-body h3 { font-size: 1.3rem; }
+  .art-body h4 { font-size: 1.12rem; }
+  .art-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--hair); transition: border-color .2s; }
+  .art-body a:hover { border-color: var(--accent); }
+  .art-body strong { color: var(--ink); font-weight: 600; }
+  .art-body ul, .art-body ol { margin: 1.1rem 0; padding-left: 1.4rem; }
+  .art-body li { margin: 0.4rem 0; }
+  .art-body img { max-width: 100%; height: auto; margin: 1.6rem auto; display: block; border: 1px solid var(--hair); }
+  .art-body blockquote {
+    margin: 1.4rem 0; padding: 0.4rem 1.2rem;
+    border-left: 3px solid var(--accent); color: var(--ink-soft); font-style: italic;
+  }
+  .art-body code {
+    font-family: var(--mono); font-size: 0.85em;
+    background: rgba(27,26,23,0.05); padding: 0.1em 0.35em; border-radius: 2px;
+  }
+  html.dark .art-body code { background: rgba(233,229,218,0.07); }
+  .art-body pre {
+    font-family: var(--mono); font-size: 0.85rem; line-height: 1.5;
+    background: rgba(27,26,23,0.04); border: 1px solid var(--hair);
+    padding: 1rem 1.1rem; overflow-x: auto; margin: 1.4rem 0;
+  }
+  html.dark .art-body pre { background: rgba(233,229,218,0.04); }
+  .art-body pre code { background: none; padding: 0; }
+  .art-body .katex-display { margin: 1.4rem 0; overflow-x: auto; overflow-y: hidden; padding: 0.2rem 0; }
+
+  /* Blowfish alert shortcode → manuscript callout */
+  .art-body .alert, .art-body div[class*="alert"] {
+    border: 1px solid var(--hair); border-left: 3px solid var(--accent);
+    background: var(--accent-soft); padding: 0.9rem 1.1rem; margin: 1.5rem 0;
+  }
+
+  .art-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 2.4rem; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
 </style>
 
-<article class="max-w-4xl mx-auto px-6 py-12 font-sans text-neutral-800 dark:text-neutral-200">
-  
-  <header class="mb-10 text-center border-b border-neutral-200 dark:border-neutral-800 pb-8">
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">{{ .Title }}</h1>
-    
-    <div class="flex flex-wrap justify-center items-center gap-4 text-sm mt-4">
-      <span class="text-neutral-500 font-medium">{{ .Date.Format "2 Jan 2006" }}</span>
-      
-      {{ if .Params.tags }}
-        <div class="flex gap-2">
-          {{ range .Params.tags }}
-            <span class="article-tag px-2 py-1 rounded-md font-bold text-xs uppercase tracking-wider">
-              {{ . }}
-            </span>
-          {{ end }}
-        </div>
+{{ $isFr := eq .Language.Lang "fr" }}
+{{ $sectionURL := "" }}{{ $sectionLabel := "" }}
+{{ if eq .Section "notes" }}
+  {{ $sectionURL = cond $isFr "/fr/notes/" "/notes/" }}{{ $sectionLabel = T "sec_notes" }}
+{{ else if eq .Section "projets" }}
+  {{ $sectionURL = cond $isFr "/fr/projets/" "/projets/" }}{{ $sectionLabel = T "sec_projects" }}
+{{ end }}
+
+<article class="art">
+
+  {{ if $sectionURL }}
+  <a class="art-back" href="{{ $sectionURL }}">&larr; {{ $sectionLabel }}</a>
+  {{ end }}
+
+  <header class="art-head">
+    {{ if $sectionLabel }}<div class="art-kicker">&sect; {{ $sectionLabel }}</div>{{ end }}
+    <h1 class="art-title">{{ .Title }}</h1>
+    <div class="art-meta">
+      <span class="art-date">{{ .Date.Format "2 Jan 2006" }}</span>
+      {{ with .Params.tags }}
+        <span class="art-dot">&middot;</span>
+        {{ range . }}<span class="pill">{{ . }}</span>{{ end }}
       {{ end }}
     </div>
   </header>
 
-  <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed 
-              prose-headings:font-bold prose-headings:text-neutral-900 dark:prose-headings:text-white
-              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto">
+  <div class="art-body">
     {{ .Content }}
   </div>
 

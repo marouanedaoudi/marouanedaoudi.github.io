@@ -1,6 +1,6 @@
 ---
 title: "Algorithmes de Bandits Adaptatifs pour les Méga-études"
-date: 2025-02-14
+date: 2026-04-01
 description: "Application des bandits multi-bras au contrôle du FDR dans les méga-études : implémentation, simulation et analyse de la complexité échantillonnale."
 summary: "Algorithme bandit adaptatif inspiré de Jamieson & Jain (2019) pour identifier les traitements efficaces tout en contrôlant le taux de fausses découvertes à tout instant."
 tags: ["Stochastique", "Python", "Tests Multiples", "Bandits"]

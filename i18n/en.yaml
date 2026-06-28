@@ -4,7 +4,37 @@ bio_text: "M1 student in Applied Mathematics at Université de Montpellier, spec
 tag_optimization: "Optimization"
 tag_statistics: "Statistics"
 tag_python_r: "Python / R"
-projects_header: "Recent Projects"
+
+# ── Home : header / hero ──
+header_left: "Portfolio · Applied Mathematics"
+header_right: "Montpellier · 2026"
+hero_aff: "Université de Montpellier · M1 Applied Mathematics"
+hero_fields: "Probability · Statistics · Data Science · Optimization"
+formula_caption: "Normal probability density function"
+abstract_label: "Abstract"
+abstract_text: "M1 student in Applied Mathematics at Université de Montpellier, specializing in probability, statistics and data science. I care about mathematical rigor and clean, efficient implementations — from stochastic optimization and multiple testing to applied econometrics. Below: selected projects, notes, and tools."
+
+# ── Home : sections ──
+sec_projects: "Projects & Modeling"
+sec_notes: "Notes & Proofs"
+sec_expertise: "Technical Expertise"
+sec_refs: "References & Contact"
+figure_label: "Figure"
+table_label: "Table"
+key_result: "Key result"
+expertise_caption: "Tools & research environment"
+notes_caption: "Lecture notes and solved exercises — probability, measure & integration"
+
+# ── Links ──
 view_all_projects: "View all projects"
+view_all_notes: "View all notes"
+ref_cv: "Curriculum Vitæ"
+ref_github: "GitHub — Source code"
+ref_contact: "Contact"
+
+# ── Lists ──
+projects_header: "Recent Projects"
 projects_page_title: "Projects & Research"
 projects_page_desc: "A selection of my work in convex optimization, stochastic modeling and data science."
+read_more: "Read"
+back_home: "Home"

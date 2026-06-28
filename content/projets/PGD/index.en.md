@@ -1,6 +1,6 @@
 ---
 title: "L1-Ball Projected Gradient Descent"
-date: 2024-05-20
+date: 2025-05-20
 description: "Implementation of Projected Gradient Descent on the L1 ball for sparse convex optimization."
 summary: "Solving the constrained Lasso problem via an efficient O(n log n) Euclidean projection algorithm."
 tags: ["Optimization", "Python", "NumPy"]
