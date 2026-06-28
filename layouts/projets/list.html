@@ -43,11 +43,6 @@
     color: var(--ink-soft); flex-grow: 1;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  .fig-wip {
-    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: #8a5a00; border: 1px solid #ca9a4a; border-radius: 2px; padding: 1px 6px; white-space: nowrap;
-  }
-  html.dark .fig-wip { color: #e0b96a; border-color: #7a6534; }
   .fig-body { padding: 1.05rem 1.15rem 1.1rem; }
   .fig-desc { font-family: var(--serif); font-size: 1.1rem; line-height: 1.55; color: var(--ink); margin: 0 0 0.9rem; }
   .fig-tags { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
@@ -76,7 +71,6 @@
       <div class="fig-head">
         <span class="label-mono">{{ T "figure_label" }} {{ add $i 1 }}.</span>
         <span class="fig-name">{{ .Title }}</span>
-        {{ if in (.Params.tags | jsonify) "Bandits" }}<span class="fig-wip">WIP</span>{{ end }}
       </div>
       <div class="fig-body">
         <p class="fig-desc">{{ .Description | default .Summary }}</p>

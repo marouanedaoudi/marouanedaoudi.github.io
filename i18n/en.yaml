@@ -10,7 +10,7 @@ header_left: "Portfolio · Applied Mathematics"
 header_right: "Montpellier · 2026"
 hero_aff: "Université de Montpellier · M1 Applied Mathematics"
 hero_fields: "Probability · Statistics · Data Science · Optimization"
-formula_caption: "Normal probability density function"
+formula_caption: "the normal distribution"
 abstract_label: "Abstract"
 abstract_text: "M1 student in Applied Mathematics at Université de Montpellier, specializing in probability, statistics and data science. I care about mathematical rigor and clean, efficient implementations — from stochastic optimization and multiple testing to applied econometrics. Below: selected projects, notes, and tools."
 
