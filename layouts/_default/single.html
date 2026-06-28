@@ -63,6 +63,17 @@
   }
 
   .art-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 2.4rem; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
+
+  .art-report {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    margin: 1.4rem 0 0.4rem;
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    border: 1px solid var(--rule); padding: 0.5rem 0.9rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .art-report:hover { background: var(--accent-soft); transform: translateY(-1px); }
+  .art-report .ar-ic { font-size: 0.9rem; }
 </style>
 
 {{ $isFr := eq .Language.Lang "fr" }}
@@ -90,6 +101,12 @@
       {{ end }}
     </div>
   </header>
+
+  {{ with .Params.report }}
+  <a class="art-report" href="{{ . }}">
+    <span class="ar-ic">&#9662;</span> {{ T "download_report" }} (PDF)
+  </a>
+  {{ end }}
 
   <div class="art-body">
     {{ .Content }}
