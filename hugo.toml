@@ -64,7 +64,7 @@ theme = "blowfish"
 [params]
   colorScheme = "ocean"
   defaultAppearance = "light"
-  autoSwitchAppearance = false
+  autoSwitchAppearance = true
   homepage.layout = "simple"
   homepage.showTitle = false
   homepage.showRecent = false
