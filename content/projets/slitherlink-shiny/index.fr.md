@@ -1,6 +1,7 @@
 ---
 title: "Slitherlink Shiny"
 date: 2026-03-31
+weight: 3
 description: "Package R pour jouer et résoudre des puzzles Slitherlink, avec une interface interactive Shiny et un solveur par propagation de contraintes."
 summary: "Package R implémentant un solveur de Slitherlink (propagation de contraintes + backtracking) et une application Shiny interactive avec système d'indices, d'annulation et de validation en temps réel."
 tags: ["R", "Shiny", "Optimisation", "Contraintes"]

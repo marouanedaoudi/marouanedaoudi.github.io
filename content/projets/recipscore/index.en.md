@@ -1,6 +1,7 @@
 ---
 title: "Recip Score"
 date: 2024-02-10
+weight: 4
 description: "Web application computing the Nutri-Score of recipes and suggesting optimal recipes from available ingredients."
 summary: "Nutri-Score computation for full recipes via USDA nutritional data aggregation, with an ingredient-based recipe recommendation engine."
 tags: ["Data Science", "R", "Statistics"]

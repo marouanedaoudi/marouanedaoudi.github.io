@@ -214,7 +214,7 @@
   <!-- § 1 — Projects -->
   <h2 class="sec-head"><span class="sec-num">§ 1.</span>{{ T "sec_projects" }}</h2>
   <div class="figs">
-    {{ range $i, $p := first 3 $projets.ByDate.Reverse }}
+    {{ range $i, $p := first 3 $projets.ByWeight }}
     <a class="fig" href="{{ .RelPermalink }}">
       <div class="fig-head">
         <span class="label-mono">{{ T "figure_label" }} {{ add $i 1 }}.</span>
@@ -252,12 +252,16 @@
   <div class="tbl">
     <div class="tbl-cap">{{ T "table_label" }} 1. {{ T "expertise_caption" }}</div>
     <div class="tbl-grid">
-      <div class="tbl-cell"><span>Python &middot; NumPy</span><span class="tbl-num">01</span></div>
-      <div class="tbl-cell"><span>R &middot; Shiny &middot; RStudio</span><span class="tbl-num">02</span></div>
-      <div class="tbl-cell"><span>{{ T "tag_statistics" }}</span><span class="tbl-num">03</span></div>
-      <div class="tbl-cell"><span>{{ T "tag_optimization" }}</span><span class="tbl-num">04</span></div>
-      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Probabilités{{ else }}Probability{{ end }}</span><span class="tbl-num">05</span></div>
-      <div class="tbl-cell"><span>LaTeX</span><span class="tbl-num">06</span></div>
+      <div class="tbl-cell"><span>Python &middot; NumPy &middot; pandas</span><span class="tbl-num">01</span></div>
+      <div class="tbl-cell"><span>PyTorch &middot; scikit-learn</span><span class="tbl-num">02</span></div>
+      <div class="tbl-cell"><span>R &middot; Shiny &middot; RStudio</span><span class="tbl-num">03</span></div>
+      <div class="tbl-cell"><span>Machine Learning</span><span class="tbl-num">04</span></div>
+      <div class="tbl-cell"><span>{{ T "tag_statistics" }}</span><span class="tbl-num">05</span></div>
+      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Séries temporelles{{ else }}Time series{{ end }}</span><span class="tbl-num">06</span></div>
+      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Probabilités{{ else }}Probability{{ end }}</span><span class="tbl-num">07</span></div>
+      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Tests multiples{{ else }}Multiple testing{{ end }}</span><span class="tbl-num">08</span></div>
+      <div class="tbl-cell"><span>{{ T "tag_optimization" }}</span><span class="tbl-num">09</span></div>
+      <div class="tbl-cell"><span>LaTeX &middot; Git</span><span class="tbl-num">10</span></div>
     </div>
   </div>
 

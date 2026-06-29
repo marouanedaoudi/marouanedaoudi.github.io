@@ -1,6 +1,7 @@
 ---
 title: "L1-Ball Projected Gradient Descent"
 date: 2025-05-20
+weight: 2
 description: "Implémentation de la Descente de Gradient Projetée sur la boule L1 pour l'optimisation convexe sparse."
 summary: "Résolution du problème Lasso contraint via un algorithme de projection euclidienne efficace en O(n log n)."
 tags: ["Optimisation", "Python", "NumPy", "FISTA"]
