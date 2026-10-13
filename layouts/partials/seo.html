@@ -1,0 +1,81 @@
+{{- $name := .Site.Params.authorName -}}
+{{- $title := printf "%s | %s" .Title $name -}}
+{{- if .IsHome }}{{ $title = .Site.Params.homeTitle }}{{ end -}}
+{{- $description := .Description | default .Params.summary | default .Site.Params.description | plainify | htmlUnescape | strings.TrimSpace -}}
+{{- $canonical := .Permalink -}}
+{{- $noindex := or .Params.noindex (in (slice "taxonomy" "term" "404") .Kind) -}}
+{{- $image := .Site.Params.socialImage | absURL -}}
+{{- $english := .Site.Home -}}
+{{- range .Site.Home.AllTranslations }}{{ if eq .Language.Lang "en" }}{{ $english = . }}{{ end }}{{ end -}}
+{{- range .AllTranslations }}{{ if eq .Language.Lang "en" }}{{ $english = . }}{{ end }}{{ end -}}
+{{- $personID := printf "%s#person" ("/" | absURL) -}}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ $name }}">
+<link rel="canonical" href="{{ $canonical }}">
+{{ if $noindex -}}
+<meta name="robots" content="noindex, follow">
+{{ else -}}
+<meta name="robots" content="index, follow, max-image-preview:large">
+{{ range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+<link rel="alternate" hreflang="x-default" href="{{ $english.Permalink }}">
+{{ end -}}
+<meta property="og:site_name" content="{{ $name }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ $canonical }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "notes") }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ if eq .Language.Lang "fr" }}fr_FR{{ else }}en_US{{ end }}">
+{{ range .Translations -}}
+<meta property="og:locale:alternate" content="{{ if eq .Language.Lang "fr" }}fr_FR{{ else }}en_US{{ end }}">
+{{ end -}}
+<meta property="og:image" content="{{ $image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Marouane Daoudi — Statistics &amp; Machine Learning, University of Montpellier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image }}">
+<meta name="twitter:image:alt" content="Marouane Daoudi — Statistics &amp; Machine Learning, University of Montpellier">
+<meta name="theme-color" content="#f7f6f2">
+<link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon.png" | relURL }}">
+{{ with .OutputFormats.Get "RSS" -}}
+<link rel="alternate" type="application/rss+xml" title="{{ $name }} — {{ $.Title }}" href="{{ .Permalink }}">
+{{ end -}}
+{{ if not $noindex -}}
+{{- $person := dict "@type" "Person" "@id" $personID "name" $name "givenName" "Marouane" "familyName" "Daoudi" "url" ("/" | absURL) "sameAs" (slice .Site.Params.github .Site.Params.linkedin) "jobTitle" .Site.Params.jobTitle "description" .Site.Params.profileDescription "affiliation" (dict "@type" "CollegeOrUniversity" "name" "Université de Montpellier" "url" "https://www.umontpellier.fr/") "knowsAbout" (slice "Machine learning" "Statistics" "Probability theory") -}}
+{{- $webpage := dict "@type" "WebPage" "@id" (printf "%s#webpage" $canonical) "url" $canonical "name" $title "description" $description "inLanguage" .Language.Lang "about" (dict "@id" $personID) -}}
+{{- $graph := slice $person -}}
+{{- if .IsHome -}}
+  {{- $webpage = dict "@type" "ProfilePage" "@id" (printf "%s#webpage" $canonical) "url" $canonical "name" $title "description" $description "inLanguage" .Language.Lang "about" (dict "@id" $personID) "mainEntity" (dict "@id" $personID) -}}
+  {{- if not .Lastmod.IsZero }}{{ $webpage = merge $webpage (dict "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")) }}{{ end -}}
+  {{- $website := dict "@type" "WebSite" "@id" (printf "%s#website" ("/" | absURL)) "url" ("/" | absURL) "name" $name "publisher" (dict "@id" $personID) "inLanguage" (slice "en" "fr") -}}
+  {{- $graph = $graph | append $website -}}
+{{- else -}}
+  {{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" .Site.Home.Title "item" .Site.Home.Permalink) -}}
+  {{- $position := 2 -}}
+  {{- if and .IsPage (ne .CurrentSection .Site.Home) -}}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $position "name" .CurrentSection.Title "item" .CurrentSection.Permalink) -}}
+    {{- $position = add $position 1 -}}
+  {{- end -}}
+  {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $position "name" .Title "item" $canonical) -}}
+  {{- $breadcrumb := dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" $canonical) "itemListElement" $crumbs -}}
+  {{- $webpage = merge $webpage (dict "breadcrumb" (dict "@id" (printf "%s#breadcrumb" $canonical))) -}}
+  {{- $graph = $graph | append $breadcrumb -}}
+{{- end -}}
+{{- $graph = $graph | append $webpage -}}
+{{- if and .IsPage (in (slice "notes" "projets") .Section) -}}
+  {{- $type := "CreativeWork" -}}
+  {{- if eq .Section "notes" }}{{ $type = "TechArticle" }}{{ end -}}
+  {{- $work := dict "@type" $type "@id" (printf "%s#work" $canonical) "url" $canonical "name" .Title "headline" .Title "description" $description "inLanguage" .Language.Lang "author" (dict "@id" $personID) "mainEntityOfPage" (dict "@id" (printf "%s#webpage" $canonical)) -}}
+  {{- if not .PublishDate.IsZero }}{{ $work = merge $work (dict "datePublished" (.PublishDate.Format "2006-01-02")) }}{{ end -}}
+  {{- if not .Lastmod.IsZero }}{{ $work = merge $work (dict "dateModified" (.Lastmod.Format "2006-01-02")) }}{{ end -}}
+  {{- $graph = $graph | append $work -}}
+{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>
+{{ end -}}

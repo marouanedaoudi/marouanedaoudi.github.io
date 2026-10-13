@@ -1,9 +1,9 @@
 ---
-title: "Projects & Research"
-description: "Portfolio of my work in optimization, stochastic modeling and data science."
+title: "Selected projects"
+lastmod: "2026-10-14"
+description: "Academic and personal projects by Marouane Daoudi in adaptive bandits, convex optimization, algorithms and data analysis."
 layout: "list"
 showAuthor: false
-showDate: true
 ---
 
-A selection of my academic and personal projects. I place particular emphasis on **mathematical rigor** in the implemented models and on algorithmic efficiency.
+Academic and personal work in statistical learning, optimization and algorithms. Each project links to its source code or report and describes the methods, observations and limitations.

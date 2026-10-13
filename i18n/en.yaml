@@ -1,27 +1,27 @@
-bio_subtitle: "M1 Applied Mathematics · Université de Montpellier"
+bio_subtitle: "M2 Statistics and Data Science · University of Montpellier"
 bio_title: "About"
-bio_text: "M1 student in Applied Mathematics at Université de Montpellier, specializing in <strong>statistics and data science</strong>."
+bio_text: "Second-year master’s student in <strong>Statistics and Data Science</strong> at the University of Montpellier, interested in machine learning, probability and optimization."
 tag_optimization: "Optimization"
 tag_statistics: "Statistics"
 tag_python_r: "Python / R"
 
 # ── Home : header / hero ──
-header_left: "Portfolio · Applied Mathematics"
+header_left: "Marouane Daoudi · Statistics & Machine Learning"
 header_right: "Montpellier · 2026"
-hero_aff: "Université de Montpellier · M1 Applied Mathematics"
-hero_fields: "Probability · Statistics · Data Science · Optimization"
+hero_aff: "University of Montpellier · M2 Statistics and Data Science"
+hero_fields: "Statistical learning · Probability · Sequential decisions · Optimization"
 abstract_label: "Abstract"
-abstract_text: "M1 student in Applied Mathematics at Université de Montpellier, specializing in probability, statistics and data science. I care about mathematical rigor and clean, efficient implementations — from stochastic optimization and multiple testing to applied statistical modeling. Below: selected projects, notes, and tools."
+abstract_text: "Second-year master’s student in Statistics and Data Science at the University of Montpellier. Seeking a research internship in machine learning in Taiwan, with the aim of pursuing a PhD in ML. Selected projects and mathematical notes follow."
 
 # ── Home : sections ──
 sec_projects: "Projects & Modeling"
 sec_notes: "Notes & Proofs"
-sec_expertise: "Technical Expertise"
+sec_expertise: "Methods and tools"
 sec_refs: "References & Contact"
 figure_label: "Figure"
 table_label: "Table"
 key_result: "Key result"
-expertise_caption: "Tools & research environment"
+expertise_caption: "Programming and mathematical background"
 notes_caption: "Lecture notes and solved exercises — probability, measure & integration"
 
 # ── Links ──
@@ -33,8 +33,8 @@ ref_contact: "Contact"
 
 # ── Lists ──
 projects_header: "Recent Projects"
-projects_page_title: "Projects & Research"
-projects_page_desc: "A selection of my work in convex optimization, stochastic modeling and data science."
+projects_page_title: "Selected projects"
+projects_page_desc: "Academic and personal projects in adaptive bandits, convex optimization, algorithms and data analysis."
 read_more: "Read"
 back_home: "Home"
 

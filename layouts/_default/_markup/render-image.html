@@ -1,0 +1,2 @@
+{{ $resource := .Page.Resources.GetMatch .Destination }}
+{{ if $resource }}<img src="{{ $resource.RelPermalink }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} width="{{ $resource.Width }}" height="{{ $resource.Height }}" loading="lazy" decoding="async">{{ else }}<img src="{{ .Destination | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">{{ end }}

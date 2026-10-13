@@ -1,26 +1,28 @@
 ---
-title: "Exercise: A.S. Convergence and Borel-Cantelli"
+title: "Exercise: Almost-sure convergence and Borel-Cantelli"
 date: 2025-02-14
-tags: ["Borel-Cantelli", "A.S. Convergence"]
+lastmod: 2026-10-14
+tags: ["Borel-Cantelli", "Almost-sure convergence"]
 math: true
-summary: "A direct application of the Borel-Cantelli lemma."
+summary: "Almost-sure convergence of a random series using the first Borel-Cantelli lemma."
+description: "Worked exercise: almost-sure convergence of a random series whose deviations from a convergent deterministic series have summable probabilities."
 ---
 
 {{< alert icon="circle-info" >}}
 **Statement:**
-Let $(X\_n)\_{n \in \mathbb{N}}$ be a sequence of real random variables on a probability space $(\Omega, \mathcal{A}, P)$. Suppose there exists a sequence of real numbers $(a\_n)\_{n \in \mathbb{N}}$ such that both series
-$$\sum\_{n \in \mathbb{N}}a\_n \quad \text{and} \quad \sum\_{n \in \mathbb{N}}P(X\_n \neq a\_n)$$
-are convergent. Prove that the series $\sum\_{n \in \mathbb{N}}X\_n$ converges a.s.
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of real random variables on a probability space $(\Omega, \mathcal{A}, P)$. Suppose there exists a sequence of real numbers $(a_n)_{n \in \mathbb{N}}$ such that both series
+$$\sum_{n \in \mathbb{N}}a_n \quad \text{and} \quad \sum_{n \in \mathbb{N}}P(X_n \neq a_n)$$
+are convergent. Prove that the series $\sum_{n \in \mathbb{N}}X_n$ converges a.s.
 {{< /alert >}}
 
 ## Solution:
 
-The convergence of $\sum P(X\_n \neq a\_n)$ naturally points toward the Borel-Cantelli lemma.
-Since $\sum\_{n \in \mathbb{N}}P(X\_n \neq a\_n)<+\infty$, we have $P(\limsup\_{n \rightarrow +\infty}\{X\_n \neq a\_n\})=0$.
+The convergence of $\sum P(X_n \neq a_n)$ naturally points toward the Borel-Cantelli lemma.
+Since $\sum_{n \in \mathbb{N}}P(X_n \neq a_n)<+\infty$, we have $P(\limsup_{n \rightarrow +\infty}\{X_n \neq a_n\})=0$.
 
-This means the set of $\omega \in \Omega$ such that $X\_n(\omega) \neq a\_n$ for infinitely many $n$ has measure zero. Consequently, for almost every $\omega \in \Omega$, there exists a rank $N(\omega) \in \mathbb{N}$ such that for all $n \geq N(\omega)$, $X\_n(\omega) = a\_n$.
+This means the set of $\omega \in \Omega$ such that $X_n(\omega) \neq a_n$ for infinitely many $n$ has measure zero. Consequently, for almost every $\omega \in \Omega$, there exists a rank $N(\omega) \in \mathbb{N}$ such that for all $n \geq N(\omega)$, $X_n(\omega) = a_n$.
 
 Therefore, for almost every $\omega$, splitting the series at rank $N(\omega)$:
-$$\sum\_{n \in \mathbb{N}}X\_n(\omega)=\sum\_{n < N(\omega)}X\_n(\omega)+\sum\_{n \geq N(\omega)}a\_n$$
+$$\sum_{n \in \mathbb{N}}X_n(\omega)=\sum_{n < N(\omega)}X_n(\omega)+\sum_{n \geq N(\omega)}a_n$$
 
-The first term is a finite sum of real numbers, hence finite. The second converges because $\sum\_{n \in \mathbb{N}}a\_n$ is convergent by hypothesis, so its tail $\sum\_{n \geq N}a\_n$ is well-defined. Thus $\sum\_{n \in \mathbb{N}}X\_n$ converges a.s. $\blacksquare$
+The first term is a finite sum of real numbers, hence finite. The second converges because $\sum_{n \in \mathbb{N}}a_n$ is convergent by hypothesis, so its tail $\sum_{n \geq N}a_n$ is well-defined. Thus $\sum_{n \in \mathbb{N}}X_n$ converges a.s. $\blacksquare$

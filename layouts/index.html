@@ -1,289 +1,45 @@
 {{ define "main" }}
-
-<style>
-  /* ════════ HOME — manuscript layout ════════ */
-  .home { max-width: 760px; margin: 0 auto; padding: 0 24px 1rem; }
-
-  @keyframes paperRise {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .home > * { animation: paperRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .home > *:nth-child(2) { animation-delay: 0.05s; }
-  .home > *:nth-child(3) { animation-delay: 0.10s; }
-  .home > *:nth-child(n+4) { animation-delay: 0.15s; }
-
-  /* ── Hero ── */
-  .hero { text-align: center; padding: 3.2rem 0 2.4rem; }
-  .hero-name {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(2.6rem, 7vw, 3.7rem);
-    line-height: 1.04;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin: 0 0 1.1rem;
-  }
-  .hero-aff, .hero-fields {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0.25rem 0;
-  }
-  .hero-fields { color: var(--ink-faint); }
-
-  /* ── Abstract ── */
-  .abstract {
-    margin: 2.2rem 0 0;
-    padding-top: 1.6rem;
-    border-top: 1px solid var(--hair);
-  }
-  .abstract p {
-    font-family: var(--serif);
-    font-size: 1.18rem;
-    line-height: 1.62;
-    color: var(--ink);
-    text-align: justify;
-    margin: 0;
-  }
-  .abstract-label {
-    font-weight: 600;
-    color: var(--ink);
-    margin-right: 0.35rem;
-  }
-
-  .sec-more {
-    margin-top: 1.1rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .sec-more a {
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: 1px solid var(--hair);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .sec-more a:hover { color: var(--ink); border-color: var(--ink); }
-
-  .sec-cap { margin: -0.8rem 0 1.3rem; }
-
-  /* ── Figure cards (projects) ── */
-  .figs { display: flex; flex-direction: column; gap: 1.1rem; }
-  .fig {
-    display: block;
-    text-decoration: none;
-    border: 1px solid var(--hair);
-    background: transparent;
-    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
-  }
-  .fig:hover {
-    border-color: var(--ink);
-    background: var(--accent-soft);
-    transform: translateY(-2px);
-  }
-  .fig-head {
-    display: flex; align-items: baseline; gap: 0.6rem;
-    padding: 0.6rem 1rem;
-    border-bottom: 1px solid var(--hair);
-    background: rgba(27,26,23,0.02);
-  }
-  html.dark .fig-head { background: rgba(233,229,218,0.03); }
-  .fig-head .label-mono { color: var(--ink); font-weight: 600; white-space: nowrap; }
-  .fig-title {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .fig-body { padding: 1rem 1.1rem 1.05rem; }
-  .fig-desc {
-    font-family: var(--serif);
-    font-size: 1.06rem;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 0 0 0.85rem;
-  }
-  .fig-tags { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
-  .fig-year {
-    margin-left: auto;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-  }
-  .fig:hover .fig-year { color: var(--accent); }
-
-  /* ── Reference list (notes + contact) ── */
-  .ref-list { list-style: none; margin: 0; padding: 0; }
-  .ref {
-    display: flex; align-items: baseline; gap: 0.85rem;
-    padding: 0.7rem 0.2rem;
-    border-bottom: 1px solid var(--hair);
-    text-decoration: none;
-    transition: padding-left 0.22s ease, background 0.22s ease;
-  }
-  .ref:first-child { border-top: 1px solid var(--hair); }
-  .ref:hover { padding-left: 0.6rem; background: var(--accent-soft); }
-  .ref-num {
-    font-family: var(--mono);
-    font-size: 0.74rem;
-    color: var(--accent);
-    white-space: nowrap;
-    min-width: 2.1rem;
-  }
-  .ref-title {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: var(--ink);
-    flex-grow: 1;
-  }
-  .ref:hover .ref-title { color: var(--accent); }
-  .ref-tag {
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-  }
-  .ref-arrow {
-    font-family: var(--mono);
-    color: var(--ink-faint);
-    transition: transform 0.2s, color 0.2s;
-  }
-  .ref:hover .ref-arrow { color: var(--accent); transform: translate(2px, -2px); }
-
-  /* ── Expertise table ── */
-  .tbl { border: 1px solid var(--rule); }
-  .tbl-cap {
-    padding: 0.55rem 1rem;
-    border-bottom: 1px solid var(--rule);
-    background: rgba(27,26,23,0.02);
-    color: var(--ink);
-    font-weight: 600;
-  }
-  html.dark .tbl-cap { background: rgba(233,229,218,0.03); }
-  .tbl-grid { display: grid; grid-template-columns: 1fr 1fr; }
-  .tbl-cell {
-    display: flex; align-items: baseline; justify-content: space-between;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--hair);
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    color: var(--ink);
-  }
-  .tbl-cell:nth-child(odd) { border-right: 1px solid var(--hair); }
-  .tbl-grid .tbl-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .tbl-num { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-faint); }
-
-  @media (max-width: 560px) {
-    .abstract p { text-align: left; }
-    .tbl-grid { grid-template-columns: 1fr; }
-    .tbl-cell:nth-child(odd) { border-right: none; }
-    .tbl-grid .tbl-cell:nth-last-child(2) { border-bottom: 1px solid var(--hair); }
-    .fig-title { white-space: normal; }
-  }
-</style>
-
-{{ $projets := where .Site.RegularPages "Section" "projets" }}
-{{ $notes := where .Site.RegularPages "Section" "notes" }}
-{{ $projetsURL := cond (eq .Language.Lang "fr") "/fr/projets/" "/projets/" }}
-{{ $notesURL := cond (eq .Language.Lang "fr") "/fr/notes/" "/notes/" }}
-
+{{ $fr := eq .Language.Lang "fr" }}
 <div class="home">
-
-  <div class="meta-rule">
-    <span>{{ T "header_left" }}</span>
-    <span>{{ T "header_right" }}</span>
-  </div>
-
-  <header class="hero">
-    <h1 class="hero-name">Marouane Daoudi</h1>
-    <p class="hero-aff">{{ T "hero_aff" }}</p>
-    <p class="hero-fields">{{ T "hero_fields" }}</p>
-  </header>
-
-  <section class="abstract">
-    <p><span class="abstract-label">{{ T "abstract_label" }} —</span>{{ T "abstract_text" }}</p>
-  </section>
-
-  <!-- § 1 — Projects -->
-  <h2 class="sec-head"><span class="sec-num">§ 1.</span>{{ T "sec_projects" }}</h2>
-  <div class="figs">
-    {{ range $i, $p := first 3 $projets.ByWeight }}
-    <a class="fig" href="{{ .RelPermalink }}">
-      <div class="fig-head">
-        <span class="label-mono">{{ T "figure_label" }} {{ add $i 1 }}.</span>
-        <span class="fig-title">{{ .Title }}</span>
-      </div>
-      <div class="fig-body">
-        <p class="fig-desc">{{ .Description | default .Summary }}</p>
-        <div class="fig-tags">
-          {{ range first 4 .Params.tags }}<span class="pill">{{ . }}</span>{{ end }}
-          <span class="fig-year">{{ .Date.Format "2006" }} &rarr;</span>
-        </div>
-      </div>
-    </a>
-    {{ end }}
-  </div>
-  <div class="sec-more"><a href="{{ $projetsURL }}">{{ T "view_all_projects" }} &rarr;</a></div>
-
-  <!-- § 2 — Notes -->
-  <h2 class="sec-head"><span class="sec-num">§ 2.</span>{{ T "sec_notes" }}</h2>
-  <p class="label-mono sec-cap">{{ T "notes_caption" }}</p>
-  <div class="ref-list">
-    {{ range $i, $n := first 5 $notes.ByDate.Reverse }}
-    <a class="ref" href="{{ .RelPermalink }}">
-      <span class="ref-num">[{{ printf "%02d" (add $i 1) }}]</span>
-      <span class="ref-title">{{ .Title }}</span>
-      {{ with .Params.tags }}<span class="ref-tag">{{ index . 0 }}</span>{{ end }}
-      <span class="ref-arrow">&#8599;</span>
-    </a>
-    {{ end }}
-  </div>
-  <div class="sec-more"><a href="{{ $notesURL }}">{{ T "view_all_notes" }} &rarr;</a></div>
-
-  <!-- § 3 — Expertise -->
-  <h2 class="sec-head"><span class="sec-num">§ 3.</span>{{ T "sec_expertise" }}</h2>
-  <div class="tbl">
-    <div class="tbl-cap">{{ T "table_label" }} 1. {{ T "expertise_caption" }}</div>
-    <div class="tbl-grid">
-      <div class="tbl-cell"><span>Python &middot; NumPy &middot; pandas</span><span class="tbl-num">01</span></div>
-      <div class="tbl-cell"><span>PyTorch &middot; scikit-learn</span><span class="tbl-num">02</span></div>
-      <div class="tbl-cell"><span>R &middot; Shiny &middot; RStudio</span><span class="tbl-num">03</span></div>
-      <div class="tbl-cell"><span>Machine Learning</span><span class="tbl-num">04</span></div>
-      <div class="tbl-cell"><span>{{ T "tag_statistics" }}</span><span class="tbl-num">05</span></div>
-      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Séries temporelles{{ else }}Time series{{ end }}</span><span class="tbl-num">06</span></div>
-      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Probabilités{{ else }}Probability{{ end }}</span><span class="tbl-num">07</span></div>
-      <div class="tbl-cell"><span>{{ if eq .Language.Lang "fr" }}Tests multiples{{ else }}Multiple testing{{ end }}</span><span class="tbl-num">08</span></div>
-      <div class="tbl-cell"><span>{{ T "tag_optimization" }}</span><span class="tbl-num">09</span></div>
-      <div class="tbl-cell"><span>LaTeX &middot; Git</span><span class="tbl-num">10</span></div>
+  <section class="profile" aria-labelledby="profile-title">
+    <div class="profile-main">
+      <p class="eyebrow">{{ if $fr }}Statistique & apprentissage automatique{{ else }}Statistics & machine learning{{ end }}</p>
+      <h1 id="profile-title">Marouane Daoudi<span class="name-rule" aria-hidden="true"></span></h1>
+      <p class="profile-role">{{ .Params.role | default (cond $fr "Étudiant en Master 2" "Master's student · M2") }}</p>
+      <p class="profile-affiliation">{{ .Params.subtitle | default (cond $fr "Statistique et science des données · Université de Montpellier" "Statistics and Data Science · Université de Montpellier") }}</p>
+      <div class="profile-bio prose">{{ .Content }}</div>
+      <div class="profile-links"><a class="primary-link" href="{{ "cv/" | relLangURL }}">{{ if $fr }}Curriculum vitæ{{ else }}Curriculum vitae{{ end }} <span aria-hidden="true">↗</span></a><a href="mailto:marouane.daoudi@etu.umontpellier.fr">{{ if $fr }}Me contacter{{ else }}Get in touch{{ end }} <span aria-hidden="true">↗</span></a><a href="https://github.com/marouanedaoudi">GitHub <span aria-hidden="true">↗</span></a></div>
     </div>
-  </div>
-
-  <!-- § 4 — References & contact -->
-  <h2 class="sec-head"><span class="sec-num">§ 4.</span>{{ T "sec_refs" }}</h2>
-  <div class="ref-list">
-    <a class="ref" href="/uploads/CV.pdf">
-      <span class="ref-num">[1]</span>
-      <span class="ref-title">{{ T "ref_cv" }}</span>
-      <span class="ref-arrow">&#8599;</span>
-    </a>
-    <a class="ref" href="https://github.com/marouanedaoudi">
-      <span class="ref-num">[2]</span>
-      <span class="ref-title">{{ T "ref_github" }}</span>
-      <span class="ref-arrow">&#8599;</span>
-    </a>
-    <a class="ref" href="mailto:marouane.daoudi@etu.umontpellier.fr">
-      <span class="ref-num">[3]</span>
-      <span class="ref-title">{{ T "ref_contact" }}</span>
-      <span class="ref-arrow">&rarr;</span>
-    </a>
-  </div>
-
+    <aside class="profile-aside" aria-label="{{ if $fr }}Orientation de recherche{{ else }}Research direction{{ end }}">
+      <p class="eyebrow">{{ if $fr }}Orientation de recherche{{ else }}Research direction{{ end }}</p>
+      <p class="aside-statement">{{ if $fr }}Apprentissage statistique, optimisation et décisions séquentielles.{{ else }}Statistical learning, optimization and sequential decisions.{{ end }}</p>
+      <dl><div><dt>{{ if $fr }}Formation actuelle{{ else }}Current program{{ end }}</dt><dd>M2 · {{ if $fr }}Statistique et science des données{{ else }}Statistics and Data Science{{ end }}</dd></div><div><dt>{{ if $fr }}Prochaine étape{{ else }}Next step{{ end }}</dt><dd>{{ .Params.availability | default (cond $fr "Stage de recherche en machine learning à Taïwan" "Machine learning research internship in Taiwan") }}</dd></div><div><dt>{{ if $fr }}À plus long terme{{ else }}Looking ahead{{ end }}</dt><dd>{{ if $fr }}Doctorat en machine learning{{ else }}PhD in machine learning{{ end }}</dd></div></dl>
+      <a class="aside-email" href="mailto:marouane.daoudi@etu.umontpellier.fr">marouane.daoudi<span>@etu.umontpellier.fr</span></a>
+    </aside>
+  </section>
+  <section class="interests section" aria-labelledby="interests-title">
+    <div class="section-heading"><h2 id="interests-title">{{ if $fr }}Intérêts scientifiques{{ else }}Research interests{{ end }}</h2><span class="section-note">{{ if $fr }}Probabilités · statistique · calcul{{ else }}Probability · statistics · computation{{ end }}</span></div>
+    <div class="interest-grid">
+      {{ range .Params.interests }}<div><h3>{{ .title }}</h3><p>{{ .text }}</p></div>{{ else }}
+      <div><h3>{{ if $fr }}Apprentissage statistique{{ else }}Statistical learning{{ end }}</h3><p>{{ if $fr }}Modélisation, estimation et fondements du machine learning.{{ else }}Modeling, estimation and the foundations of machine learning.{{ end }}</p></div>
+      <div><h3>{{ if $fr }}Optimisation{{ else }}Optimization{{ end }}</h3><p>{{ if $fr }}Méthodes du premier ordre, contraintes et parcimonie.{{ else }}First-order methods, constraints and sparsity.{{ end }}</p></div>
+      <div><h3>{{ if $fr }}Décisions séquentielles{{ else }}Sequential decisions{{ end }}</h3><p>{{ if $fr }}Bandits, exploration adaptative et contrôle des erreurs.{{ else }}Bandits, adaptive exploration and error control.{{ end }}</p></div>
+      {{ end }}
+    </div>
+  </section>
+  <section class="section" aria-labelledby="work-title">
+    <div class="section-heading"><h2 id="work-title">{{ if $fr }}Travaux choisis{{ else }}Selected work{{ end }}</h2><a class="section-more" href="{{ "projets/" | relLangURL }}">{{ if $fr }}Tous les projets{{ else }}All projects{{ end }} <span aria-hidden="true">→</span></a></div>
+    <p class="section-intro">{{ if $fr }}Projets académiques et logiciels, de la formulation mathématique à l’implémentation.{{ else }}Academic projects and software, from mathematical formulation to implementation.{{ end }}</p>
+    <ol class="work-list">{{ range $i, $p := first 3 (where .Site.RegularPages "Section" "projets").ByWeight }}{{ partial "work-row.html" (dict "page" $p "index" (add $i 1)) }}{{ end }}</ol>
+  </section>
+  <section class="section" aria-labelledby="notes-title">
+    <div class="section-heading"><h2 id="notes-title">{{ if $fr }}Notes mathématiques{{ else }}Mathematical notes{{ end }}</h2><a class="section-more" href="{{ "notes/" | relLangURL }}">{{ if $fr }}Toutes les notes{{ else }}All notes{{ end }} <span aria-hidden="true">→</span></a></div>
+    <p class="section-intro">{{ if $fr }}Démonstrations et exercices rédigés autour des probabilités et des modes de convergence.{{ else }}Written proofs and exercises on probability and modes of convergence.{{ end }}</p>
+    <ul class="notes-list">{{ range first 5 (where .Site.RegularPages "Section" "notes").ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ with .Params.tags }}{{ index . 0 }}{{ end }}</span><span class="note-arrow" aria-hidden="true">↗</span></li>{{ end }}</ul>
+  </section>
+  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <div><p class="eyebrow">{{ if $fr }}Contact{{ else }}Contact{{ end }}</p><h2 id="contact-title">{{ if $fr }}Stage de recherche en machine learning{{ else }}Research internship in machine learning{{ end }}</h2><p>{{ if $fr }}Je recherche un stage en machine learning à Taïwan, avec l’objectif de poursuivre ensuite en doctorat.{{ else }}I am seeking a machine learning internship in Taiwan, with the aim of pursuing a PhD afterward.{{ end }}</p></div>
+    <div class="contact-actions"><a class="primary-link" href="mailto:marouane.daoudi@etu.umontpellier.fr">{{ if $fr }}M’écrire{{ else }}Email me{{ end }} <span aria-hidden="true">↗</span></a><a href="{{ "cv/" | relLangURL }}">{{ if $fr }}Consulter mon CV{{ else }}View my CV{{ end }} <span aria-hidden="true">→</span></a></div>
+  </section>
 </div>
 {{ end }}

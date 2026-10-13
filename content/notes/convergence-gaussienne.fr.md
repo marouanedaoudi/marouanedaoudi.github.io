@@ -3,52 +3,64 @@ title: "Convergence d'une suite de Gaussiennes"
 date: 2025-02-14
 tags: ["Gaussienne", "Convergence en loi"]
 math: true
-summary: "Démonstration de la convergence en loi d'une suite de variables gaussiennes via les fonctions caractéristiques."
+summary: "Convergence des variances et convergence Lp de variables gaussiennes centrées."
+description: "Convergence de variables gaussiennes centrées : limite des variances par les fonctions caractéristiques, puis convergence Lp sous convergence en probabilité."
+lastmod: 2026-10-14
 ---
 
 {{< alert icon="circle-info" >}}
-**Énoncé :**
-Soit $(X\_n)\_{n \in \mathbb{N}}$ une famille de variables aléatoires gaussiennes, centrées, de variance $(\sigma\_n^2)\_{n \in \mathbb{N}}$ convergeant en loi vers une variable aléatoire $X$.
-a) Montrer que la suite $(\sigma\_n^2)\_{n \in \mathbb{N}}$ est convergente et en déduire que $X$ suit une loi gaussienne.
-b) On suppose que $X\_n \rightarrow X$ en probabilité. Démontrer que $X\_n$ converge vers $X$ dans tous les espaces $L^p$.
+**Énoncé.** Soit $X_n\sim\mathcal N(0,\sigma_n^2)$ et supposons que $X_n$ converge en loi vers $X$.
+
+1. Montrer que $\sigma_n^2$ converge vers une limite finie $\sigma^2$ et que $X\sim\mathcal N(0,\sigma^2)$, en autorisant le cas dégénéré $\sigma=0$.
+2. Si $X_n\to X$ en probabilité, montrer la convergence dans $L^p$ pour tout $p\geq1$ fini.
 {{< /alert >}}
 
-## Ma solution :
+## Convergence des variances
 
-**a)** Calculons la fonction caractéristique de $X\_n$ pour pouvoir utiliser la convergence en loi sur celle-ci.
-La fonction caractéristique de $X\_n$ est, $\forall t \in \mathbb{R}$,
-
-$$
-\varphi\_{X\_n}(t)=\frac{1}{\sigma\_n\sqrt{2\pi}}\int\_{\mathbb{R}}e^{-\frac{x^2}{2(\sigma\_n)^2}}e^{itx}dx=\frac{1}{\sigma\_n\sqrt{2\pi}}\int\_{\mathbb{R}}e^{-\frac{x^2}{2(\sigma\_n)^2}+itx}dx
-$$
+La fonction caractéristique d’une gaussienne centrée s’écrit
 
 $$
-=\frac{1}{\sigma\_n\sqrt{2\pi}}\int\_{\mathbb{R}}e^{-(\frac{x}{\sqrt{2}\sigma\_n}-\frac{it\sigma\_n}{\sqrt{2}})^2-\frac{t^2\sigma\_n^2}{2}}dx=\frac{e^{-\frac{t^2\sigma\_n^2}{2}}}{\sigma\_n\sqrt{2\pi}}\int\_{\mathbb{R}}e^{-(\frac{x}{\sqrt{2}\sigma\_n}-\frac{it\sigma\_n}{\sqrt{2}})^2}dx
+\varphi_{X_n}(t)=\exp\!\left(-\frac{\sigma_n^2t^2}{2}\right).
 $$
 
-Maintenant, on procède à un changement de variable pour faire apparaître l'intégrale de Gauss.
-La fonction $x \longmapsto \frac{x}{\sqrt{2}\sigma\_n}-\frac{it\sigma\_n}{\sqrt{2}}$ est de classe $\mathcal{C}^1$ sur $\mathbb{R}$ et la fonction $x \longmapsto -x^2$ est continue sur $\mathbb{R}$. Donc le théorème de changement de variable est ici applicable.
-On a $u(x)=\frac{x}{\sqrt{2}\sigma\_n}-\frac{it\sigma\_n}{\sqrt{2}}$ donc $u'(x)=\frac{1}{\sqrt{2}\sigma\_n}$. Les bornes restent inchangées car $u$ parcourt tout $\mathbb{R}$.
+La convergence en loi implique $\varphi_{X_n}(t)\to\varphi_X(t)$ pour tout $t\in\mathbb R$. En particulier, $\varphi_X$ est réelle et positive ou nulle. Comme $\varphi_X(0)=1$ et que $\varphi_X$ est continue en zéro, on peut choisir $t_0\neq0$ suffisamment petit pour que $\varphi_X(t_0)>0$.
 
-Donc :
-$$ \forall t \in \mathbb{R}, \; \; \; \varphi\_{X\_n}(t)=\frac{1}{\sqrt{\pi}e^{\frac{t^2\sigma\_n^2}{2}}}\int\_{\mathbb{R}}e^{-u^2}du=e^{-\frac{t^2\sigma\_n^2}{2}} $$
+On peut donc prendre le logarithme en ce point fixé $t_0$ :
 
-On sait que la suite $(X\_n)\_{n \in \mathbb{N}}$ converge en loi vers $X$.
-Donc $\lim\_{n \rightarrow +\infty}\varphi\_{X\_n}(t)=\varphi\_X(t)$. Par continuité de $\ln$ sur tout $\mathbb{R\_+^*}$ et par caractérisation séquentielle de la limite, $\lim\_{n \rightarrow +\infty}\ln(\varphi\_{X\_n}(t))=\ln(\varphi\_{X}(t))$.
+$$
+\sigma_n^2=-\frac{2}{t_0^2}\log\varphi_{X_n}(t_0)
+\longrightarrow
+-\frac{2}{t_0^2}\log\varphi_X(t_0)=:\sigma^2<\infty.
+$$
 
-Donc, pour $t \not = 0$, $(\sigma\_n^2)\_{n \in \mathbb{N}}=\Bigg(-\frac{2}{t^2}\ln\big(\varphi\_{X\_n}(t)\big)\Bigg)\_{n \in \mathbb{N}}$ converge et on note $\sigma := \lim\_{n \rightarrow +\infty}\sigma\_n$.
-De plus, la fonction caractéristique détermine de façon unique la loi de la variable aléatoire. Donc $X$ est une gaussienne de variance $\sigma^2$. $\blacksquare$
+La limite est positive ou nulle. Pour tout $t$, on obtient alors
 
-**b)** On suppose maintenant que $X\_n \rightarrow X$ en probabilité. Autrement dit, pour tout $\epsilon > 0$, $\lim\_{n \rightarrow +\infty}P(\rvert X\_n-X \rvert > \epsilon)=0$.
+$$
+\varphi_X(t)=\lim_n\exp\!\left(-\frac{\sigma_n^2t^2}{2}\right)
+=\exp\!\left(-\frac{\sigma^2t^2}{2}\right).
+$$
 
-Soit $p \geq 1$. On utilise le critère suivant : une suite $(Z\_n)$ converge dans $L^p$ vers $Z$ si et seulement si elle converge en probabilité vers $Z$ et est uniformément intégrable dans $L^p$ (critère de de La Vallée-Poussin : il suffit de trouver $q > p$ tel que $\sup\_n \mathbb{E}[|Z\_n|^q] < +\infty$).
+L’unicité de la fonction caractéristique donne $X\sim\mathcal N(0,\sigma^2)$. Lorsque $\sigma=0$, on a $X=0$ presque sûrement.
 
-La convergence en probabilité est donnée par hypothèse. Montrons l'intégrabilité uniforme. Puisque $X\_n \sim \mathcal{N}(0, \sigma\_n^2)$, on a pour tout $q \geq 1$ :
+## De la convergence en probabilité à la convergence dans $L^p$
 
-$$\mathbb{E}[|X\_n|^q] = \sigma\_n^q \, \mathbb{E}[|Z|^q] = \sigma\_n^q \cdot c\_q$$
+Fixons $1\leq p<\infty$ et choisissons $q>p$. Si $Z\sim\mathcal N(0,1)$, alors $c_q:=\mathbb E|Z|^q<\infty$. La convergence de $\sigma_n^2$ implique $M:=\sup_n\sigma_n<\infty$, donc
 
-où $Z \sim \mathcal{N}(0,1)$ et $c\_q = \mathbb{E}[|Z|^q] < +\infty$ (moments d'une gaussienne standard). La suite $(\sigma\_n)$ converge vers $\sigma$ d'après **a)**, donc elle est bornée : $M := \sup\_n \sigma\_n < +\infty$. En prenant $q = p+1$ :
+$$
+\sup_n\mathbb E|X_n|^q=c_q\sup_n\sigma_n^q\leq c_qM^q<\infty.
+$$
 
-$$\sup\_n \mathbb{E}[|X\_n|^{p+1}] = c\_{p+1} \cdot \sup\_n \sigma\_n^{p+1} \leq c\_{p+1} \cdot M^{p+1} < +\infty$$
+La limite $X$ étant également gaussienne, $\mathbb E|X|^q<\infty$. L’inégalité
+$|x-y|^q\leq2^{q-1}(|x|^q+|y|^q)$ entraîne
 
-La suite $(|X\_n|^p)$ est donc uniformément intégrable. Combiné avec la convergence en probabilité, on conclut $X\_n \rightarrow X$ dans $L^p$. Ce raisonnement valant pour tout $p \geq 1$, on a $X\_n \rightarrow X$ dans tous les espaces $L^p$. $\blacksquare$
+$$
+\sup_n\mathbb E|X_n-X|^q<\infty.
+$$
+
+La suite $|X_n-X|^p$ est donc uniformément intégrable. Comme $X_n-X\to0$ en probabilité, le critère d’intégrabilité uniforme donne
+
+$$
+\mathbb E|X_n-X|^p\longrightarrow0.
+$$
+
+On obtient la convergence dans $L^p$ pour tout $p\geq1$ fini. Aucune hypothèse d’indépendance entre les variables n’est nécessaire. $\blacksquare$

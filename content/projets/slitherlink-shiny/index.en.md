@@ -6,7 +6,17 @@ description: "R package to play and solve Slitherlink puzzles, with an interacti
 summary: "Complete R package for modeling, validating, generating and solving Slitherlink grids, paired with an interactive Shiny app."
 tags: ["R", "Shiny", "Constraints", "Backtracking"]
 math: true
+lastmod: "2026-10-14"
+code: "https://github.com/marouanedaoudi/slitherlink-shiny"
+docs: "https://marouanedaoudi.github.io/slitherlink-shiny/"
+projectType: "R package and algorithms"
+contribution: "Grid modelling, constraint-based solver and Shiny interface."
+outcome: "Documented package with grid validation, solving and puzzle generation."
+imageAlt: "Slitherlink puzzle demonstration in the Shiny interface."
 ---
+
+A logic puzzle as a setting for **constraint propagation**, combinatorial search and graph validation. The project connects a reusable algorithmic engine with an interactive R/Shiny interface.
+
 
 ![Slitherlink Shiny demo](feature.gif)
 
