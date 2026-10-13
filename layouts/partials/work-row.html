@@ -1,0 +1,12 @@
+{{ $p := .page }}{{ $fr := eq $p.Language.Lang "fr" }}
+<li class="work-row">
+  <span class="work-number" aria-hidden="true">{{ printf "%02d" .index }}</span>
+  <div class="work-body">
+    <p class="work-meta">{{ $p.Date.Format "2006" }}{{ with $p.Params.projectType }} · {{ . }}{{ end }}</p>
+    <h3><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p>{{ $p.Description | default ($p.Summary | plainify) }}</p>
+    <p class="work-tags">{{ delimit (first 4 $p.Params.tags) " · " }}</p>
+    <div class="resource-links"><a href="{{ $p.RelPermalink }}">{{ if $fr }}Lire le projet{{ else }}Read project{{ end }} <span aria-hidden="true">→</span></a>{{ with $p.Params.code }}<a href="{{ . }}">Code <span aria-hidden="true">↗</span></a>{{ end }}{{ with $p.Params.report }}<a href="{{ . }}">{{ if $fr }}Rapport{{ else }}Report{{ end }} <span class="file-type">PDF</span></a>{{ end }}{{ with $p.Params.docs }}<a href="{{ . }}">Documentation <span aria-hidden="true">↗</span></a>{{ end }}</div>
+  </div>
+  {{ $image := $p.Resources.GetMatch "feature.*" }}{{ with $image }}{{ if ne .MediaType.SubType "gif" }}{{ $thumb := .Resize "360x webp q82" }}<a class="work-figure" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ $thumb.RelPermalink }}" alt="" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" loading="lazy" decoding="async"></a>{{ else }}<a class="work-figure" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ .RelPermalink }}" alt="" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async"></a>{{ end }}{{ end }}
+</li>

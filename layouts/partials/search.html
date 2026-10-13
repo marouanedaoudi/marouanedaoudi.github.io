@@ -1,0 +1,8 @@
+{{ $fr := eq .Language.Lang "fr" }}
+<dialog id="site-search" class="search-dialog" aria-labelledby="search-heading">
+  <div class="search-top"><h2 id="search-heading">{{ if $fr }}Rechercher{{ else }}Search{{ end }}</h2><button type="button" class="text-button" data-search-close>{{ if $fr }}Fermer{{ else }}Close{{ end }} <kbd>Esc</kbd></button></div>
+  <label for="search-input">{{ if $fr }}Projets, notes et parcours{{ else }}Projects, notes and background{{ end }}</label>
+  <input id="search-input" type="search" autocomplete="off" placeholder="{{ if $fr }}Un sujet, un théorème, un projet…{{ else }}A topic, theorem or project…{{ end }}">
+  <p id="search-status" class="muted small" role="status"></p>
+  <ul id="search-results"></ul>
+</dialog>

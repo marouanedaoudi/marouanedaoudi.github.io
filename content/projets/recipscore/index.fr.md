@@ -2,15 +2,26 @@
 title: "Recip Score"
 date: 2024-02-10
 weight: 4
-description: "Application web calculant le Nutri-Score de recettes et suggérant des recettes optimales à partir d'ingrédients disponibles."
-summary: "Calcul du Nutri-Score pour des recettes entières via agrégation de données nutritionnelles USDA, avec moteur de recommandation par ingrédients disponibles."
-tags: ["Data Science", "R", "Statistiques"]
+description: "Application Python développée en équipe pour croiser données nutritionnelles et recettes, calculer des scores et filtrer les recettes par ingrédients."
+summary: "Du traitement de données à une application web de sélection de recettes."
+tags: ["Python", "Data analysis", "Team project"]
 math: true
+lastmod: "2026-10-14"
+code: "https://github.com/akram3409/recip_score"
+projectType: "Projet de données en équipe"
+contribution: "Contribution en équipe au traitement des données et au calcul des scores."
+outcome: "Application web combinant deux sources de données et un filtre par ingrédients."
+imageAlt: "Aperçu du projet Recip Score."
 ---
+
+**Recip Score** est un projet en équipe avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne. Il combine le traitement de données en **Python** et une application web pour explorer des recettes à partir de leur composition nutritionnelle et des ingrédients disponibles.
+
+Les formules ci-dessous décrivent la version historique du score étudiée dans le projet. Elles ne constituent pas une présentation des règles officielles actuelles, ni une validation nutritionnelle des recettes.
+
 
 ## Le problème
 
-Le **Nutri-Score** est un indicateur nutritionnel officiel (grades A à E) bien défini pour les produits alimentaires transformés. L'appliquer à des **recettes** est plus difficile : une recette est un assemblage d'ingrédients en proportions variables, dont les données nutritionnelles doivent être agrégées depuis des bases brutes, normalisées par portion, puis soumises à l'algorithme de scoring.
+Le **Nutri-Score** est un indicateur nutritionnel officiel (grades A à E) bien défini pour les produits alimentaires transformés. L'appliquer à des **recettes** est plus difficile : une recette est un assemblage d'ingrédients en proportions variables, dont les données nutritionnelles doivent être agrégées depuis des bases brutes, normalisées par 100g, puis soumises à l'algorithme de scoring.
 
 Ce projet propose une application web qui automatise ce calcul et permet en plus à un utilisateur de découvrir les meilleures recettes réalisables à partir des ingrédients qu'il a sous la main.
 
@@ -64,7 +75,7 @@ $$
 v = \frac{\sum_{k=1}^K q_k \cdot v_k^{(100\text{g})}}{{\sum_{k=1}^K q_k}}
 $$
 
-où $v_k^{(100\text{g})}$ est la teneur en ce nutriment dans l'ingrédient $k$ pour 100g. On applique ensuite l'algorithme Nutri-Score standard à ces valeurs agrégées.
+où $v_k^{(100\text{g})}$ est la teneur en ce nutriment dans l'ingrédient $k$ pour 100g. On applique ensuite la version du score utilisée dans le projet à ces valeurs agrégées.
 
 ## Moteur de recommandation
 
@@ -72,7 +83,7 @@ L'application permet à l'utilisateur de saisir ses ingrédients disponibles. Le
 
 ## Application web
 
-Le projet est déployé sur PythonAnywhere. Il a été développé en équipe avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne.
+Le dépôt documente un déploiement sur PythonAnywhere. Il a été développé en équipe avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne.
 
 ---
 

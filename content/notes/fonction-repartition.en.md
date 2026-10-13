@@ -4,6 +4,8 @@ date: 2025-02-14
 tags: ["CDF", "Measure Theory"]
 math: true
 summary: "Relationship between the continuity of F and the probability of points."
+description: "Continuity of a cumulative distribution function: its jump at a point equals the probability mass assigned to that point."
+lastmod: 2026-10-14
 ---
 
 {{< alert icon="circle-info" >}}
@@ -11,11 +13,11 @@ summary: "Relationship between the continuity of F and the probability of points
 {{< /alert >}}
 
 ***Proof:*** By theorem, the CDF $F$ is right-continuous. We show it is also left-continuous.
-Let $(a\_n)\_{n \in \mathbb{N}}$ be an increasing real sequence such that $\lim\limits\_{n \rightarrow +\infty} a\_n = a$.
+Choose $a_n=a-1/(n+1)$, so that $a_n<a$ for every $n$ and $a_n\uparrow a$.
 Then
-$$ \bigcup\_{n \in \mathbb{N}} ]-\infty,a\_n]=]-\infty,a[ $$
+$$ \bigcup_{n \in \mathbb{N}} ]-\infty,a_n]=]-\infty,a[ $$
 
 Hence, by the upward continuity of measure,
-$$ \lim\limits\_{n \rightarrow +\infty} F(a\_n)=\lim\limits\_{n \rightarrow +\infty}p(]-\infty,a\_n])=p(]-\infty,a[) $$
+$$ \lim\limits_{n \rightarrow +\infty} F(a_n)=\lim\limits_{n \rightarrow +\infty}p(]-\infty,a_n])=p(]-\infty,a[) $$
 
-Since $F(a)=p(]-\infty,a])=p(]-\infty,a[)+p(\{a\})$, we have $F(a) = \lim\_{n}F(a\_n)$ if and only if $p(\{a\})=0$. This shows that $F$ is left-continuous at $a$ if and only if $p(\{a\})=0$. Combined with right-continuity, $F$ is continuous at $a$ if and only if $p(\{a\})=0$. If $p$ assigns no mass to any single point, then $p(\{a\})=0$ for all $a \in \mathbb{R}$, so $F$ is continuous on all of $\mathbb{R}$. $\blacksquare$
+Since $F(a)=p(]-\infty,a])=p(]-\infty,a[)+p(\{a\})$, we have $F(a) = \lim_{n}F(a_n)$ if and only if $p(\{a\})=0$. This shows that $F$ is left-continuous at $a$ if and only if $p(\{a\})=0$. Combined with right-continuity, $F$ is continuous at $a$ if and only if $p(\{a\})=0$. If $p$ assigns no mass to any single point, then $p(\{a\})=0$ for all $a \in \mathbb{R}$, so $F$ is continuous on all of $\mathbb{R}$. $\blacksquare$

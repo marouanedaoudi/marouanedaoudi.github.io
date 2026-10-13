@@ -2,15 +2,26 @@
 title: "Recip Score"
 date: 2024-02-10
 weight: 4
-description: "Web application computing the Nutri-Score of recipes and suggesting optimal recipes from available ingredients."
-summary: "Nutri-Score computation for full recipes via USDA nutritional data aggregation, with an ingredient-based recipe recommendation engine."
-tags: ["Data Science", "R", "Statistics"]
+description: "Python team project combining nutritional and recipe data to compute scores and filter recipes by available ingredients."
+summary: "From data processing to a web application for recipe selection."
+tags: ["Python", "Data analysis", "Team project"]
 math: true
+lastmod: "2026-10-14"
+code: "https://github.com/akram3409/recip_score"
+projectType: "Team data project"
+contribution: "Team contribution to data processing and score computation."
+outcome: "Web application combining two data sources and an ingredient-based filter."
+imageAlt: "Overview of the Recip Score project."
 ---
+
+**Recip Score** is a team project with Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne. It combines **Python** data processing with a web application for exploring recipes through nutritional composition and available ingredients.
+
+The formulas below describe the historical scoring version studied in the project. They are not a description of the current official rules or a nutritional validation of the recipes.
+
 
 ## The Problem
 
-The **Nutri-Score** is an official nutritional indicator (grades A to E) well-defined for processed food products. Applying it to **recipes** is harder: a recipe is an assembly of ingredients in variable proportions, whose nutritional data must be aggregated from raw databases, normalized per serving, and then fed to the scoring algorithm.
+The **Nutri-Score** is an official nutritional indicator (grades A to E) well-defined for processed food products. Applying it to **recipes** is harder: a recipe is an assembly of ingredients in variable proportions, whose nutritional data must be aggregated from raw databases, normalized per 100g, and then fed to the scoring algorithm.
 
 This project provides a web application that automates this computation and additionally lets users discover the best recipes they can make from the ingredients they have on hand.
 
@@ -64,7 +75,7 @@ $$
 v = \frac{\sum_{k=1}^K q_k \cdot v_k^{(100\text{g})}}{{\sum_{k=1}^K q_k}}
 $$
 
-where $v_k^{(100\text{g})}$ is the nutrient content of ingredient $k$ per 100g. The standard Nutri-Score algorithm is then applied to these aggregated values.
+where $v_k^{(100\text{g})}$ is the nutrient content of ingredient $k$ per 100g. The scoring implementation used in the project is then applied to these aggregated values.
 
 ## Recommendation Engine
 
@@ -72,7 +83,7 @@ The application lets users enter their available ingredients. The engine filters
 
 ## Web Application
 
-The project is deployed on PythonAnywhere. It was developed as a team project with Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne.
+The repository documents a deployment on PythonAnywhere. It was developed as a team project with Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne.
 
 ---
 

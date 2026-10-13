@@ -6,7 +6,16 @@ description: "Implementation of Projected Gradient Descent on the L1 ball for sp
 summary: "Solving the constrained Lasso problem via an efficient O(n log n) Euclidean projection algorithm."
 tags: ["Optimization", "Python", "NumPy", "FISTA"]
 math: true
+lastmod: "2026-10-14"
+code: "https://github.com/marouanedaoudi/L1BallPGD"
+projectType: "Numerical optimization"
+contribution: "Python implementation of PGD, FISTA and exact L1-ball projection."
+outcome: "Numerical comparison with scikit-learn and a convergence study on a synthetic example."
+imageAlt: "Comparison of PGD and FISTA convergence trajectories."
 ---
+
+Implementing a constrained Lasso solver connects the geometry of the $\ell_1$ ball with optimality conditions and the numerical behaviour of first-order methods. This project provides **PGD and FISTA**, an exact projection and a reproducible benchmark against scikit-learn.
+
 
 ## The Problem
 
@@ -22,7 +31,7 @@ where $f$ is convex and differentiable (typically the quadratic loss $f(x) = \fr
 
 ## Projected Gradient Descent
 
-**Projected Gradient Descent** (PGD) generalizes gradient descent to the constrained setting. At each iteration, one takes an unconstrained gradient step and then projects the result onto the feasible set $\mathcal{C} = \\\{x : \|x\|_1 \leq \tau\\\}$:
+**Projected Gradient Descent** (PGD) generalizes gradient descent to the constrained setting. At each iteration, one takes an unconstrained gradient step and then projects the result onto the feasible set $\mathcal{C} = \{x : \|x\|_1 \leq \tau\}$:
 
 $$
 x_{k+1} = \Pi_{\mathcal{C}}\!\left(x_k - \eta \nabla f(x_k)\right)
@@ -93,7 +102,7 @@ and the projection writes $x^*_i = \mathrm{sign}(v_i)\max(|v_i| - \lambda^*, 0)$
 
 ### Geometric Intuition
 
-The $\ell_1$ ball is a polytope (in 2D, a square rotated 45°) whose vertices lie on the coordinate axes. Projecting an exterior point amounts to "pulling" it toward the nearest vertex, which naturally zeroes out certain coordinates — hence the induced sparsity.
+The $\ell_1$ ball is a polytope (in 2D, a square rotated 45°) whose vertices lie on the coordinate axes. The projection can lie on a face or a vertex; soft-thresholding then sets some coordinates to zero. This geometry favours sparse solutions, but does not by itself guarantee support recovery.
 
 ## Implementation and Validation
 

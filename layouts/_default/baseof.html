@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ .Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ partial "seo.html" . }}
+  <meta name="color-scheme" content="light dark">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("md-theme")==="dark"?"dark":"light"}catch(e){}</script>
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ if or .Params.math (eq .Section "notes") }}
+  <link rel="stylesheet" href="/vendor/katex/katex.min.css">
+  <script defer src="/vendor/katex/katex.min.js"></script>
+  <script defer src="/vendor/katex/auto-render.min.js"></script>
+  {{ end }}
+  {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+</head>
+<body id="top" data-lang="{{ .Language.Lang }}" data-search-url="{{ "index.json" | relLangURL }}">
+  <a class="skip-link" href="#main-content">{{ if eq .Language.Lang "fr" }}Aller au contenu{{ else }}Skip to content{{ end }}</a>
+  {{ partial "header.html" . }}
+  <main id="main-content" class="site-main" tabindex="-1">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ partial "search.html" . }}
+</body>
+</html>
