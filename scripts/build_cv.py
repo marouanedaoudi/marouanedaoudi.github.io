@@ -48,7 +48,7 @@ def build(lang):
     story.append(p('M2 Statistique et science des données' if fr else 'M2 Statistics and Data Science', 'role'))
     story.append(p('Université de Montpellier · Montpellier, France' if fr else 'University of Montpellier · Montpellier, France', 'contacts'))
     story.append(p(link('marouane.daoudi@etu.umontpellier.fr', 'mailto:marouane.daoudi@etu.umontpellier.fr') + ' &nbsp; · &nbsp; ' + link('marouanedaoudi.github.io', 'https://marouanedaoudi.github.io/'), 'contacts'))
-    story.append(p(link('GitHub / marouanedaoudi', 'https://github.com/marouanedaoudi') + ' &nbsp; · &nbsp; ' + link('LinkedIn', 'https://www.linkedin.com/in/marouane-daoudi-21089a178/'), 'contacts'))
+    story.append(p(link('GitHub / marouanedaoudi', 'https://github.com/marouanedaoudi') + ' &nbsp; · &nbsp; ' + link('LinkedIn', 'https://fr.linkedin.com/in/daoudimarouane'), 'contacts'))
     story.append(Spacer(1, 9))
     story.append(p(
         'Étudiant en deuxième année de master, avec une formation en probabilités, statistique et optimisation. Je recherche un <b>stage de recherche en machine learning à Taïwan</b>, avec l’objectif de poursuivre en doctorat en ML.' if fr else

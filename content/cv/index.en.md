@@ -8,7 +8,7 @@ showAuthor: false
 ---
 
 **Marouane Daoudi** · Montpellier, France  
-[Email](mailto:marouane.daoudi@etu.umontpellier.fr) · [GitHub](https://github.com/marouanedaoudi) · [LinkedIn](https://www.linkedin.com/in/marouane-daoudi-21089a178/)
+[Email](mailto:marouane.daoudi@etu.umontpellier.fr) · [GitHub](https://github.com/marouanedaoudi) · [LinkedIn](https://fr.linkedin.com/in/daoudimarouane)
 
 ## Profile
 

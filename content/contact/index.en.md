@@ -9,7 +9,7 @@ I am looking for a **research internship in machine learning in Taiwan**, with t
 The best way to reach me is by email: **[marouane.daoudi@etu.umontpellier.fr](mailto:marouane.daoudi@etu.umontpellier.fr)**.
 
 - [GitHub](https://github.com/marouanedaoudi): source code and project repositories.
-- [LinkedIn](https://www.linkedin.com/in/marouane-daoudi-21089a178/): professional profile.
+- [LinkedIn](https://fr.linkedin.com/in/daoudimarouane): professional profile.
 - [Curriculum vitae](/cv/): education, projects and technical skills.
 
 Based in Montpellier, France · University of Montpellier.

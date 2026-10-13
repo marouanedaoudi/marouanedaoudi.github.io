@@ -9,7 +9,7 @@ Je recherche un **stage de recherche en machine learning à Taïwan**, avec l’
 Pour me contacter, le plus simple est de m’écrire : **[marouane.daoudi@etu.umontpellier.fr](mailto:marouane.daoudi@etu.umontpellier.fr)**.
 
 - [GitHub](https://github.com/marouanedaoudi) : code source et dépôts de mes projets.
-- [LinkedIn](https://www.linkedin.com/in/marouane-daoudi-21089a178/) : profil professionnel.
+- [LinkedIn](https://fr.linkedin.com/in/daoudimarouane) : profil professionnel.
 - [Curriculum vitae](/fr/cv/) : formation, projets et compétences techniques.
 
 Montpellier, France · Université de Montpellier.
