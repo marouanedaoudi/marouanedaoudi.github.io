@@ -1,0 +1,14 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{{ range .Data.Pages }}
+  {{ if and (not .Params.noindex) (not .Params.hidden) (not (in (slice "taxonomy" "term" "404") .Kind)) (not .Sitemap.Disable) }}
+  <url>
+    <loc>{{ .Permalink }}</loc>
+    {{ if not .Lastmod.IsZero }}<lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}</lastmod>{{ end }}
+    {{ range .AllTranslations }}<xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}"/>{{ end }}
+    {{ $english := .Site.Home }}{{ range .Site.Home.AllTranslations }}{{ if eq .Language.Lang "en" }}{{ $english = . }}{{ end }}{{ end }}{{ range .AllTranslations }}{{ if eq .Language.Lang "en" }}{{ $english = . }}{{ end }}{{ end }}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ $english.Permalink }}"/>
+  </url>
+  {{ end }}
+{{ end }}
+</urlset>

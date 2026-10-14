@@ -1,8 +1,22 @@
 baseURL = "https://marouanedaoudi.github.io/"
 defaultContentLanguage = "en"
+timeZone = "Europe/Paris"
 defaultContentLanguageInSubdir = false
 title = "Marouane Daoudi"
 theme = "blowfish"
+enableRobotsTXT = true
+enableGitInfo = false
+summaryLength = 28
+timeout = "60s"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[pagination]
+  pagerSize = 12
 
 [markup.goldmark.renderer]
   unsafe = true
@@ -13,69 +27,83 @@ theme = "blowfish"
     block = [['$$', '$$'], ['\[', '\]']]
     inline = [['$', '$'], ['\(', '\)']]
 
-# --- MULTILINGUAL ---
+[markup.highlight]
+  noClasses = false
 
 [languages]
-
   [languages.en]
     languageCode = "en"
     languageName = "English"
     weight = 1
+    [languages.en.params]
+      description = "Marouane Daoudi is a master's student in Statistics and Data Science at the University of Montpellier, interested in machine learning and research."
+      homeTitle = "Marouane Daoudi | Statistics & Machine Learning"
+      profileDescription = "Master's student in Statistics and Data Science at the University of Montpellier, seeking a machine learning research internship in Taiwan and aiming for a PhD in machine learning."
+      jobTitle = "Second-year master's student (M2) in Statistics and Data Science"
     [[languages.en.menu.main]]
       name = "Home"
-      url = "/"
+      pageRef = "/"
       weight = 10
     [[languages.en.menu.main]]
-      name = "Notes"
-      url = "/notes/"
+      name = "Projects"
+      pageRef = "/projets"
       weight = 20
     [[languages.en.menu.main]]
-      name = "Projects"
-      url = "/projets/"
+      name = "Notes"
+      pageRef = "/notes"
       weight = 30
     [[languages.en.menu.main]]
-      name = "Contact"
-      url = "mailto:marouane.daoudi@etu.umontpellier.fr"
+      name = "CV"
+      pageRef = "/cv"
       weight = 40
+    [[languages.en.menu.main]]
+      name = "Contact"
+      pageRef = "/contact"
+      weight = 50
 
   [languages.fr]
     languageCode = "fr"
     languageName = "Français"
     weight = 2
+    [languages.fr.params]
+      description = "Marouane Daoudi, étudiant en M2 Statistique et science des données à l'Université de Montpellier. Projets et notes en statistiques et apprentissage automatique."
+      homeTitle = "Marouane Daoudi | Statistiques & Machine Learning"
+      profileDescription = "Étudiant en M2 Statistique et science des données à l'Université de Montpellier, à la recherche d'un stage de recherche en machine learning à Taïwan et souhaitant poursuivre en doctorat."
+      jobTitle = "Étudiant en M2 Statistique et science des données"
     [[languages.fr.menu.main]]
       name = "Accueil"
-      url = "/fr/"
+      pageRef = "/"
       weight = 10
     [[languages.fr.menu.main]]
-      name = "Notes"
-      url = "/fr/notes/"
+      name = "Projets"
+      pageRef = "/projets"
       weight = 20
     [[languages.fr.menu.main]]
-      name = "Projets"
-      url = "/fr/projets/"
+      name = "Notes"
+      pageRef = "/notes"
       weight = 30
     [[languages.fr.menu.main]]
-      name = "Contact"
-      url = "mailto:marouane.daoudi@etu.umontpellier.fr"
+      name = "CV"
+      pageRef = "/cv"
       weight = 40
-
-# --- PARAMS (communs) ---
+    [[languages.fr.menu.main]]
+      name = "Contact"
+      pageRef = "/contact"
+      weight = 50
 
 [params]
+  authorName = "Marouane Daoudi"
+  email = "marouane.daoudi@etu.umontpellier.fr"
+  github = "https://github.com/marouanedaoudi"
+  linkedin = "https://fr.linkedin.com/in/daoudimarouane"
+  socialImage = "/images/social.png"
   colorScheme = "ocean"
   defaultAppearance = "light"
-  autoSwitchAppearance = true
-  homepage.layout = "simple"
-  homepage.showTitle = false
-  homepage.showRecent = false
+  autoSwitchAppearance = false
   article.math = true
-  article.showDate = false
-  article.showAuthor = false
   mathematics.enable = true
   footer.showPoweredBy = false
   footer.showTheme = false
-  footer.showCopyright = true
 
 [sitemap]
-  changefreq = "weekly"
-  priority = 0.5
+  filename = "sitemap.xml"

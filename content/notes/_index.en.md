@@ -1,9 +1,9 @@
 ---
-title: "Notes & Exercises"
+title: "Mathematical notes"
+lastmod: "2026-10-14"
+description: "Mathematical notes by Marouane Daoudi: probability, measure theory, convergence and worked exercises."
 layout: "list"
-description: "Probability, Measure and Integration."
 showAuthor: false
-showDate: true
 ---
 
-A collection of proofs, lecture notes and solved exercises in probability theory and measure theory.
+Proofs and worked exercises in probability and measure theory. These study notes make the assumptions and steps of each argument explicit.

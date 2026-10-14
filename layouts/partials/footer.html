@@ -1,11 +1,12 @@
-<footer class="print:hidden" style="margin-top: 4rem; padding-bottom: 2.5rem;">
-  <div class="paper">
-    <div style="display:flex; justify-content:space-between; align-items:baseline;
-                font-family: var(--mono); font-size:0.66rem; letter-spacing:0.18em;
-                text-transform:uppercase; color:var(--ink-faint);
-                padding-top:12px; border-top:2.5px solid var(--rule);">
-      <span>Marouane Daoudi · {{ now.Format "2006" }}</span>
-      <span>Université de Montpellier</span>
-    </div>
+{{ $fr := eq .Language.Lang "fr" }}
+<footer class="site-footer">
+  <div><a class="footer-name" href="{{ .Site.Home.RelPermalink }}">Marouane Daoudi</a><p>{{ if $fr }}Statistique, apprentissage et optimisation.{{ else }}Statistics, learning and optimization.{{ end }}</p></div>
+  <div class="footer-links">
+    <a href="{{ "cv/" | relLangURL }}">CV</a>
+    <a href="https://github.com/marouanedaoudi">GitHub</a>
+    <a href="{{ "contact/" | relLangURL }}">Contact</a>
+    <a href="{{ "index.xml" | relLangURL }}">RSS</a>
+    <a href="#top">{{ if $fr }}Haut de page ↑{{ else }}Back to top ↑{{ end }}</a>
   </div>
+  <p class="footer-meta">© {{ now.Year }} · Université de Montpellier · {{ if $fr }}Site personnel{{ else }}Personal website{{ end }}</p>
 </footer>

@@ -1,0 +1,3 @@
+{{ define "main" }}
+<div class="listing"><header class="page-heading"><h1>{{ .Title }}</h1><div class="prose lead">{{ .Content }}</div></header><ul class="notes-list">{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></div>
+{{ end }}

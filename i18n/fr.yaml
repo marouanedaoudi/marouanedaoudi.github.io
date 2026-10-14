@@ -1,27 +1,27 @@
-bio_subtitle: "M1 Mathématiques Appliquées · Université de Montpellier"
+bio_subtitle: "M2 Statistique et science des données · Université de Montpellier"
 bio_title: "À propos"
-bio_text: "Étudiant en <strong>Master 1</strong> de mathématiques appliquées à l'Université de Montpellier, spécialisé en <strong>statistique et science des données</strong>."
+bio_text: "Étudiant en <strong>M2 Statistique et science des données</strong> à l’Université de Montpellier, intéressé par le machine learning, les probabilités et l’optimisation."
 tag_optimization: "Optimisation"
 tag_statistics: "Statistique"
 tag_python_r: "Python / R"
 
 # ── Accueil : header / hero ──
-header_left: "Portfolio · Mathématiques Appliquées"
+header_left: "Marouane Daoudi · Statistique & Machine Learning"
 header_right: "Montpellier · 2026"
-hero_aff: "Université de Montpellier · M1 Mathématiques Appliquées"
-hero_fields: "Probabilités · Statistique · Data Science · Optimisation"
+hero_aff: "Université de Montpellier · M2 Statistique et science des données"
+hero_fields: "Apprentissage statistique · Probabilités · Décision séquentielle · Optimisation"
 abstract_label: "Résumé"
-abstract_text: "Étudiant en Master 1 de mathématiques appliquées à l'Université de Montpellier, spécialisé en probabilités, statistique et science des données. J'attache une importance particulière à la rigueur mathématique et à des implémentations propres et efficaces — de l'optimisation stochastique aux tests multiples, en passant par la modélisation statistique appliquée. Ci-dessous : une sélection de projets, de notes et d'outils."
+abstract_text: "Étudiant en M2 Statistique et science des données à l’Université de Montpellier. Je recherche un stage de recherche en machine learning à Taïwan et souhaite poursuivre en doctorat en ML. Ce site rassemble mes projets et mes notes mathématiques."
 
 # ── Accueil : sections ──
 sec_projects: "Projets & Modélisation"
 sec_notes: "Notes & Démonstrations"
-sec_expertise: "Expertise Technique"
+sec_expertise: "Méthodes et outils"
 sec_refs: "Références & Contact"
 figure_label: "Figure"
 table_label: "Table"
 key_result: "Résultat clé"
-expertise_caption: "Outils & environnement de recherche"
+expertise_caption: "Programmation et formation mathématique"
 notes_caption: "Fiches et exercices corrigés — probabilités, mesure & intégration"
 
 # ── Liens ──
@@ -33,8 +33,8 @@ ref_contact: "Contact"
 
 # ── Listes ──
 projects_header: "Projets Récents"
-projects_page_title: "Projets & Recherche"
-projects_page_desc: "Une sélection de mes travaux en optimisation convexe, modélisation stochastique et data science."
+projects_page_title: "Projets sélectionnés"
+projects_page_desc: "Projets académiques et personnels en bandits adaptatifs, optimisation convexe, algorithmique et analyse de données."
 read_more: "Lire"
 back_home: "Accueil"
 

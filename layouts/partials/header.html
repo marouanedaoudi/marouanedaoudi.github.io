@@ -1,0 +1,26 @@
+{{ $fr := eq .Language.Lang "fr" }}
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-name" href="{{ .Site.Home.RelPermalink }}">Marouane Daoudi<span>{{ if $fr }}Mathématiques · Montpellier{{ else }}Mathematics · Montpellier{{ end }}</span></a>
+    <nav class="primary-nav" aria-label="{{ if $fr }}Navigation principale{{ else }}Main navigation{{ end }}">
+      {{ $current := . }}
+      {{ range .Site.Menus.main }}
+        {{ $active := or (eq $current.RelPermalink .URL) (and (ne .URL $current.Site.Home.RelPermalink) (hasPrefix $current.RelPermalink .URL)) }}
+        <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+    </nav>
+    <div class="header-tools">
+      <nav class="languages" aria-label="{{ if $fr }}Langue{{ else }}Language{{ end }}">
+        {{ range .AllTranslations }}
+          {{ if eq .Language.Lang $.Language.Lang }}<span aria-current="true" lang="{{ .Language.Lang }}">{{ upper .Language.Lang }}</span>{{ else }}<a lang="{{ .Language.Lang }}" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}">{{ upper .Language.Lang }}</a>{{ end }}
+        {{ end }}
+      </nav>
+      <button class="icon-button" data-search-open type="button" aria-label="{{ if $fr }}Rechercher dans le site{{ else }}Search the site{{ end }}" title="{{ if $fr }}Rechercher (/){{ else }}Search (/){{ end }}" hidden>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+      </button>
+      <button class="icon-button" data-theme-toggle type="button" aria-label="{{ if $fr }}Thème sombre{{ else }}Dark theme{{ end }}" aria-pressed="false" hidden>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

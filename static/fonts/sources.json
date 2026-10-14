@@ -1,0 +1,42 @@
+{
+  "provider": "Google Fonts",
+  "stylesheetSource": "https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600&display=swap",
+  "assets": [
+    {
+      "path": "static\\fonts\\source-sans-3-latin-ext.woff2",
+      "bytes": 60088,
+      "sha256": "a85a7459bdb3cdc1136751e151a506bae653fc29ada3ca86237477df6f1b59e6",
+      "source": "https://fonts.gstatic.com/s/sourcesans3/v20/nwpStKy2OAdR1K-IwhWudF-R3wEaZfrc.woff2"
+    },
+    {
+      "path": "static\\fonts\\source-sans-3-latin.woff2",
+      "bytes": 28872,
+      "sha256": "19143dca075972bc84e3fd9eab7416dd40cc565dccb2435a044bdfabe060c7d5",
+      "source": "https://fonts.gstatic.com/s/sourcesans3/v20/nwpStKy2OAdR1K-IwhWudF-R3w8aZQ.woff2"
+    },
+    {
+      "path": "static\\fonts\\source-serif-4-latin-ext.woff2",
+      "bytes": 42212,
+      "sha256": "d10ccbbd0dc4ebae2938958dc1f622a53460fe297e9c958564742dd684309c3f",
+      "source": "https://fonts.gstatic.com/s/sourceserif4/v15/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kA3r4cXk.woff2"
+    },
+    {
+      "path": "static\\fonts\\source-serif-4-latin.woff2",
+      "bytes": 50936,
+      "sha256": "382475f38242c52d42a3e5ff8dc69b5d73f10d0d21e4550b5fe232984688779a",
+      "source": "https://fonts.gstatic.com/s/sourceserif4/v15/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6kDXr4.woff2"
+    },
+    {
+      "path": "static\\fonts\\source-sans-3-OFL.txt",
+      "bytes": 4579,
+      "sha256": "09746787287a289323b0ec3cff4d1a4a801331b82b7207c1e186f5d26619a392",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourcesans3/OFL.txt"
+    },
+    {
+      "path": "static\\fonts\\source-serif-4-OFL.txt",
+      "bytes": 4400,
+      "sha256": "5f94c3fd3a23131a417ab5a0c8452de57e70c3cfb9f604d88241f7065ebf9fd9",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/OFL.txt"
+    }
+  ]
+}

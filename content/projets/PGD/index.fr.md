@@ -6,7 +6,16 @@ description: "Implémentation de la Descente de Gradient Projetée sur la boule 
 summary: "Résolution du problème Lasso contraint via un algorithme de projection euclidienne efficace en O(n log n)."
 tags: ["Optimisation", "Python", "NumPy", "FISTA"]
 math: true
+lastmod: "2026-10-14"
+code: "https://github.com/marouanedaoudi/L1BallPGD"
+projectType: "Optimisation numérique"
+contribution: "Implémentation Python de PGD, FISTA et de la projection exacte sur la boule L1."
+outcome: "Comparaison numérique avec scikit-learn et étude de convergence sur un exemple synthétique."
+imageAlt: "Comparaison des trajectoires de convergence de PGD et FISTA."
 ---
+
+Implémenter un solveur du Lasso contraint permet de relier la géométrie de la boule $\ell_1$, les conditions d’optimalité et le comportement numérique des méthodes du premier ordre. Ce projet fournit les solveurs **PGD et FISTA**, une projection exacte et un benchmark reproductible contre scikit-learn.
+
 
 ## Le problème
 
@@ -22,7 +31,7 @@ où $f$ est convexe et différentiable (typiquement la perte quadratique $f(x) =
 
 ## Descente de gradient projetée
 
-La **descente de gradient projetée** (PGD) généralise la descente de gradient au cas contraint. À chaque itération, on effectue un pas de gradient non contraint, puis on projette le résultat sur l'ensemble admissible $\mathcal{C} = \\\{x : \|x\|_1 \leq \tau\\\}$ :
+La **descente de gradient projetée** (PGD) généralise la descente de gradient au cas contraint. À chaque itération, on effectue un pas de gradient non contraint, puis on projette le résultat sur l'ensemble admissible $\mathcal{C} = \{x : \|x\|_1 \leq \tau\}$ :
 
 $$
 x_{k+1} = \Pi_{\mathcal{C}}\!\left(x_k - \eta \nabla f(x_k)\right)
@@ -93,7 +102,7 @@ et la projection s'écrit $x^*_i = \mathrm{sign}(v_i)\max(|v_i| - \lambda^*, 0)$
 
 ### Intuition géométrique
 
-La boule $\ell_1$ est un polytope (en 2D, un carré orienté à 45°) dont les sommets sont portés par les axes de coordonnées. Projeter un point extérieur revient à le "ramener" vers le sommet le plus proche, ce qui annule naturellement certaines coordonnées — d'où la sparsité induite.
+La boule $\ell_1$ est un polytope (en 2D, un carré orienté à 45°) dont les sommets sont portés par les axes de coordonnées. La projection peut tomber sur une face ou un sommet ; le seuillage doux annule alors certaines coordonnées. Cette géométrie favorise des solutions parcimonieuses, sans garantir à elle seule la récupération du support.
 
 ## Implémentation et validation
 
