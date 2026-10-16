@@ -1,4 +1,4 @@
-{{ define "main" }}{{ $fr := eq .Language.Lang "fr" }}
-<div class="listing"><header class="page-heading"><p class="eyebrow">{{ if $fr }}Travaux & logiciels{{ else }}Projects & software{{ end }}</p><h1>{{ .Title }}</h1><div class="prose lead">{{ .Content }}</div></header>
-<ol class="work-list">{{ range $i, $p := .Pages.ByWeight }}{{ partial "work-row.html" (dict "page" $p "index" (add $i 1)) }}{{ end }}</ol></div>
+{{ define "main" }}
+<div class="listing"><header class="page-heading"><h1>{{ .Title }}</h1>{{ with .Content }}<div class="prose lead">{{ . }}</div>{{ end }}</header>
+<ul class="work-list">{{ range .Pages.ByWeight }}{{ partial "work-row.html" . }}{{ end }}</ul></div>
 {{ end }}

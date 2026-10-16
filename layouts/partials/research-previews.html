@@ -1,0 +1,2 @@
+{{ $previews := slice }}{{ range where .Site.RegularPages "Section" "in" (slice "notes" "projets") }}{{ $previews = $previews | append (dict "url" .RelPermalink "title" .Title "description" .Description) }}{{ end }}
+<script id="research-previews" type="application/json">{{ $previews | jsonify | safeJS }}</script>

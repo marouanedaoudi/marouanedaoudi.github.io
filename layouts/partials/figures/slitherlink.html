@@ -1,0 +1,15 @@
+{{ $fr := eq .Language.Lang "fr" }}
+<figure class="scientific-figure" data-figure="slitherlink">
+  <figcaption>{{ if $fr }}Du zéro central à la première boucle valide{{ else }}From the central zero to the first valid loop{{ end }}</figcaption>
+  <svg role="img" aria-label="{{ if $fr }}Grille trois par trois, indices 2 1 2 ; 1 0 1 ; 2 1 2. La boucle extérieure satisfait tous les indices.{{ else }}Three by three grid, clues 2 1 2; 1 0 1; 2 1 2. The outer loop satisfies every clue.{{ end }}" viewBox="0 0 242 242">
+    <title>{{ if $fr }}Exemple easy_3x3 du package R{{ else }}The R package’s easy_3x3 example{{ end }}</title>
+    <path d="M25 25H217V217H25Z" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <g text-anchor="middle" font-size="20"><text x="57" y="63">2</text><text x="121" y="63">1</text><text x="185" y="63">2</text><text x="57" y="127">1</text><text x="121" y="127">0</text><text x="185" y="127">1</text><text x="57" y="191">2</text><text x="121" y="191">1</text><text x="185" y="191">2</text></g>
+  </svg>
+  <div class="figure-controls" hidden>
+    <label>{{ if $fr }}Grille du dépôt{{ else }}Repository puzzle{{ end }} <select><option value="easy_3x3">easy_3x3</option><option value="medium_4x4">medium_4x4</option></select></label>
+    <button type="button" data-previous>{{ if $fr }}Précédent{{ else }}Previous{{ end }}</button><button type="button" data-next>{{ if $fr }}Suivant{{ else }}Next{{ end }}</button><button type="button" data-reset>{{ if $fr }}Recommencer{{ else }}Reset{{ end }}</button>
+  </div>
+  <p class="figure-readout" data-step-status role="status">{{ if $fr }}Exemple statique : la boucle extérieure est une solution. Les contrôles permettent de suivre les décisions du solveur.{{ else }}Static example: the outer loop is a solution. The controls trace the solver’s decisions.{{ end }}</p>
+  <p class="figure-source">{{ if $fr }}Port JavaScript des règles R, même ordre de parcours. Indices de lignes et colonnes affichés à partir de 1. Une solution trouvée ne constitue pas une preuve d’unicité.{{ else }}JavaScript port of the R rules in the same traversal order. Displayed row and column indices start at 1. Finding one solution does not prove uniqueness.{{ end }} <a href="https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/solver.R">solver.R</a> · <a href="https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/puzzles.R">puzzles.R</a></p>
+</figure>

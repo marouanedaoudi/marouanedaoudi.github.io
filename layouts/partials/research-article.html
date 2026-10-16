@@ -1,0 +1,16 @@
+{{ $fr := eq .Language.Lang "fr" }}
+<div class="research-layout">
+  <aside class="reading-rail" aria-label="{{ if $fr }}Navigation dans l’article{{ else }}Article navigation{{ end }}">
+    <details open><summary>{{ if $fr }}Sommaire{{ else }}Contents{{ end }}</summary>{{ .TableOfContents }}</details>
+    <div class="reading-progress" role="progressbar" aria-label="{{ if $fr }}Progression de lecture{{ else }}Reading progress{{ end }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+    <p class="reading-position" aria-hidden="true">0 %</p>
+  </aside>
+  <article class="research-article article">
+    <header class="page-heading"><a class="back-link" href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a><h1>{{ .Title }}</h1>{{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
+      {{ if eq .Section "projets" }}<p class="article-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.projectType }} · {{ . }}{{ end }}</p>{{ end }}
+      <div class="resource-links article-resources">{{ if .Params.mathFigure }}<a href="#statement">[{{ if $fr }}Énoncé{{ else }}Statement{{ end }}]</a>{{ end }}{{ with .Params.code }}<a href="{{ . }}">[Code]</a>{{ end }}{{ with .Params.report }}<a href="{{ . }}">[PDF]</a>{{ end }}{{ with .Params.docs }}<a href="{{ . }}">[Documentation]</a>{{ end }}</div>
+    </header>
+    <div class="prose article-body" data-math-content>{{ .Content }}</div>
+    <footer class="article-end"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a></footer>
+  </article>
+</div>

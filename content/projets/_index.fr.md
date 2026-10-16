@@ -1,9 +1,9 @@
 ---
 title: "Projets sélectionnés"
-lastmod: "2026-10-14"
+lastmod: "2026-10-15"
 description: "Projets académiques et personnels de Marouane Daoudi : bandits adaptatifs, optimisation convexe, algorithmique et analyse de données."
 layout: "list"
 showAuthor: false
 ---
 
-Travaux académiques et personnels en apprentissage statistique, optimisation et algorithmique. Chaque fiche donne accès au code ou au rapport et présente les méthodes, les observations et leurs limites.
+Travaux académiques et personnels en statistique, optimisation et algorithmique.

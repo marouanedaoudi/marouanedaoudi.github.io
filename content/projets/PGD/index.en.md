@@ -2,118 +2,130 @@
 title: "L1-Ball Projected Gradient Descent"
 date: 2025-05-20
 weight: 2
-description: "Implementation of Projected Gradient Descent on the L1 ball for sparse convex optimization."
-summary: "Solving the constrained Lasso problem via an efficient O(n log n) Euclidean projection algorithm."
+description: "NumPy implementations of PGD and FISTA for L1-constrained least squares, with O(p log p) projection and numerical comparison with scikit-learn."
+summary: "PGD and FISTA for the constrained Lasso, with exact L1-ball projection and comparison with scikit-learn."
 tags: ["Optimization", "Python", "NumPy", "FISTA"]
 math: true
-lastmod: "2026-10-14"
+lastmod: "2026-10-15"
 code: "https://github.com/marouanedaoudi/L1BallPGD"
 projectType: "Numerical optimization"
 contribution: "Python implementation of PGD, FISTA and exact L1-ball projection."
 outcome: "Numerical comparison with scikit-learn and a convergence study on a synthetic example."
 imageAlt: "Comparison of PGD and FISTA convergence trajectories."
+figures: ["pgd"]
 ---
 
-Implementing a constrained Lasso solver connects the geometry of the $\ell_1$ ball with optimality conditions and the numerical behaviour of first-order methods. This project provides **PGD and FISTA**, an exact projection and a reproducible benchmark against scikit-learn.
+## Constrained least squares
 
-
-## The Problem
-
-In statistical learning, one often seeks to minimize a loss under a regularization constraint. The **$\ell_1$ constraint** is particularly interesting: it induces **sparsity** in solutions, pushing unnecessary coordinates exactly to zero, thereby performing automatic variable selection.
-
-The problem considered is:
+For a design matrix $X\in\mathbb R^{n\times p}$ and response $y\in\mathbb R^n$, the project solves
 
 $$
-\min_{x \in \mathbb{R}^n} f(x) \quad \text{s.t.} \quad \|x\|_1 \leq \tau
+\min_{\beta\in\mathbb R^p} f(\beta)
+=\frac12\|X\beta-y\|_2^2
+\quad\text{subject to}\quad\|\beta\|_1\leq\tau.
 $$
 
-where $f$ is convex and differentiable (typically the quadratic loss $f(x) = \frac{1}{2}\|Ax - b\|_2^2$) and $\tau > 0$ controls the sparsity budget. This problem is equivalent to the **constrained Lasso**.
 
-## Projected Gradient Descent
+The gradient is $\nabla f(\beta)=X^\top(X\beta-y)$ and has Lipschitz constant $L=\|X\|_2^2$. Both implemented solvers start from zero and use the fixed step $\eta=1/L$. The L1 constraint can set coordinates exactly to zero; it does not by itself ensure that the selected variables match the ground truth.
 
-**Projected Gradient Descent** (PGD) generalizes gradient descent to the constrained setting. At each iteration, one takes an unconstrained gradient step and then projects the result onto the feasible set $\mathcal{C} = \{x : \|x\|_1 \leq \tau\}$:
+## Projected gradient and acceleration
 
-$$
-x_{k+1} = \Pi_{\mathcal{C}}\!\left(x_k - \eta \nabla f(x_k)\right)
-$$
-
-where $\eta > 0$ is the step size and $\Pi_{\mathcal{C}}$ is the Euclidean projection onto $\mathcal{C}$:
+PGD takes a gradient step and projects it onto $\mathcal C_\tau=\{\beta:\|\beta\|_1\leq\tau\}$:
 
 $$
-\Pi_{\mathcal{C}}(v) = \underset{x \,:\, \|x\|_1 \leq \tau}{\arg\min} \; \|x - v\|_2^2
+\beta_{k+1}=P_\tau\!\left(\beta_k-\eta\nabla f(\beta_k)\right).
 $$
 
-### Convergence
 
-When $f$ is $L$-smooth (i.e. $\nabla f$ is $L$-Lipschitz), with a fixed step $\eta = 1/L$, PGD converges at rate $\mathcal{O}(1/k)$ on the function value:
-
-$$
-f(x_k) - f(x^*) \leq \frac{L\|x_0 - x^*\|_2^2}{2k}
-$$
-
-If additionally $f$ is $\mu$-strongly convex, convergence becomes **linear**:
+FISTA evaluates the gradient at an extrapolated point $z_k$:
 
 $$
-\|x_k - x^*\|_2^2 \leq \left(1 - \frac{\mu}{L}\right)^k \|x_0 - x^*\|_2^2
+\begin{aligned}
+\beta_{k+1}&=P_\tau\!\left(z_k-\eta\nabla f(z_k)\right),\\
+\theta_{k+1}&=\frac{1+\sqrt{1+4\theta_k^2}}2,\\
+z_{k+1}&=\beta_{k+1}+\frac{\theta_k-1}{\theta_{k+1}}(\beta_{k+1}-\beta_k),
+\end{aligned}
+\qquad z_0=\beta_0=0,\quad\theta_0=1.
 $$
 
-The ratio $L/\mu$ is the **condition number** of the problem — the larger it is, the slower the convergence.
 
-## Acceleration: FISTA
-
-The $\mathcal{O}(1/k)$ rate of PGD can be improved at essentially no extra per-iteration cost. **FISTA** (*Fast Iterative Shrinkage-Thresholding Algorithm*) adds a Nesterov momentum term: the gradient is evaluated not at $x_k$, but at an extrapolated point $z_k$.
+The projected iterates remain feasible, while the extrapolated points need not. For a smooth convex objective, the worst-case objective-gap bounds are $\mathcal O(1/k)$ for PGD and $\mathcal O(1/k^2)$ for FISTA. In particular,
 
 $$
-x_{k+1} = \Pi_{\mathcal{C}}\!\left(z_k - \eta \nabla f(z_k)\right), \qquad
-z_{k+1} = x_{k+1} + \frac{\theta_k - 1}{\theta_{k+1}}\left(x_{k+1} - x_k\right)
+f(\beta_k)-f(\beta^*)\leq\frac{L\|\beta_0-\beta^*\|_2^2}{2k}
+\quad\text{for PGD,}
 $$
 
-with $\theta_{k+1} = \tfrac{1}{2}\big(1 + \sqrt{1 + 4\theta_k^2}\big)$. At the same cost per iteration, the convergence bound improves from $\mathcal{O}(1/k)$ to $\mathcal{O}(1/k^2)$. The repository ships both solvers (PGD and FISTA), sharing the same projection.
 
-## Projection onto the $\ell_1$ Ball
+and FISTA has a bound of $2L\|\beta_0-\beta^*\|_2^2/(k+1)^2$. These bounds describe worst-case guarantees, not a rate fitted to the curves below. FISTA can increase the objective between consecutive iterations. The proximal-gradient bounds are given by [Beck and Teboulle (2009)](https://doi.org/10.1137/080716542), with projection as the proximal map of the constraint indicator.{{< sidenote id="pgd-rates" n="1" >}}Strong convexity can yield linear rates under additional assumptions. The benchmark has $p=200>n=100$, so its full least-squares Hessian is singular: a global strong-convexity argument does not apply.{{< /sidenote >}}
 
-This is the algorithmic core of the project. Unlike the $\ell_2$ ball (projection by simple normalization) or the $\ell_\infty$ box (coordinate-wise clipping), projection onto the $\ell_1$ ball has no immediate closed form.
+## Exact projection onto the L1 ball
 
-### Characterization via KKT Conditions
-
-The projection problem being convex, KKT conditions are necessary and sufficient. Introducing the Lagrange multiplier $\lambda \geq 0$ for the constraint $\|x\|_1 \leq \tau$, the optimal solution $x^*$ satisfies:
+The Euclidean projection is
 
 $$
-x^* = \mathcal{S}_\lambda(v), \quad \text{where} \quad \mathcal{S}_\lambda(v)_i = \mathrm{sign}(v_i)\max(|v_i| - \lambda, 0)
+P_\tau(v)=\underset{\|w\|_1\leq\tau}{\arg\min}\;\frac12\|w-v\|_2^2.
 $$
 
-and $\mathcal{S}_\lambda$ is the **soft-thresholding** operator. The threshold $\lambda^*$ is the unique value such that $\|\mathcal{S}_{\lambda^*}(v)\|_1 = \tau$ (if $\|v\|_1 > \tau$, otherwise $x^* = v$).
 
-### Computing the Optimal Threshold in $\mathcal{O}(n \log n)$
-
-The algorithm of Duchi et al. (2008) computes $\lambda^*$ analytically after sorting. Let $u = \mathrm{sort}(|v|, \downarrow)$ and find $\rho$, the largest index such that:
+If $\tau=0$, the answer is zero. If $\|v\|_1\leq\tau$, the answer is $v$ itself. Otherwise, for $\tau>0$, the KKT conditions give a common soft-threshold:
 
 $$
-u_\rho - \frac{1}{\rho}\left(\sum_{j=1}^\rho u_j - \tau\right) > 0
+P_\tau(v)_j=\operatorname{sign}(v_j)\max(|v_j|-\lambda,0),
+\qquad\sum_j\max(|v_j|-\lambda,0)=\tau.
 $$
 
-The optimal threshold is then:
+
+Equivalently, project the magnitudes onto the nonnegative simplex of mass $\tau$, then restore the signs. With $u_1\geq\cdots\geq u_p$ the sorted magnitudes, compute
 
 $$
-\lambda^* = \frac{1}{\rho}\left(\sum_{j=1}^\rho u_j - \tau\right)
+\rho=\max\left\{j:u_j>\frac{\sum_{i=1}^ju_i-\tau}{j}\right\},
+\qquad
+\lambda=\frac{\sum_{i=1}^\rho u_i-\tau}{\rho}.
 $$
 
-and the projection writes $x^*_i = \mathrm{sign}(v_i)\max(|v_i| - \lambda^*, 0)$. The dominant cost is sorting: $\mathcal{O}(n \log n)$.
 
-### Geometric Intuition
+{{< algorithm n="1" title="Euclidean projection onto the L1 ball" input="Vector $v∈ℝ^p$ and radius $τ≥0$." output="$P_τ(v)$." >}}
+1. If the radius is zero, return the zero vector.
+2. If $\|v\|_1\leq\tau$, return a copy of $v$.
+3. Sort $|v_j|$ in descending order and form cumulative sums.
+4. Find the largest index satisfying the strict inequality defining $\rho$ above, then compute $\lambda$.
+5. Return $\operatorname{sign}(v_j)\max(|v_j|-\lambda,0)$ for every coordinate.
+{{< /algorithm >}}
 
-The $\ell_1$ ball is a polytope (in 2D, a square rotated 45°) whose vertices lie on the coordinate axes. The projection can lie on a face or a vertex; soft-thresholding then sets some coordinates to zero. This geometry favours sparse solutions, but does not by itself guarantee support recovery.
+Sorting costs $\mathcal O(p\log p)$. A full dense solver iteration also evaluates a gradient, costing $\mathcal O(np)$, so its cost is $\mathcal O(np+p\log p)$ after the step size has been computed. This implementation uses the sorting-based construction discussed by Duchi et al.; it does not implement their expected-linear-time alternative.
 
-## Implementation and Validation
+Projection is not radial rescaling. For example, $(3,1)$ projects to $(1,0)$ when $\tau=1$, rather than $(3/4,1/4)$. The threshold can annihilate coordinates, which explains how the geometry permits sparse solutions.
 
-Both solvers are implemented in Python with NumPy (full vectorization), covered by a `pytest` test suite running in continuous integration (GitHub Actions).
+## Explore geometry and convergence
 
-Correctness is checked against `scikit-learn` by exploiting the equivalence between the penalized and constrained Lasso: if $\beta^\star$ solves the penalized problem, it also solves the constrained problem with radius $\tau = \|\beta^\star\|_1$. We fit `sklearn.linear_model.Lasso`, read off the radius $\tau$, then solve the constrained problem — the solutions agree to within $\sim 10^{-7}$.
+The first figure is a separate two-dimensional teaching instance. Its radius and iteration controls expose the projected trajectories and the point before projection. The second figure uses the original 200-dimensional benchmark configuration and recomputed loss sequences.
 
-![PGD vs FISTA convergence and recovered support](benchmark.png)
+{{< explorable "pgd" >}}
 
-On synthetic data ($n = 100$, $p = 200$, sparsity $10$), both methods converge to the same optimum and recover the support; FISTA reaches a given accuracy in markedly fewer iterations.
+## Reproduced benchmark and stopping rule
 
----
+The repository generates $n=100$ observations and $p=200$ features with ten nonzero true coefficients, Gaussian noise of standard deviation $0.5$, and NumPy seed $42$. Columns of the design matrix are centered and standardized. The benchmark fits scikit-learn Lasso with `alpha=0.05`, no intercept and tolerance $10^{-10}$, then uses its coefficient L1 norm as the constrained radius: $\tau\approx12.73065565$.{{< sidenote id="pgd-scaling" n="2" >}}scikit-learn normalizes the squared loss by the sample size. Its `alpha=0.05` corresponds to a penalty $n\alpha=5$ with the unnormalized loss used here. The constrained comparison is made at the radius obtained from that fitted solution.{{< /sidenote >}}
 
-**Source code:** [GitHub](https://github.com/marouanedaoudi/L1BallPGD)
+Both solvers use at most 5,000 iterations. They stop when
+
+$$
+\frac{\|\beta_{k+1}-\beta_k\|_2}{\|\beta_k\|_2+10^{-10}}<10^{-10}.
+$$
+
+
+This is an iterate-change criterion, not an optimality certificate. The stored loss at index zero is recorded after the first update; the interactive chart therefore numbers the updates starting at one.
+
+In this recomputation, PGD takes 1,250 updates and FISTA 1,137. Their coefficient distances from the scikit-learn fit are approximately $3.20\times10^{-8}$ and $3.12\times10^{-7}$. These are observations for this configuration. The curve reference $f_{\rm ref}$ is the smallest loss observed across both trajectories and the scikit-learn fit, not a certified value of $f^*$.
+
+## Variable selection and limits
+
+At the repository’s nonzero threshold $10^{-8}$, both final estimates have 54 nonzero coefficients. Compared with the ten true active variables, this gives 45 false positives and one false negative. The methods agree on the fitted constrained solution; they do **not** exactly recover the true support in this noisy experiment.{{< sidenote id="pgd-support" n="3" >}}Coefficient agreement with a reference solver and recovery of the generating variables are different questions. The former checks numerical optimization; the latter also depends on the data, noise and regularization choice.{{< /sidenote >}}
+
+The repository includes tests for feasibility, loss reduction and agreement between the solvers. The browser projection and two-dimensional traces are checked against the original Python functions. Numerical data and source revision are linked with the figure; the archived PNG remains a record of the original presentation, including its informal “Recovered support” title.
+
+## Sources
+
+- [L1BallPGD source and benchmark](https://github.com/marouanedaoudi/L1BallPGD/blob/3001c0510716078ee3d1117bbef456f54ec5b2fc/scripts/benchmark.py#L27), revision `3001c05`.
+- John Duchi, Shai Shalev-Shwartz, Yoram Singer and Tushar Chandra (2008), [*Efficient Projections onto the L1-Ball for Learning in High Dimensions*](https://doi.org/10.1145/1390156.1390191), ICML, pp. 272–279.
+- Amir Beck and Marc Teboulle (2009), [*A Fast Iterative Shrinkage-Thresholding Algorithm for Linear Inverse Problems*](https://doi.org/10.1137/080716542), SIAM Journal on Imaging Sciences, 2(1), pp. 183–202.

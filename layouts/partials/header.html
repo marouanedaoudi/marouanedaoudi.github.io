@@ -1,7 +1,7 @@
 {{ $fr := eq .Language.Lang "fr" }}
 <header class="site-header">
   <div class="header-inner">
-    <a class="site-name" href="{{ .Site.Home.RelPermalink }}">Marouane Daoudi<span>{{ if $fr }}Mathématiques · Montpellier{{ else }}Mathematics · Montpellier{{ end }}</span></a>
+    <a class="site-name" href="{{ .Site.Home.RelPermalink }}">Marouane Daoudi</a>
     <nav class="primary-nav" aria-label="{{ if $fr }}Navigation principale{{ else }}Main navigation{{ end }}">
       {{ $current := . }}
       {{ range .Site.Menus.main }}

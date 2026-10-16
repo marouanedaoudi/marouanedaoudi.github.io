@@ -1,121 +1,114 @@
-"""Build bilingual academic CV PDFs with ReportLab.
+"""Compile the bilingual one-page A4 academic CVs with pdfLaTeX.
 
-Run from any directory: python scripts/build_cv.py
-Keep the CV content aligned with content/cv/.
+Usage: python scripts/build_cv.py
+Requires pdfLaTeX with Latin Modern, geometry and hyperref, plus pypdf for validation.
+Edit cv/cv-fr.tex and cv/cv-en.tex; keep their factual content aligned with content/cv/.
+Compilation files stay in a temporary directory. Only verified PDFs are published.
 """
-from pathlib import Path
-from shutil import copyfile
-from xml.sax.saxutils import escape
+from __future__ import annotations
 
-from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, KeepTogether
+import argparse
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import tempfile
+
+from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'static' / 'uploads'
-INK = colors.HexColor('#182f42')
-TEXT = colors.HexColor('#273139')
-MUTED = colors.HexColor('#54636c')
+DEFAULT_OUTPUT = ROOT / "static" / "uploads"
+ALIASES = {
+    "fr": ("Marouane-Daoudi-CV-fr.pdf", "CV.pdf"),
+    "en": ("Marouane-Daoudi-CV-en.pdf",),
+}
 
 
-def link(label, url):
-    return f'<link href="{escape(url)}" color="#234f69">{escape(label)}</link>'
+def resolve_engine(requested: str | None) -> str:
+    if requested:
+        found = shutil.which(requested) or (requested if Path(requested).is_file() else None)
+    else:
+        found = shutil.which("pdflatex")
+        if not found:
+            tinytex = Path(r"C:\ProgramData\TinyTeX\bin\windows\pdflatex.exe")
+            found = str(tinytex) if tinytex.is_file() else None
+    if not found:
+        raise SystemExit("pdfLaTeX was not found. Install TeX Live/TinyTeX, or pass --engine PATH.")
+    return found
 
 
-def build(lang):
-    fr = lang == 'fr'
-    output = OUT / f'Marouane-Daoudi-CV-{lang}.pdf'
-    styles = {
-        'name': ParagraphStyle('name', fontName='Times-Roman', fontSize=25, leading=29, textColor=INK, spaceAfter=4),
-        'role': ParagraphStyle('role', fontName='Times-Italic', fontSize=12, leading=15, textColor=INK, spaceAfter=8),
-        'contacts': ParagraphStyle('contacts', fontName='Helvetica', fontSize=8.7, leading=12, textColor=MUTED, spaceAfter=2),
-        'section': ParagraphStyle('section', fontName='Helvetica-Bold', fontSize=9.7, leading=13, textColor=INK, spaceBefore=13, spaceAfter=6),
-        'body': ParagraphStyle('body', fontName='Times-Roman', fontSize=10.3, leading=13.7, textColor=TEXT, spaceAfter=5),
-        'entry': ParagraphStyle('entry', fontName='Times-Roman', fontSize=10.3, leading=13.4, textColor=TEXT, spaceAfter=6),
-    }
-    story = []
-
-    def p(text, style='body'):
-        return Paragraph(text, styles[style])
-
-    def section(title):
-        story.append(p(title.upper(), 'section'))
-
-    story.append(p('Marouane Daoudi', 'name'))
-    story.append(p('M2 Statistique et science des données' if fr else 'M2 Statistics and Data Science', 'role'))
-    story.append(p('Université de Montpellier · Montpellier, France' if fr else 'University of Montpellier · Montpellier, France', 'contacts'))
-    story.append(p(link('marouane.daoudi@etu.umontpellier.fr', 'mailto:marouane.daoudi@etu.umontpellier.fr') + ' &nbsp; · &nbsp; ' + link('marouanedaoudi.github.io', 'https://marouanedaoudi.github.io/'), 'contacts'))
-    story.append(p(link('GitHub / marouanedaoudi', 'https://github.com/marouanedaoudi') + ' &nbsp; · &nbsp; ' + link('LinkedIn', 'https://fr.linkedin.com/in/daoudimarouane'), 'contacts'))
-    story.append(Spacer(1, 9))
-    story.append(p(
-        'Étudiant en deuxième année de master, avec une formation en probabilités, statistique et optimisation. Je recherche un <b>stage de recherche en machine learning à Taïwan</b>, avec l’objectif de poursuivre en doctorat en ML.' if fr else
-        'Second-year master’s student with a background in probability, statistics and optimization. Seeking a <b>machine learning research internship in Taiwan</b>, with the aim of subsequently pursuing a PhD in ML.'
-    ))
-
-    section('Formation' if fr else 'Education')
-    education = [
-        ('2026-2027', 'M2 Statistique et science des données', 'Université de Montpellier · En cours', 'Apprentissage statistique, statistique bayésienne, estimation non paramétrique, modèles linéaires généralisés, analyse multivariée, modèles à variables latentes.') if fr else
-        ('2026-2027', 'M2 Statistics and Data Science', 'University of Montpellier · In progress', 'Statistical learning, Bayesian statistics, nonparametric estimation, generalized linear models, multivariate analysis, latent-variable models.'),
-        ('2025-2026', 'M1 Mathématiques appliquées', 'Université de Montpellier', 'Probabilités, processus stochastiques, inférence, optimisation, séries temporelles, modèles linéaires et développement logiciel.') if fr else
-        ('2025-2026', 'M1 Applied Mathematics', 'University of Montpellier', 'Probability, stochastic processes, inference, optimization, time series, linear models and software development.'),
-        ('2024-2025', 'Licence 3 Mathématiques', 'Université de Montpellier', '') if fr else
-        ('2024-2025', 'Third year, Bachelor’s degree in Mathematics', 'University of Montpellier', ''),
-        ('2022-2024', 'Classes préparatoires scientifiques (CPGE)', 'Lycée Descartes, Tours', '') if fr else
-        ('2022-2024', 'Scientific preparatory classes (CPGE)', 'Lycée Descartes, Tours', ''),
-        ('2022', 'Baccalauréat général, mention Bien', 'Lycée Jean Moulin, Béziers', '') if fr else
-        ('2022', 'French general baccalaureate, Mention Bien', 'Lycée Jean Moulin, Béziers', ''),
-    ]
-    for date, title, school, detail in education:
-        text = f'<b>{date} &nbsp; {escape(title)}</b><br/>{escape(school)}'
-        if detail:
-            text += '<br/>' + escape(detail)
-        story.append(p(text, 'entry'))
-
-    section('Projets sélectionnés' if fr else 'Selected projects')
-    projects = [
-        ('2025-2026', 'Bandits adaptatifs et tests multiples' if fr else 'Adaptive bandits and multiple testing', 'https://github.com/Chams22/bandit_approach_simulation',
-         'Projet en équipe avec I. Bahraoui et C.-E. Bouaziz ; encadrement : A. Nguyen-Huu et L. Boisgibault. Inférence séquentielle, allocations adaptative et uniforme, simulations et analyse des limites statistiques.' if fr else
-         'Team project with I. Bahraoui and C.-E. Bouaziz; supervision: A. Nguyen-Huu and L. Boisgibault. Sequential inference, adaptive and uniform allocation, simulations and analysis of statistical limitations.'),
-        ('2025', 'L1BallPGD', 'https://github.com/marouanedaoudi/L1BallPGD',
-         'PGD et FISTA pour les moindres carrés sous contrainte L1. Projection exacte, expériences synthétiques et comparaison numérique avec scikit-learn.' if fr else
-         'PGD and FISTA for L1-constrained least squares. Exact projection, synthetic experiments and numerical comparison with scikit-learn.'),
-        ('2026', 'Slitherlink Shiny', 'https://github.com/marouanedaoudi/slitherlink-shiny',
-         'Package R : modélisation et validation des grilles, propagation de contraintes, backtracking, génération de puzzles et interface Shiny.' if fr else
-         'R package: grid modelling and validation, constraint propagation, backtracking, puzzle generation and a Shiny interface.'),
-        ('2024', 'Recip Score', 'https://github.com/akram3409/recip_score',
-         'Projet Python en équipe avec A. El Mahzoum, C.-E. Bouaziz et M. Diagne. Traitement de données de recettes et données nutritionnelles, calcul de scores et filtre par ingrédients.' if fr else
-         'Python team project with A. El Mahzoum, C.-E. Bouaziz and M. Diagne. Recipe and nutritional data processing, score computation and ingredient-based filtering.'),
-    ]
-    for date, title, url, description in projects:
-        story.append(KeepTogether([p(f'<b>{date} &nbsp; {escape(title)}</b> &nbsp; {link("Code", url)}<br/>{escape(description)}', 'entry')]))
-
-    section('Compétences et langues' if fr else 'Skills and languages')
-    story.append(p('<b>Python</b> : NumPy, pandas, scikit-learn. &nbsp; <b>R</b> : dplyr, Shiny. &nbsp; <b>Outils</b> : SQL, LaTeX, Git/GitHub.' if fr else '<b>Python:</b> NumPy, pandas, scikit-learn. &nbsp; <b>R:</b> dplyr, Shiny. &nbsp; <b>Tools:</b> SQL, LaTeX, Git/GitHub.'))
-    story.append(p('Anglais : C1 · Arabe : intermédiaire · Espagnol : scolaire' if fr else 'English: C1 · Arabic: intermediate · Spanish: basic'))
-
-    def furniture(canvas, doc):
-        canvas.saveState()
-        canvas.setStrokeColor(colors.HexColor('#c7d0d6'))
-        canvas.setLineWidth(0.5)
-        canvas.line(43, 38, A4[0]-43, 38)
-        canvas.setFont('Helvetica', 8)
-        canvas.setFillColor(MUTED)
-        canvas.drawString(43, 26, 'Mis à jour le 14 octobre 2026' if fr else 'Updated 14 October 2026')
-        canvas.drawRightString(A4[0]-43, 26, f'{doc.page}')
-        canvas.restoreState()
-
-    OUT.mkdir(parents=True, exist_ok=True)
-    document = SimpleDocTemplate(str(output), pagesize=A4, rightMargin=43, leftMargin=43, topMargin=37, bottomMargin=51,
-        title='Marouane Daoudi - Curriculum vitae', author='Marouane Daoudi', subject='M2 Statistics and Data Science - Machine learning research internship', pageCompression=1)
-    document.build(story, onFirstPage=furniture, onLaterPages=furniture)
-    return output
+def validate_pdf(pdf: Path, language: str) -> None:
+    reader = PdfReader(pdf)
+    if len(reader.pages) != 1:
+        raise RuntimeError(f"{pdf.name}: expected one page, found {len(reader.pages)}")
+    page = reader.pages[0]
+    width, height = float(page.mediabox.width), float(page.mediabox.height)
+    if abs(width - 595.276) > 1 or abs(height - 841.89) > 1:
+        raise RuntimeError(f"{pdf.name}: expected A4, found {width:.2f} × {height:.2f} pt")
+    text = page.extract_text() or ""
+    for required in ("Marouane", "Daoudi", "Montpellier", "2026", "2027", "L1BallPGD", "Slitherlink", "Recip", "Python"):
+        if required not in text:
+            raise RuntimeError(f"{pdf.name}: expected extractable text missing: {required}")
+    for forbidden in ("ReportLab", "[PLACEHOLDER]", "TODO", "Biostats", "biostatistique"):
+        if forbidden in text:
+            raise RuntimeError(f"{pdf.name}: unexpected text: {forbidden}")
+    fonts = page["/Resources"].get("/Font", {})
+    if not fonts:
+        raise RuntimeError(f"{pdf.name}: no text fonts found")
+    for font_reference in fonts.values():
+        font = font_reference.get_object()
+        descendants = font.get("/DescendantFonts")
+        descriptor_font = descendants[0].get_object() if descendants else font
+        descriptor = descriptor_font.get("/FontDescriptor")
+        descriptor = descriptor.get_object() if descriptor else {}
+        if not any(key in descriptor for key in ("/FontFile", "/FontFile2", "/FontFile3")):
+            raise RuntimeError(f"{pdf.name}: unembedded font: {font.get('/BaseFont')}")
+        if "/ToUnicode" not in font:
+            raise RuntimeError(f"{pdf.name}: text mapping missing for {font.get('/BaseFont')}")
+    metadata = reader.metadata
+    if not metadata or metadata.author != "Marouane Daoudi":
+        raise RuntimeError(f"{pdf.name}: author metadata missing")
 
 
-if __name__ == '__main__':
-    for language in ('fr', 'en'):
-        pdf = build(language)
-        print(pdf)
-    copyfile(OUT / 'Marouane-Daoudi-CV-fr.pdf', OUT / 'CV.pdf')
-    print(OUT / 'CV.pdf')
+def compile_pdf(engine: str, language: str, work: Path) -> Path:
+    source = ROOT / "cv" / f"cv-{language}.tex"
+    if not source.is_file():
+        raise RuntimeError(f"LaTeX source missing: {source}")
+    target = work / language
+    target.mkdir()
+    command = [engine, "-no-shell-escape", "-interaction=nonstopmode", "-halt-on-error", "-file-line-error", f"-output-directory={target}", str(source)]
+    for _ in range(2):
+        result = subprocess.run(command, cwd=source.parent, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=90)
+        if result.returncode:
+            detail = "\n".join(result.stdout.splitlines()[-18:])
+            raise RuntimeError(f"pdfLaTeX failed for {source.name}:\n{detail}")
+    log = (target / f"cv-{language}.log").read_text(encoding="utf-8", errors="replace")
+    if re.search(r"Overfull \\[hv]box|Missing character:|LaTeX Font Warning", log):
+        issues = [line for line in log.splitlines() if re.search(r"Overfull|Missing character:|LaTeX Font Warning", line)]
+        raise RuntimeError(f"{source.name}: typography warnings: {'; '.join(issues)}")
+    pdf = target / f"cv-{language}.pdf"
+    validate_pdf(pdf, language)
+    return pdf
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--engine", help="Path to pdflatex (otherwise detected automatically)")
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT, help="Destination of the two PDFs and historical aliases")
+    args = parser.parse_args()
+    engine = resolve_engine(args.engine)
+    # Validate both languages before replacing either published file.
+    with tempfile.TemporaryDirectory(prefix="marouane-cv-") as directory:
+        work = Path(directory)
+        compiled = {language: compile_pdf(engine, language, work) for language in ("fr", "en")}
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        for language, source in compiled.items():
+            output = args.output_dir / f"cv-{language}.pdf"
+            shutil.copyfile(source, output)
+            for alias in ALIASES[language]:
+                shutil.copyfile(source, args.output_dir / alias)
+            print(f"{output} — 1 page A4, embedded Latin Modern fonts, extractable text")
+
+
+if __name__ == "__main__":
+    main()

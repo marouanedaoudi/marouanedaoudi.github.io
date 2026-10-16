@@ -1,1 +1,1 @@
-<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }} <a class="heading-anchor" href="#{{ .Anchor | safeURL }}" aria-label="{{ if eq .Page.Language.Lang "fr" }}Lien vers cette section{{ else }}Link to this section{{ end }}">#</a></h{{ .Level }}>
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}{{ if not .Page.Params.pdf }} <a class="heading-anchor" href="#{{ .Anchor | safeURL }}" aria-label="{{ if eq .Page.Language.Lang "fr" }}Lien vers cette section{{ else }}Link to this section{{ end }}">#</a>{{ end }}</h{{ .Level }}>

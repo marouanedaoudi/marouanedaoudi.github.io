@@ -1,0 +1,14 @@
+{{ $fr := eq .Language.Lang "fr" }}{{ $kind := .Params.mathFigure }}
+<figure class="scientific-figure math-explorable" data-math-figure="{{ $kind }}">
+  <figcaption>{{ if eq $kind "gaussian" }}{{ if $fr }}De la gaussienne à sa limite{{ else }}A Gaussian sequence and its limit{{ end }}{{ else if eq $kind "cdf" }}{{ if $fr }}Un atome crée un saut{{ else }}An atom creates a jump{{ end }}{{ else if eq $kind "slutsky" }}{{ if $fr }}Une perturbation dépendante qui s’éteint{{ else }}A vanishing dependent perturbation{{ end }}{{ else if eq $kind "series" }}{{ if $fr }}Modifier un nombre fini de termes{{ else }}Changing finitely many terms{{ end }}{{ else }}{{ if $fr }}Regarder les unions de queue{{ else }}Looking at tail unions{{ end }}{{ end }}</figcaption>
+  <div class="figure-controls" hidden>
+    {{ if eq $kind "gaussian" }}<label>{{ if $fr }}Écart-type limite{{ else }}Limit standard deviation{{ end }} <select data-limit><option value="0">0</option><option value="0.8">0.8</option><option value="1.5">1.5</option></select></label><label>n <input data-step type="range" min="1" max="100" value="4"><output data-step-value>4</output></label>
+    {{ else if eq $kind "cdf" }}<label>{{ if $fr }}Masse de l’atome{{ else }}Atom mass{{ end }} <input data-mass type="range" min="0" max="1" step="0.05" value="0.35"><output data-mass-value>0.35</output></label>
+    {{ else if eq $kind "slutsky" }}<label>n <input data-step type="range" min="1" max="40" value="2"><output data-step-value>2</output></label>
+    {{ else if eq $kind "series" }}<label>{{ if $fr }}Dernier terme modifié{{ else }}Last modified term{{ end }} <input data-step type="range" min="2" max="20" value="9"><output data-step-value>9</output></label>
+    {{ else }}<label>{{ if $fr }}Probabilités{{ else }}Probabilities{{ end }} <select data-power><option value="2">1/n²</option><option value="1">1/n</option></select></label><label>N <input data-step type="range" min="2" max="20" value="4"><output data-step-value>4</output></label>{{ end }}
+  </div>
+  <div data-math-chart></div><p class="figure-readout" data-math-readout aria-live="polite"></p>
+  <p class="figure-source">{{ if $fr }}Illustration calculée à partir des formules de cette note ; ce n’est pas un résultat expérimental.{{ else }}Illustration computed from this note’s formulas; this is not an experimental result.{{ end }}</p>
+  <noscript><p>{{ if $fr }}Les formules et la démonstration ci-dessous restent lisibles sans JavaScript.{{ else }}The formulas and proof below remain readable without JavaScript.{{ end }}</p></noscript>
+</figure>

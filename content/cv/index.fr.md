@@ -1,8 +1,8 @@
 ---
 title: "Curriculum vitae"
-lastmod: "2026-10-14"
-description: "Curriculum vitae de Marouane Daoudi, étudiant en M2 Statistique et science des données à Montpellier, en recherche de stage en machine learning."
-pdf: "/uploads/Marouane-Daoudi-CV-fr.pdf"
+lastmod: "2026-10-15"
+description: "Curriculum vitae de Marouane Daoudi : formation en mathématiques et statistique, projets académiques, programmation et langues."
+pdf: "/uploads/cv-fr.pdf"
 showDate: false
 showAuthor: false
 ---
@@ -10,59 +10,73 @@ showAuthor: false
 **Marouane Daoudi** · Montpellier, France  
 [Courriel](mailto:marouane.daoudi@etu.umontpellier.fr) · [GitHub](https://github.com/marouanedaoudi) · [LinkedIn](https://fr.linkedin.com/in/daoudimarouane)
 
-## Profil
-
-Étudiant en **M2 Statistique et science des données** à l’**Université de Montpellier**, avec une formation mathématique en probabilités, statistique et optimisation. Je recherche un stage de recherche en machine learning à Taïwan et souhaite ensuite poursuivre vers un doctorat en ML.
+À la recherche d’un stage en machine learning à Taïwan.
 
 ## Formation
 
-### 2026–2027 · M2 Statistique et science des données
-**Université de Montpellier** · En cours
+<div class="cv-entry"><h3>M2 Statistique et science des données</h3><span class="cv-date">2026–2027</span></div>
 
-Le [programme du master](https://formations.umontpellier.fr/fr/formations/master-XB/master-mathematiques-ME157/statistique-et-science-des-donnees-ssd-KKIDCY8N/m2-statistique-et-science-des-donnees-ssd-biostats-KKIDDT0T.html) comprend notamment l’apprentissage statistique, la statistique bayésienne, l’estimation non paramétrique, les modèles linéaires généralisés, l’analyse multivariée et les modèles à variables latentes.
+Université de Montpellier · En cours
 
-### 2025–2026 · M1 Mathématiques appliquées
-**Université de Montpellier**
+- [Programme](https://formations.umontpellier.fr/fr/formations/master-XB/master-mathematiques-ME157/statistique-et-science-des-donnees-ssd-KKIDCY8N/m2-statistique-et-science-des-donnees-ssd-biostats-KKIDDT0T.html) : apprentissage statistique, statistique bayésienne, estimation non paramétrique, modèles linéaires généralisés, analyse multivariée et modèles à variables latentes.
 
-Probabilités et processus stochastiques, statistique inférentielle, optimisation, séries temporelles, théories de l’information et de la décision, analyse multidimensionnelle, modèles linéaires et développement logiciel.
+<div class="cv-entry"><h3>M1 Mathématiques appliquées</h3><span class="cv-date">2025–2026</span></div>
 
-### 2024–2025 · Licence 3 Mathématiques
-**Université de Montpellier**
+Université de Montpellier
 
-Théorie de la mesure, probabilités, modélisation stochastique, optimisation convexe, analyse numérique, calcul différentiel et topologie.
+- Probabilités et processus stochastiques, statistique inférentielle, optimisation, séries temporelles, théories de l’information et de la décision, analyse multidimensionnelle, modèles linéaires et développement logiciel.
 
-### 2022–2024 · Classes préparatoires scientifiques (CPGE)
-**Lycée Descartes, Tours**
+<div class="cv-entry"><h3>Licence 3 Mathématiques</h3><span class="cv-date">2024–2025</span></div>
 
-Formation intensive en mathématiques, physique et informatique.
+Université de Montpellier
 
-### 2022 · Baccalauréat général
-**Lycée Jean Moulin, Béziers** · Mention Bien
+- Théorie de la mesure, probabilités, modélisation stochastique, optimisation convexe, analyse numérique, calcul différentiel et topologie.
+
+<div class="cv-entry"><h3>Classes préparatoires scientifiques (CPGE)</h3><span class="cv-date">2022–2024</span></div>
+
+Lycée Descartes, Tours
+
+- Formation intensive en mathématiques, physique et informatique.
+
+<div class="cv-entry"><h3>Baccalauréat général</h3><span class="cv-date">2022</span></div>
+
+Lycée Jean Moulin, Béziers · Mention Bien
 
 ## Projets sélectionnés
 
-### Bandits adaptatifs pour les tests multiples · 2025–2026
-Projet de recherche en équipe avec Ines Bahraoui et Chams-Eddine Bouaziz, encadré par Adrien Nguyen-Huu et Luka Boisgibault. Étude et implémentation de méthodes de tests multiples séquentiels, comparaison des allocations adaptative et uniforme, analyse des performances empiriques et des limites statistiques.  
+<div class="cv-entry"><h3>Bandits adaptatifs et tests multiples</h3><span class="cv-date">2025–2026</span></div>
+
+Avec Ines Bahraoui et Chams-Eddine Bouaziz ; encadrement : Adrien Nguyen-Huu et Luka Boisgibault.
+
+- Étude et implémentation de méthodes de tests multiples séquentiels ; comparaison des allocations adaptative et uniforme ; simulations et analyse des limites statistiques.
+
 [Présentation](/fr/projets/bandit-simulation/) · [Code](https://github.com/Chams22/bandit_approach_simulation) · [Rapport](/uploads/bandit.pdf)
 
-### L1BallPGD · 2025
-Implémentation en Python de la descente de gradient projetée et de FISTA pour les moindres carrés sous contrainte L1. Projection exacte sur la boule L1, expériences synthétiques et comparaison numérique avec scikit-learn.  
+<div class="cv-entry"><h3>L1BallPGD</h3><span class="cv-date">2025</span></div>
+
+- Implémentations NumPy de PGD et FISTA pour les moindres carrés sous contrainte L1, avec projection exacte sur la boule L1, expériences synthétiques et comparaison numérique avec scikit-learn.
+
 [Présentation](/fr/projets/pgd/) · [Code](https://github.com/marouanedaoudi/L1BallPGD)
 
-### Slitherlink Shiny · 2026
-Package R avec interface Shiny interactive, validation de grilles, propagation de contraintes, backtracking et génération de puzzles.  
+<div class="cv-entry"><h3>Slitherlink Shiny</h3><span class="cv-date">2026</span></div>
+
+- Package R avec validation de grilles, propagation de contraintes, backtracking, génération de puzzles et interface Shiny interactive.
+
 [Présentation](/fr/projets/slitherlink-shiny/) · [Code](https://github.com/marouanedaoudi/slitherlink-shiny) · [Documentation](https://marouanedaoudi.github.io/slitherlink-shiny/)
 
-### Recip Score · 2024
-Projet en équipe avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne. Application Python croisant données de recettes et données nutritionnelles pour calculer des scores et sélectionner des recettes à partir d’ingrédients disponibles.  
+<div class="cv-entry"><h3>Recip Score</h3><span class="cv-date">2024</span></div>
+
+Avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne.
+
+- Application Python croisant données de recettes et données nutritionnelles pour calculer des scores et sélectionner des recettes à partir d’ingrédients disponibles.
+
 [Présentation](/fr/projets/recipscore/) · [Code](https://github.com/akram3409/recip_score)
 
 ## Compétences techniques
 
 - **Python :** NumPy, pandas, scikit-learn ; calcul numérique et analyse de données.
 - **R :** dplyr, Shiny ; programmation statistique et développement de packages.
-- **Autres outils :** SQL, LaTeX, Git et GitHub.
-- **Mathématiques :** probabilités, inférence statistique, optimisation convexe et modélisation stochastique.
+- **Outils :** SQL, LaTeX, Git et GitHub.
 
 ## Langues
 

@@ -1,12 +1,8 @@
-{{ $p := .page }}{{ $fr := eq $p.Language.Lang "fr" }}
+{{ $fr := eq .Language.Lang "fr" }}
+{{ $preview := "" }}{{ if in .Params.code "L1BallPGD" }}{{ $preview = "pgd" }}{{ else if in .Params.code "bandit_approach_simulation" }}{{ $preview = "bandit" }}{{ else if in .Params.code "slitherlink" }}{{ $preview = "slitherlink" }}{{ else if in .Params.code "recip_score" }}{{ $preview = "recip" }}{{ end }}
 <li class="work-row">
-  <span class="work-number" aria-hidden="true">{{ printf "%02d" .index }}</span>
-  <div class="work-body">
-    <p class="work-meta">{{ $p.Date.Format "2006" }}{{ with $p.Params.projectType }} · {{ . }}{{ end }}</p>
-    <h3><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
-    <p>{{ $p.Description | default ($p.Summary | plainify) }}</p>
-    <p class="work-tags">{{ delimit (first 4 $p.Params.tags) " · " }}</p>
-    <div class="resource-links"><a href="{{ $p.RelPermalink }}">{{ if $fr }}Lire le projet{{ else }}Read project{{ end }} <span aria-hidden="true">→</span></a>{{ with $p.Params.code }}<a href="{{ . }}">Code <span aria-hidden="true">↗</span></a>{{ end }}{{ with $p.Params.report }}<a href="{{ . }}">{{ if $fr }}Rapport{{ else }}Report{{ end }} <span class="file-type">PDF</span></a>{{ end }}{{ with $p.Params.docs }}<a href="{{ . }}">Documentation <span aria-hidden="true">↗</span></a>{{ end }}</div>
-  </div>
-  {{ $image := $p.Resources.GetMatch "feature.*" }}{{ with $image }}{{ if ne .MediaType.SubType "gif" }}{{ $thumb := .Resize "360x webp q82" }}<a class="work-figure" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ $thumb.RelPermalink }}" alt="" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" loading="lazy" decoding="async"></a>{{ else }}<a class="work-figure" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ .RelPermalink }}" alt="" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async"></a>{{ end }}{{ end }}
+  <div class="work-copy"><div class="work-heading"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p class="work-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.projectType }} · {{ . }}{{ end }}</p></div>
+  <p class="work-description">{{ .Description | default (.Summary | plainify) }}</p>
+  <div class="resource-links"><a href="{{ .RelPermalink }}">[{{ if $fr }}Détails{{ else }}Details{{ end }}]</a>{{ with .Params.code }}<a href="{{ . }}">[Code]</a>{{ end }}{{ with .Params.report }}<a href="{{ . }}">[PDF]</a>{{ end }}{{ with .Params.docs }}<a href="{{ . }}">[Documentation]</a>{{ end }}</div></div>
+  {{ if and $preview (templates.Exists (printf "partials/previews/%s.html" $preview)) }}{{ partial (printf "previews/%s.html" $preview) . }}{{ end }}
 </li>

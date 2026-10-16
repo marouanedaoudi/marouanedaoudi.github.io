@@ -1,0 +1,2 @@
+{{ $id := .Get "id" }}{{ $n := .Get "n" }}{{ $fr := eq .Page.Language.Lang "fr" }}
+<span class="sidenote-ref" id="ref-{{ $id }}"><a href="#note-{{ $id }}" aria-label="{{ if $fr }}Note de marge{{ else }}Sidenote{{ end }} {{ $n }}">{{ $n }}</a></span><aside class="margin-note" id="note-{{ $id }}" data-anchor="ref-{{ $id }}"><details open><summary>Note {{ $n }}</summary><div class="sidenote-content">{{ .Inner | markdownify }}</div></details></aside>

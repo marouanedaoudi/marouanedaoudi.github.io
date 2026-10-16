@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Language.Lang }}">
+<html lang="{{ .Language.Lang }}" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/fonts/fonts.css">
   {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ $researchCSS := resources.Get "css/research.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $researchCSS.RelPermalink }}" integrity="{{ $researchCSS.Data.Integrity }}">
   {{ if or .Params.math (eq .Section "notes") }}
   <link rel="stylesheet" href="/vendor/katex/katex.min.css">
   <script defer src="/vendor/katex/katex.min.js"></script>
@@ -17,7 +18,7 @@
   {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
   <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 </head>
-<body id="top" data-lang="{{ .Language.Lang }}" data-search-url="{{ "index.json" | relLangURL }}">
+<body id="top" class="research-site" data-lang="{{ .Language.Lang }}" data-search-url="{{ "index.json" | relLangURL }}">
   <a class="skip-link" href="#main-content">{{ if eq .Language.Lang "fr" }}Aller au contenu{{ else }}Skip to content{{ end }}</a>
   {{ partial "header.html" . }}
   <main id="main-content" class="site-main" tabindex="-1">
@@ -25,5 +26,6 @@
   </main>
   {{ partial "footer.html" . }}
   {{ partial "search.html" . }}
+  {{ partial "research-previews.html" . }}{{ $researchJS := resources.Get "js/research.js" | minify | fingerprint }}<script defer src="{{ $researchJS.RelPermalink }}" integrity="{{ $researchJS.Data.Integrity }}"></script>{{ if .IsHome }}{{ $homeJS := resources.Get "js/home-motion.js" | minify | fingerprint }}<script defer src="{{ $homeJS.RelPermalink }}" integrity="{{ $homeJS.Data.Integrity }}"></script>{{ end }}{{ range .Params.figures }}{{ $figureJS := resources.Get (printf "js/fig-%s.js" .) | minify | fingerprint }}<script defer src="{{ $figureJS.RelPermalink }}" integrity="{{ $figureJS.Data.Integrity }}"></script>{{ end }}
 </body>
 </html>

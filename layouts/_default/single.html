@@ -1,24 +1,24 @@
-{{ define "main" }}{{ $fr := eq .Language.Lang "fr" }}{{ $project := eq .Section "projets" }}{{ $cv := eq .RelPermalink ("cv/" | relLangURL) }}
+{{ define "main" }}{{ $fr := eq .Language.Lang "fr" }}{{ $project := eq .Section "projets" }}{{ $note := eq .Section "notes" }}{{ $cv := eq .RelPermalink ("cv/" | relLangURL) }}
+{{ if or $project $note }}{{ partial "research-article.html" . }}{{ else }}
 <div class="article-layout">
-  <article class="article">
+  <article class="article{{ if $cv }} cv-page{{ end }}">
     <header class="page-heading">
-      {{ if or $project (eq .Section "notes") }}<a class="back-link" href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a>{{ end }}
-      <p class="eyebrow">{{ if $project }}{{ .Params.projectType | default (cond $fr "Projet académique" "Academic project") }}{{ else if eq .Section "notes" }}{{ if $fr }}Note mathématique{{ else }}Mathematical note{{ end }}{{ else }}Marouane Daoudi{{ end }}</p>
+      {{ if or $project $note }}<a class="back-link" href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>{{ end }}
       <h1>{{ .Title }}</h1>
-      {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
-      {{ if or $project (eq .Section "notes") }}<div class="article-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.tags }}<span>{{ delimit . " · " }}</span>{{ end }}</div>{{ end }}
+      {{ if and (or $project $note) .Description }}<p class="article-description">{{ .Description }}</p>{{ end }}
+      {{ if $project }}<p class="article-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>{{ with .Params.projectType }} · {{ . }}{{ end }}</p>{{ end }}
       <div class="resource-links article-resources">
-        {{ with .Params.code }}<a href="{{ . }}">Code GitHub <span aria-hidden="true">↗</span></a>{{ end }}
-        {{ with .Params.report }}<a href="{{ . }}">{{ if $fr }}Rapport{{ else }}Report{{ end }} <span class="file-type">PDF</span></a>{{ end }}
-        {{ with .Params.docs }}<a href="{{ . }}">Documentation <span aria-hidden="true">↗</span></a>{{ end }}
-        {{ with .Params.pdf }}<a class="primary-link" href="{{ . }}">{{ if $fr }}Télécharger le CV{{ else }}Download CV{{ end }} <span class="file-type">PDF</span></a>{{ end }}
+        {{ with .Params.code }}<a href="{{ . }}">[Code]</a>{{ end }}
+        {{ with .Params.report }}<a href="{{ . }}">[PDF]</a>{{ end }}
+        {{ with .Params.docs }}<a href="{{ . }}">[Documentation]</a>{{ end }}
+        {{ with .Params.pdf }}<a href="{{ . }}">[{{ if $fr }}CV en PDF{{ else }}CV as PDF{{ end }}]</a>{{ end }}
         {{ if $cv }}<button class="text-button" data-print hidden>{{ if $fr }}Imprimer{{ else }}Print{{ end }}</button>{{ end }}
       </div>
     </header>
-    {{ if or .Params.contribution .Params.outcome }}<dl class="project-summary">{{ with .Params.contribution }}<div><dt>{{ if $fr }}Contribution{{ else }}Contribution{{ end }}</dt><dd>{{ . }}</dd></div>{{ end }}{{ with .Params.outcome }}<div><dt>{{ if $fr }}À retenir{{ else }}Outcome{{ end }}</dt><dd>{{ . }}</dd></div>{{ end }}</dl>{{ end }}
+    {{ if and (not $cv) (gt (len .TableOfContents) 80) }}<aside class="article-toc"><details open><summary>{{ if $fr }}Sommaire{{ else }}Contents{{ end }}</summary>{{ .TableOfContents }}</details></aside>{{ end }}
     <div class="prose article-body" data-math-content>{{ .Content }}</div>
-    {{ if or $project (eq .Section "notes") }}<footer class="article-end"><p>Marouane Daoudi · Université de Montpellier</p><a href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a></footer>{{ end }}
+    {{ if or $project $note }}<footer class="article-end"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a></footer>{{ end }}
   </article>
-  {{ if gt (len .TableOfContents) 80 }}<aside class="article-toc"><details open><summary>{{ if $fr }}Sur cette page{{ else }}On this page{{ end }}</summary>{{ .TableOfContents }}</details></aside>{{ end }}
 </div>
+{{ end }}
 {{ end }}

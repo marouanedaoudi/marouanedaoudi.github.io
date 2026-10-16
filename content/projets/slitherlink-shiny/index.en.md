@@ -1,120 +1,65 @@
 ---
 title: "Slitherlink Shiny"
 date: 2026-03-31
+lastmod: 2026-10-15
 weight: 3
-description: "R package to play and solve Slitherlink puzzles, with an interactive Shiny interface and a constraint propagation solver."
-summary: "Complete R package for modeling, validating, generating and solving Slitherlink grids, paired with an interactive Shiny app."
+description: "An R package for Slitherlink: local constraint propagation, backtracking and loop validation, with a source-based interactive trace."
+summary: "Follow the actual R solver from local deductions to a valid loop."
 tags: ["R", "Shiny", "Constraints", "Backtracking"]
 math: true
-lastmod: "2026-10-14"
+figures: ["slitherlink"]
 code: "https://github.com/marouanedaoudi/slitherlink-shiny"
 docs: "https://marouanedaoudi.github.io/slitherlink-shiny/"
 projectType: "R package and algorithms"
-contribution: "Grid modelling, constraint-based solver and Shiny interface."
-outcome: "Documented package with grid validation, solving and puzzle generation."
-imageAlt: "Slitherlink puzzle demonstration in the Shiny interface."
+preview: "slitherlink"
 ---
 
-A logic puzzle as a setting for **constraint propagation**, combinatorial search and graph validation. The project connects a reusable algorithmic engine with an interactive R/Shiny interface.
+Slitherlink asks for a single closed loop on a rectangular grid. Each numbered cell specifies how many of its four sides belong to that loop. The package implements the grid model, validation, a constraint solver and a Shiny interface.
 
+## What the solver sees
 
-![Slitherlink Shiny demo](feature.gif)
+The R object stores horizontal edges in an $(n+1)\times m$ matrix and vertical edges in an $n\times(m+1)$ matrix. An edge is undecided (`0`), drawn (`1`) or crossed (`-1`). A blank clue imposes no cell constraint.
 
-## Overview
+For every numbered cell, the number of drawn sides must equal its clue. At the end, every active node must have degree two, and the graph of drawn edges must be connected. **The local clue equations alone do not establish one loop.**
 
-This project is a **playable and testable R package** built around the Slitherlink puzzle. It provides three layers:
+{{< sidenote id="slitherlink-topology" n="1" >}}
+The final validator rejects the empty graph, checks degrees, then traverses the active graph by breadth-first search. See [`validation.R`, lines 56–130](https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/validation.R#L56).
+{{< /sidenote >}}
 
-- a grid model (`slitherlink_grid`) based on two matrices of horizontal and vertical segments;
-- a validation engine that checks both local cell constraints and loop topology;
-- a Shiny application for playing, requesting a hint, undoing a move, generating a random grid or revealing the solution.
+## Four deductions, in source order
 
-The goal was not only to build a game interface, but to turn a logic puzzle into a small, clean algorithmic system: explicit representation, verifiable invariants, reusable solver and pkgdown documentation.
+The walkthrough uses `easy_3x3` and `medium_4x4` from the package’s puzzle library. It ports the R implementation to browser JavaScript and records each changed segment. Coordinates in the explanation are one-based, as in R. Lines mean drawn edges; crosses mean excluded edges.
 
-## The Puzzle
+{{< explorable "slitherlink" >}}
 
-**Slitherlink** is a Japanese logic puzzle: on an $(n+1) \times (m+1)$ grid of dots, you must connect adjacent dots to form a **single closed loop** — no branching, no crossing, no dead ends. The numbers inside the cells constrain how many of their sides belong to the loop.
+For a cell, write $d$ for drawn sides, $u$ for undecided sides and $c$ for the clue. The implementation makes exactly these deductions:
 
-What appears simple on the surface hides a rich combinatorial structure. An $n \times m$ grid has $n(m+1) + m(n+1) = 2nm + n + m$ segments, each of which can be drawn or not — the raw search space is therefore of size $2^{2nm+n+m}$. The clues reduce this space, sometimes down to a unique solution.
+1. If $d=c$, cross every undecided side.
+2. If $d+u=c$, draw every undecided side.
+3. At a node of degree two, cross all remaining incident edges.
+4. At a node with one drawn edge and exactly one undecided edge, draw that edge.
 
-## Modeling
+Each pass visits cells row by row, with sides ordered top, bottom, left, right. It then visits nodes row by row, with incident edges ordered left, right, up, down when present. The original code checks contradictions after a complete cell-and-node pass and repeats until the state stops changing.
 
-In the package, a grid contains:
+## When deductions stop
 
-| Field | Dimension | Role |
-|---|---:|---|
-| `clues` | $n \times m$ | cell clues, with `NA` for unconstrained cells |
-| `seg_h` | $(n+1) \times m$ | horizontal segment states |
-| `seg_v` | $n \times (m+1)$ | vertical segment states |
+{{< algorithm title="Propagation and backtracking" n="1" input="Clues $c_{ij}$ and partial assignment $e_{uv}\in\{-1,0,1\}$." output="First assignment $e$ satisfying clues and the single-loop test, or failure." >}}
+1. Apply the cell rules, then the node rules, until a contradiction or a fixed point.
+2. Reject a contradictory state. If all clues and the connected-loop test pass, return it.
+3. Among numbered cells with free sides, minimize $u-(c-d)$; choose its first free side in source order.
+4. Try that side drawn (`1`) and recurse.
+5. On failure, restore the parent state, try crossed (`-1`) and recurse.
+6. If both branches fail, return failure to the parent.
+{{< /algorithm >}}
 
-Each segment has value `0` (empty), `1` (drawn) or `-1` (crossed). For the mathematical analysis, each resolved segment is assigned a variable $x_s \in \{0, 1\}$. The cell constraints are written:
+When no numbered cell has a free side, selection falls back to the first undecided horizontal edge, then the first undecided vertical edge. The 4×4 example includes an actual rejected hypothesis and a return to its parent state.
 
-$$
-\forall (i,j),\quad \sum_{s \in \partial(i,j)} x_s = c_{i,j}
-$$
+## Validation and limits
 
-where $\partial(i,j)$ denotes the four segments bordering cell $(i,j)$. These local constraints are necessary but not sufficient: the solution must also form a **simple loop**. Formally, letting $G = (V, E)$ be the graph whose vertices are the grid nodes and whose edges are the drawn segments ($x_s = 1$), we require:
+The contradiction checks prune cells that exceed or cannot reach their clues, nodes of degree greater than two, and a closed component containing fewer than all drawn edges. For that last check, the code inspects the component reached from the **first active node**. It does not implement every possible Slitherlink deduction; final validation still checks the whole active graph.
 
-$$
-\forall v \in V,\quad \deg_G(v) \in \{0, 2\} \quad \text{and} \quad G \text{ is connected on } \{v : \deg_G(v) > 0\}
-$$
+`solve_grid()` returns the first solution found. It does **not** prove that a puzzle has only one solution. The random generator separately calls `count_solutions(..., max = 2)` and rejects a candidate unless the returned count is one. The visual trace demonstrates the solver, rather than reproducing the entire Shiny application or its generator.
 
-The degree condition $\{0,2\}$ rules out branching and dead ends; connectivity ensures the uniqueness of the loop.
+## Source
 
-## Solver Engine
-
-The solver combines **constraint propagation**, node-degree rules, contradiction detection and backtracking.
-
-For each cell $(i,j)$, let $k$ be the number of segments already drawn ($x_s = 1$) and $u$ the number of still-undetermined segments among its four borders. The constraint $\sum_{s \in \partial(i,j)} x_s = c_{i,j}$ allows us to deduce:
-
-- if $k = c_{i,j}$: the $u$ undetermined segments are all forced to $0$,
-- if $k + u = c_{i,j}$: the $u$ undetermined segments are all forced to $1$.
-
-These deductions are complemented by node rules: a node that already has two drawn segments forces all other incident segments to be crossed; a node with one drawn segment and a single remaining possibility forces that last edge. The solver repeats these rules until it reaches a fixed point.
-
-If propagation is not enough, backtracking selects an undetermined segment near a highly constrained cell, tries `1`, propagates, then tries `-1` on failure. Contradictions are pruned early:
-
-- a cell already exceeds its clue;
-- a cell can no longer reach its clue with the remaining free segments;
-- a node reaches degree greater than 2;
-- a premature closed loop appears while other drawn segments exist elsewhere.
-
-This separation between propagation, contradiction handling and search makes the solver usable both in the app and from an R session:
-
-```r
-g <- get_puzzle("medium_4x4")
-sol <- solve_grid(g)
-is_solved(sol)
-```
-
-## Validation and Generation
-
-Topology validation traverses the graph of drawn segments. The package checks:
-
-1. every active node has degree exactly 2;
-2. all active nodes belong to a single connected component;
-3. clues are exactly satisfied in strict mode.
-
-The random generator first builds a connected region of cells, turns its boundary into a candidate loop, derives the clues, then rejects grids that do not have a unique solution. This is what lets the **Generate Random** button create playable instances instead of arbitrary grids.
-
-## Shiny App
-
-The package includes an interactive interface for playing, exploring and solving puzzles in real time. Each segment state toggles on click (empty → drawn → crossed), constraint validity is checked after every move, and a timer tracks solving time. A hint system reveals a correct segment on demand; the solver can step in at any moment to display the full solution.
-
-The main controls cover the full play cycle:
-
-| Action | Effect |
-|---|---|
-| `New Game` | loads a grid from the built-in library |
-| `Reset` | resets the current grid |
-| `Solve` | displays the complete solution |
-| `Hint` | reveals one correct segment |
-| `Undo` | reverts the previous action |
-| `Generate Random` | creates a solvable random grid |
-
-## Software Quality
-
-The repository follows a standard R package structure: code in `R/`, app in `inst/shiny/`, documentation in `man/` and `vignettes/`, tests in `tests/testthat/`. The test suite covers grid primitives, validation, the solver and puzzle generation.
-
----
-
-**Documentation:** [marouanedaoudi.github.io/slitherlink-shiny](https://marouanedaoudi.github.io/slitherlink-shiny/) · **Source code:** [GitHub](https://github.com/marouanedaoudi/slitherlink-shiny)
+This explanation follows commit [`a64660ef`](https://github.com/marouanedaoudi/slitherlink-shiny/tree/a64660ef4eecb22d16721c3a4b8065c041c140ea): [`grid.R`](https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/grid.R#L8), [`solver.R`, rules and search](https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/solver.R#L149), and [`puzzles.R`, source grids](https://github.com/marouanedaoudi/slitherlink-shiny/blob/a64660ef4eecb22d16721c3a4b8065c041c140ea/R/puzzles.R#L15).

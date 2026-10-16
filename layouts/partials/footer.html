@@ -1,12 +1,2 @@
 {{ $fr := eq .Language.Lang "fr" }}
-<footer class="site-footer">
-  <div><a class="footer-name" href="{{ .Site.Home.RelPermalink }}">Marouane Daoudi</a><p>{{ if $fr }}Statistique, apprentissage et optimisation.{{ else }}Statistics, learning and optimization.{{ end }}</p></div>
-  <div class="footer-links">
-    <a href="{{ "cv/" | relLangURL }}">CV</a>
-    <a href="https://github.com/marouanedaoudi">GitHub</a>
-    <a href="{{ "contact/" | relLangURL }}">Contact</a>
-    <a href="{{ "index.xml" | relLangURL }}">RSS</a>
-    <a href="#top">{{ if $fr }}Haut de page ↑{{ else }}Back to top ↑{{ end }}</a>
-  </div>
-  <p class="footer-meta">© {{ now.Year }} · Université de Montpellier · {{ if $fr }}Site personnel{{ else }}Personal website{{ end }}</p>
-</footer>
+<footer class="site-footer"><p>© {{ now.Year }} Marouane Daoudi</p><nav aria-label="{{ if $fr }}Pied de page{{ else }}Footer{{ end }}"><a href="{{ "index.xml" | relLangURL }}">RSS</a><a href="#top">{{ if $fr }}Haut de page{{ else }}Back to top{{ end }}</a></nav></footer>

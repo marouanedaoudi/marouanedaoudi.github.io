@@ -1,0 +1,81 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=16mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\hypersetup{pdftitle={Marouane Daoudi - Curriculum vitae},pdfauthor={Marouane Daoudi},pdfsubject={Academic curriculum vitae},pdfcreator={pdfLaTeX},pdflang={fr-FR}}
+\urlstyle{same}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1em}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\newcommand{\cvsection}[1]{\par\vspace{7pt}{\fontsize{12}{14}\selectfont\scshape #1}\par\vspace{2pt}\hrule height 0.3pt\vspace{4pt}}
+\newcommand{\cventry}[3]{\par\vspace{3pt}\textbf{#1} #3\hfill{\fontsize{9.8}{11.5}\selectfont\textit{#2}}\par}
+\newenvironment{cvitems}{\begin{list}{\textbullet}{\setlength{\leftmargin}{1.1em}\setlength{\labelsep}{0.35em}\setlength{\itemsep}{1pt}\setlength{\topsep}{1pt}\setlength{\parsep}{0pt}\setlength{\partopsep}{0pt}}}{\end{list}}
+\begin{document}
+\fontsize{11}{13}\selectfont
+\raggedright
+\begin{center}
+{\fontsize{22}{25}\selectfont\scshape Marouane Daoudi}\\[4pt]
+{\fontsize{9.7}{12}\selectfont Montpellier, France \enspace\textperiodcentered\enspace \href{mailto:marouane.daoudi@etu.umontpellier.fr}{marouane.daoudi@etu.umontpellier.fr}}\\[2pt]
+{\fontsize{9.7}{12}\selectfont \href{https://marouanedaoudi.github.io/}{marouanedaoudi.github.io}\enspace\textperiodcentered\enspace\href{https://github.com/marouanedaoudi}{GitHub: marouanedaoudi}\enspace\textperiodcentered\enspace\href{https://fr.linkedin.com/in/daoudimarouane}{LinkedIn}}\\[5pt]
+{\fontsize{10}{12}\selectfont\textit{À la recherche d'un stage en machine learning à Taïwan.}}
+\end{center}
+\vspace{-5pt}
+\cvsection{Formation}
+\cventry{M2 Statistique et science des données}{2026--2027}{}
+\textit{Université de Montpellier · En cours}\\[1pt]
+\begin{cvitems}
+\item \href{https://formations.umontpellier.fr/fr/formations/master-XB/master-mathematiques-ME157/statistique-et-science-des-donnees-ssd-KKIDCY8N/m2-statistique-et-science-des-donnees-ssd-biostats-KKIDDT0T.html}{Programme} : apprentissage statistique, statistique bayésienne, estimation non paramétrique, modèles linéaires généralisés, analyse multivariée et modèles à variables latentes.
+\end{cvitems}
+\cventry{M1 Mathématiques appliquées}{2025--2026}{}
+\textit{Université de Montpellier}\\[1pt]
+\begin{cvitems}
+\item Probabilités et processus stochastiques, statistique inférentielle, optimisation, séries temporelles, théories de l'information et de la décision, analyse multidimensionnelle, modèles linéaires et développement logiciel.
+\end{cvitems}
+\cventry{Licence 3 Mathématiques}{2024--2025}{}
+\textit{Université de Montpellier}\\[1pt]
+\begin{cvitems}
+\item Théorie de la mesure, probabilités, modélisation stochastique, optimisation convexe, analyse numérique, calcul différentiel et topologie.
+\end{cvitems}
+\cventry{Classes préparatoires scientifiques (CPGE)}{2022--2024}{}
+\textit{Lycée Descartes, Tours}\\[1pt]
+\begin{cvitems}
+\item Formation intensive en mathématiques, physique et informatique.
+\end{cvitems}
+\cventry{Baccalauréat général}{2022}{}
+\textit{Lycée Jean Moulin, Béziers · Mention Bien}\\[1pt]
+\cvsection{Projets sélectionnés}
+\cventry{Bandits adaptatifs et tests multiples}{2025--2026}{{\fontsize{9}{10.5}\selectfont\enspace \href{https://marouanedaoudi.github.io/fr/projets/bandit-simulation/}{Présentation} · \href{https://github.com/Chams22/bandit_approach_simulation}{Code} · \href{https://marouanedaoudi.github.io/uploads/bandit.pdf}{Rapport}}}
+{\fontsize{9.7}{11.5}\selectfont Avec Ines Bahraoui et Chams-Eddine Bouaziz ; encadrement : Adrien Nguyen-Huu et Luka Boisgibault.}\par
+\begin{cvitems}
+\item Étude et implémentation de méthodes de tests multiples séquentiels ; comparaison des allocations adaptative et uniforme ; simulations et analyse des limites statistiques.
+\end{cvitems}
+\cventry{L1BallPGD}{2025}{{\fontsize{9}{10.5}\selectfont\enspace \href{https://marouanedaoudi.github.io/fr/projets/pgd/}{Présentation} · \href{https://github.com/marouanedaoudi/L1BallPGD}{Code}}}
+\begin{cvitems}
+\item Implémentations NumPy de PGD et FISTA pour les moindres carrés sous contrainte L1, avec projection exacte sur la boule L1, expériences synthétiques et comparaison numérique avec scikit-learn.
+\end{cvitems}
+\cventry{Slitherlink Shiny}{2026}{{\fontsize{9}{10.5}\selectfont\enspace \href{https://marouanedaoudi.github.io/fr/projets/slitherlink-shiny/}{Présentation} · \href{https://github.com/marouanedaoudi/slitherlink-shiny}{Code} · \href{https://marouanedaoudi.github.io/slitherlink-shiny/}{Documentation}}}
+\begin{cvitems}
+\item Package R avec validation de grilles, propagation de contraintes, backtracking, génération de puzzles et interface Shiny interactive.
+\end{cvitems}
+\cventry{Recip Score}{2024}{{\fontsize{9}{10.5}\selectfont\enspace \href{https://marouanedaoudi.github.io/fr/projets/recipscore/}{Présentation} · \href{https://github.com/akram3409/recip_score}{Code}}}
+{\fontsize{9.7}{11.5}\selectfont Avec Akram El Mahzoum, Chams-Eddine Bouaziz et Moussa Diagne.}\par
+\begin{cvitems}
+\item Application Python croisant données de recettes et données nutritionnelles pour calculer des scores et sélectionner des recettes à partir d'ingrédients disponibles.
+\end{cvitems}
+\cvsection{Compétences techniques}
+\begin{cvitems}
+\item \textbf{Python :} NumPy, pandas, scikit-learn ; calcul numérique et analyse de données.
+\item \textbf{R :} dplyr, Shiny ; programmation statistique et développement de packages.
+\item \textbf{Outils :} SQL, LaTeX, Git et GitHub.
+\end{cvitems}
+\cvsection{Langues}
+Anglais : C1 · Arabe : intermédiaire · Espagnol : scolaire\par
+
+\end{document}

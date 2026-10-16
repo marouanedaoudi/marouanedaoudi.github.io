@@ -1,0 +1,29 @@
+{{ $fr := eq .Language.Lang "fr" }}{{ $archived := .Resources.GetMatch "benchmark.png" }}
+<div data-pgd-figure data-language="{{ .Language.Lang }}" data-source="{{ "data/pgd-benchmark.json" | relURL }}">
+  <figure class="scientific-figure" id="pgd-geometry">
+    <figcaption>{{ if $fr }}Les itérés projetés restent dans la boule L1{{ else }}Projected iterates remain in the L1 ball{{ end }}</figcaption>
+    <p class="figure-source">{{ if $fr }}Instance illustrative en dimension 2 : X = diag(1, 3), y = (2, 3), β₀ = 0 et η = 1/9. Cette géométrie ne représente pas une projection du benchmark en dimension 200.{{ else }}Illustrative two-dimensional instance: X = diag(1, 3), y = (2, 3), β₀ = 0 and η = 1/9. This geometry is not a projection of the 200-dimensional benchmark.{{ end }}</p>
+    <div class="figure-controls">
+      <label>{{ if $fr }}Rayon τ{{ else }}Radius τ{{ end }} <input data-pgd-radius type="range" min="0" max="4" step="0.1" value="2"><output data-pgd-radius-value>2</output></label>
+      <label>{{ if $fr }}Itération k{{ else }}Iteration k{{ end }} <input data-pgd-iteration type="range" min="0" max="160" step="1" value="20"><output data-pgd-iteration-value>20</output></label>
+      <label>{{ if $fr }}Pas détaillé{{ else }}Detailed step{{ end }} <select data-pgd-method><option value="pgd">PGD</option><option value="fista">FISTA</option></select></label>
+      <label><input data-pgd-step type="checkbox">{{ if $fr }}Afficher le point avant projection qₖ{{ else }}Show the point before projection qₖ{{ end }}</label>
+    </div>
+    <svg data-pgd-geometry role="img" viewBox="0 0 600 420" aria-label="{{ if $fr }}Géométrie de la projection sur la boule L1{{ else }}L1-ball projection geometry{{ end }}"></svg>
+    <p data-pgd-geometry-readout class="figure-readout" aria-live="polite"></p>
+    <details><summary>{{ if $fr }}Valeurs des itérés sélectionnés{{ else }}Selected iterate values{{ end }}</summary><table><thead><tr><th>{{ if $fr }}Méthode{{ else }}Method{{ end }}</th><th>k</th><th>β₁</th><th>β₂</th><th>f(β)</th></tr></thead><tbody data-pgd-geometry-values></tbody></table></details>
+    <p class="figure-source">{{ if $fr }}Les ellipses montrent trois niveaux de la perte. Le cercle vide βlibre est le minimum sans contrainte. Le losange est la contrainte ‖β‖₁ ≤ τ. PGD : trait gris continu ; FISTA : trait marine discontinu. Le point qₖ précède la projection, qui n’est pas une simple mise à l’échelle radiale. Les 160 itérations sont conservées pour l’exploration, sans arrêt anticipé.{{ else }}Ellipses show three loss levels. The empty circle βfree is the unconstrained minimum. The diamond is the constraint ‖β‖₁ ≤ τ. PGD: solid gray; FISTA: dashed navy. The point qₖ precedes projection, which is not radial rescaling. All 160 iterations are retained for exploration, without early stopping.{{ end }}</p>
+  </figure>
+  <figure class="scientific-figure" id="pgd-convergence">
+    <figcaption>{{ if $fr }}FISTA atteint plus tôt de faibles écarts de perte observés{{ else }}FISTA reaches small observed loss differences earlier{{ end }}</figcaption>
+    <p data-pgd-benchmark-parameters class="figure-source"></p>
+    <div class="figure-controls"><label>{{ if $fr }}Itération examinée{{ else }}Inspect iteration{{ end }} <input data-pgd-benchmark-iteration type="range" min="1" max="1250" step="1" value="200"><output data-pgd-benchmark-value>200</output></label></div>
+    <svg data-pgd-convergence role="img" viewBox="0 0 600 370" aria-label="{{ if $fr }}Écarts de perte numérique de PGD et FISTA{{ else }}PGD and FISTA numerical loss differences{{ end }}"></svg>
+    <p data-pgd-benchmark-readout class="figure-readout" aria-live="polite"></p>
+    <details><summary>{{ if $fr }}Valeurs numériques sélectionnées{{ else }}Selected numerical values{{ end }}</summary><table><thead><tr><th>{{ if $fr }}Méthode{{ else }}Method{{ end }}</th><th>k</th><th>f(βₖ)</th><th>f(βₖ) − fref</th><th>{{ if $fr }}Non nuls{{ else }}Nonzeros{{ end }}</th></tr></thead><tbody data-pgd-benchmark-values></tbody></table></details>
+    <p data-pgd-benchmark-reference class="figure-source"></p>
+    <p class="figure-source">{{ if $fr }}Courbes recalculées avec les fonctions et paramètres du{{ else }}Curves recomputed using the functions and configuration of the{{ end }} <a href="https://github.com/marouanedaoudi/L1BallPGD/blob/3001c0510716078ee3d1117bbef456f54ec5b2fc/scripts/benchmark.py#L27">benchmark L1BallPGD</a>. {{ if $fr }}Le rayon est la norme L1 des coefficients ajustés par scikit-learn. fref est la meilleure perte numérique observée, sans certification de l’optimum.{{ else }}The radius is the L1 norm of the coefficients fitted by scikit-learn. fref is the best observed numerical loss, not a certified optimum.{{ end }} <a href="{{ "data/pgd-benchmark.json" | relURL }}">[{{ if $fr }}Données et provenance{{ else }}Data and provenance{{ end }}]</a></p>
+  </figure>
+  <p data-pgd-status class="figure-source" role="status">{{ if $fr }}Chargement des données des figures.{{ else }}Loading figure data.{{ end }}</p>
+  <noscript><p>{{ if $fr }}Activez JavaScript pour modifier les paramètres. Le benchmark archivé reste consultable ci-dessous.{{ else }}Enable JavaScript to vary the parameters. The archived benchmark is available below.{{ end }}</p><img src="{{ with $archived }}{{ .RelPermalink }}{{ else }}{{ "projets/pgd/benchmark.png" | relURL }}{{ end }}" alt="{{ if $fr }}Figure archivée comparant les pertes de PGD et FISTA et les coefficients estimés{{ else }}Archived figure comparing PGD and FISTA losses and coefficient estimates{{ end }}"></noscript>
+</div>

@@ -1,0 +1,237 @@
+{
+  "source": "https://github.com/akram3409/recip_score",
+  "commit": "555fd16f85f032bfe999311d2bb26f5a57f88f35",
+  "license": "MIT",
+  "examples": [
+    {
+      "title": "3-Ingredient Buttermilk Biscuits",
+      "ingredients": [
+        {
+          "name": "flour",
+          "reference": "Flour, bread, white, enriched, unbleached",
+          "line": 119,
+          "quantity": 2.0,
+          "gramsPerUnit": 240.0,
+          "energy_kcal": 363.0,
+          "sugar_g": 0.31,
+          "fat_g": 1.65,
+          "fiber_g": 2.4,
+          "protein_g": 14.3,
+          "sodium_mg": 3.0
+        },
+        {
+          "name": "vegetable shortening",
+          "reference": "Shortening, household, lard and vegetable oil",
+          "line": 120,
+          "quantity": 0.25,
+          "gramsPerUnit": 240.0,
+          "energy_kcal": 900.0,
+          "sugar_g": 0.0,
+          "fat_g": 100.0,
+          "fiber_g": 0.0,
+          "protein_g": 0.0,
+          "sodium_mg": 0.0
+        },
+        {
+          "name": "buttermilk",
+          "reference": "Buttermilk, low fat",
+          "line": 121,
+          "quantity": 0.67,
+          "gramsPerUnit": 240.0,
+          "energy_kcal": 43.0,
+          "sugar_g": 5.36,
+          "fat_g": 1.08,
+          "fiber_g": 0.0,
+          "protein_g": 3.46,
+          "sodium_mg": 92.0
+        }
+      ],
+      "stored": {
+        "line": 14,
+        "grade": "C",
+        "Energy_kcal": 335.55,
+        "Fat_g": 9.94,
+        "Sugar_g": 1.44,
+        "Fiber_g": 1.64,
+        "Protein_g": 10.59,
+        "Salt_g": 0.06,
+        "Total_Weight_g": 700.8
+      }
+    },
+    {
+      "title": "Baked Chicken with White Beans and Tomatoes",
+      "ingredients": [
+        {
+          "name": "bacon",
+          "reference": "Bacon, meatless",
+          "line": 2091,
+          "quantity": 6.0,
+          "gramsPerUnit": 12.0,
+          "energy_kcal": 309.0,
+          "sugar_g": 0.0,
+          "fat_g": 29.52,
+          "fiber_g": 2.6,
+          "protein_g": 11.69,
+          "sodium_mg": 1465.0
+        },
+        {
+          "name": "chicken thigh",
+          "reference": "Chicken, broiler or fryers, breast",
+          "line": 2092,
+          "quantity": 4.0,
+          "gramsPerUnit": 130.0,
+          "energy_kcal": 144.2,
+          "sugar_g": 0.0,
+          "fat_g": 3.2060000000000004,
+          "fiber_g": 0.0,
+          "protein_g": 28.568,
+          "sodium_mg": 106.2
+        },
+        {
+          "name": "onion",
+          "reference": "Soup, onion, canned",
+          "line": 2093,
+          "quantity": 2.0,
+          "gramsPerUnit": 150.0,
+          "energy_kcal": 46.0,
+          "sugar_g": 2.72,
+          "fat_g": 1.42,
+          "fiber_g": 0.7,
+          "protein_g": 3.06,
+          "sodium_mg": 516.0
+        },
+        {
+          "name": "tomato",
+          "reference": "Tomato, roma",
+          "line": 2094,
+          "quantity": 1.0,
+          "gramsPerUnit": 400.0,
+          "energy_kcal": 22.0,
+          "sugar_g": 2.63,
+          "fat_g": 0.42,
+          "fiber_g": 1.0,
+          "protein_g": 0.7,
+          "sodium_mg": 0.0
+        },
+        {
+          "name": "white bean",
+          "reference": "Beans, white, mature seeds",
+          "line": 2095,
+          "quantity": 2.0,
+          "gramsPerUnit": 400.0,
+          "energy_kcal": 181.25,
+          "sugar_g": 0.77,
+          "fat_g": 0.4599999999999999,
+          "fiber_g": 8.15,
+          "protein_g": 12.52,
+          "sodium_mg": 151.0
+        }
+      ],
+      "stored": {
+        "line": 232,
+        "grade": "A",
+        "Energy_kcal": 126.59,
+        "Fat_g": 2.27,
+        "Sugar_g": 1.19,
+        "Fiber_g": 3.5,
+        "Protein_g": 12.86,
+        "Salt_g": 0.52,
+        "Total_Weight_g": 2092.0
+      }
+    },
+    {
+      "title": "3-Ingredient Buffalo Grilled Chicken Wings",
+      "ingredients": [
+        {
+          "name": "chicken wing",
+          "reference": "Chicken, broiler or fryers, breast",
+          "line": 113,
+          "quantity": 2.0,
+          "gramsPerUnit": 453.592,
+          "energy_kcal": 144.2,
+          "sugar_g": 0.0,
+          "fat_g": 3.2060000000000004,
+          "fiber_g": 0.0,
+          "protein_g": 28.568,
+          "sodium_mg": 106.2
+        },
+        {
+          "name": "vegetable oil",
+          "reference": "Oil, PAM cooking spray, original",
+          "line": 114,
+          "quantity": 1.0,
+          "gramsPerUnit": 15.0,
+          "energy_kcal": 792.0,
+          "sugar_g": 0.0,
+          "fat_g": 78.69,
+          "fiber_g": 0.0,
+          "protein_g": 0.26,
+          "sodium_mg": 59.0
+        },
+        {
+          "name": "salt",
+          "reference": "Salt, table",
+          "line": 115,
+          "quantity": 1.0,
+          "gramsPerUnit": 5.0,
+          "energy_kcal": 0.0,
+          "sugar_g": 0.0,
+          "fat_g": 0.0,
+          "fiber_g": 0.0,
+          "protein_g": 0.0,
+          "sodium_mg": 38758.0
+        },
+        {
+          "name": "black pepper",
+          "reference": "Pepper, banana, raw",
+          "line": 116,
+          "quantity": 0.5,
+          "gramsPerUnit": 5.0,
+          "energy_kcal": 27.0,
+          "sugar_g": 1.95,
+          "fat_g": 0.45,
+          "fiber_g": 3.4,
+          "protein_g": 1.66,
+          "sodium_mg": 13.0
+        },
+        {
+          "name": "butter",
+          "reference": "Butter, Clarified butter (ghee)",
+          "line": 117,
+          "quantity": 0.25,
+          "gramsPerUnit": 240.0,
+          "energy_kcal": 900.0,
+          "sugar_g": 0.0,
+          "fat_g": 100.0,
+          "fiber_g": 0.0,
+          "protein_g": 0.0,
+          "sodium_mg": 0.0
+        },
+        {
+          "name": "hot sauce",
+          "reference": "Sauce, alfredo mix, dry",
+          "line": 118,
+          "quantity": 0.33,
+          "gramsPerUnit": 240.0,
+          "energy_kcal": 535.0,
+          "sugar_g": 5.4,
+          "fat_g": 36.35,
+          "fiber_g": 2.0,
+          "protein_g": 15.32,
+          "sodium_mg": 2590.0
+        }
+      ],
+      "stored": {
+        "line": 13,
+        "grade": "E",
+        "Energy_kcal": 223.72,
+        "Fat_g": 12.13,
+        "Sugar_g": 0.4,
+        "Fiber_g": 0.16,
+        "Protein_g": 25.39,
+        "Salt_g": 1.16,
+        "Total_Weight_g": 1068.88
+      }
+    }
+  ]
+}

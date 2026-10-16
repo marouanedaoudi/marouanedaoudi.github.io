@@ -1,0 +1,2 @@
+{{ $kind := .Get "kind" | default "theorem" }}{{ $fr := eq .Page.Language.Lang "fr" }}{{ $labels := dict "theorem" (cond $fr "Théorème" "Theorem") "lemma" (cond $fr "Lemme" "Lemma") "proposition" "Proposition" "definition" (cond $fr "Définition" "Definition") }}
+<section class="math-environment"{{ with .Get "id" }} id="{{ . }}"{{ end }} data-kind="{{ $kind }}"><p class="environment-label">{{ index $labels $kind }}{{ with .Get "title" }} ({{ . }}){{ end }}.</p><div class="environment-body">{{ .Inner | markdownify }}</div></section>

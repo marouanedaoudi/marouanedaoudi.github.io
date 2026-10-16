@@ -1,90 +1,73 @@
 ---
 title: "Recip Score"
 date: 2024-02-10
+lastmod: 2026-10-15
 weight: 4
-description: "Python team project combining nutritional and recipe data to compute scores and filter recipes by available ingredients."
-summary: "From data processing to a web application for recipe selection."
+description: "A Python team project joining recipe and nutritional data. An interactive example traces actual ingredient rows through the historical scoring implementation."
+summary: "From matched ingredients to weighted nutrient values and a historical score."
 tags: ["Python", "Data analysis", "Team project"]
 math: true
-lastmod: "2026-10-14"
+figures: ["recip"]
 code: "https://github.com/akram3409/recip_score"
 projectType: "Team data project"
-contribution: "Team contribution to data processing and score computation."
-outcome: "Web application combining two data sources and an ingredient-based filter."
-imageAlt: "Overview of the Recip Score project."
+preview: "recip"
 ---
 
-**Recip Score** is a team project with Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne. It combines **Python** data processing with a web application for exploring recipes through nutritional composition and available ingredients.
+With Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne. The project combines recipe ingredients with nutritional reference data, computes a recipe-level score and exposes the results through a Flask application.
 
-The formulas below describe the historical scoring version studied in the project. They are not a description of the current official rules or a nutritional validation of the recipes.
+This page explains **the code actually present in the repository**. Its historical scoring implementation is not a statement of the current official Nutri-Score rules and does not validate the nutritional quality of a recipe.
 
+## From names to numerical inputs
 
-## The Problem
+The pipeline starts from [USDA FoodData Central](https://fdc.nal.usda.gov/download-datasets) and a [recipe dataset](https://github.com/josephrmartinez/recipe-dataset). Ingredient names are normalized and matched to nutritional descriptions by overlapping words. The selection favors earlier shared-word positions, then their mean position, then the number of shared words. This is a text-matching heuristic, not a semantic guarantee that the two foods are equivalent.
 
-The **Nutri-Score** is an official nutritional indicator (grades A to E) well-defined for processed food products. Applying it to **recipes** is harder: a recipe is an assembly of ingredients in variable proportions, whose nutritional data must be aggregated from raw databases, normalized per 100g, and then fed to the scoring algorithm.
+{{< sidenote id="recip-matching" n="1" >}}
+The exact selection key is `(min(indices), mean(indices), -number_of_shared_words)`. See [`database_joint.py`, lines 238–255](https://github.com/akram3409/recip_score/blob/555fd16f85f032bfe999311d2bb26f5a57f88f35/backend/database_joint.py#L238). The figure keeps the matched reference visible so this uncertainty is not hidden by the final letter.
+{{< /sidenote >}}
 
-This project provides a web application that automates this computation and additionally lets users discover the best recipes they can make from the ingredients they have on hand.
+## Follow three actual recipes
 
-## Data
+Choose a recipe and advance from ingredient masses to absolute contributions, values per 100 g and the final scoring branch. The examples use the repository’s ingredient CSV, rather than invented nutrient values. The stored result and the recomputed result are shown separately.
 
-- **Nutritional database:** USDA Food Data Central — several hundred thousand foods with detailed compositions (macronutrients, fiber, sodium, etc.) per 100g.
-- **Recipes:** open-source dataset by Joseph R. Martinez (GitHub), containing ingredients and quantities for thousands of recipes.
+{{< explorable "recip" >}}
 
-The ETL pipeline joins these two sources by ingredient name matching (after text normalization), then aggregates nutritional values weighted by quantities to obtain the full recipe composition **per 100g of dish**.
-
-## The Nutri-Score Algorithm
-
-Nutri-Score relies on an **integer score** $S \in [-15, +40]$ combining negative points (nutrients to limit) and positive points (nutrients to favor):
+For ingredient $i$, the implemented mass is $w_i=q_i u_i$, where $q_i$ is `quantity_num` and $u_i$ is `grams_per_unit`. A nutrient value $v_i$ per 100 g contributes $w_i v_i/100$ to the recipe. Thus the recipe value per 100 g is
 
 $$
-S = N - P
+v_{100}=\frac{\sum_i w_i v_i}{\sum_i w_i}.
 $$
 
-### Negative Points $N$ (0 to 40)
 
-Each of four nutrients contributes 0 to 10 points according to stepped thresholds:
+The code converts sodium in milligrams to salt in grams using the factor $2.5/1000$. Non-numeric inputs are coerced to zero. A total mass at most $0.1$ g produces the unknown grade `?`. No cooking yield or water-loss correction is applied here.
 
-| Nutrient | 0 pts | ... | 10 pts |
-|----------|-------|-----|--------|
-| Energy (kJ/100g) | $\leq 335$ | | $> 3350$ |
-| Saturated fatty acids (g/100g) | $\leq 1$ | | $> 10$ |
-| Sugars (g/100g) | $\leq 4{.}5$ | | $> 45$ |
-| Sodium (mg/100g) | $\leq 90$ | | $> 900$ |
+## The implemented scoring rule
 
-Formally, for nutrient $i$ with value $v_i$, let $n_i(v_i) \in \{0, \ldots, 10\}$ denote the number of thresholds crossed; then $N = \sum_{i} n_i(v_i)$.
+{{< algorithm title="Historical recipe score" n="1" input="Nutrient values $v_{100}$ per 100 g and total mass $W$." output="Score $S=A-C$ and grade A–E; ? if the mass is insufficient." >}}
+1. If $W\leq0.1$ g, return the unknown grade ?.
+2. Count the thresholds reached or exceeded (`>=`) for energy, sugars, total fat and salt; sum these points into $A$.
+3. Count fibre points and protein points. Set fruit/vegetable points to zero.
+4. If $A\geq11$, let $C$ be the fibre points; otherwise add the protein points. Compute $S=A-C$.
+5. Assign A for $S\leq-1$, B for $S\leq2$, C for $S\leq10$, D for $S\leq18$, and E otherwise.
+6. Compute the letter before rounding the exported nutrient values to two decimals.
+{{< /algorithm >}}
 
-### Positive Points $P$ (0 to 15)
+The negative-point thresholds in the source are:
 
-| Component | 0 pts | ... | max |
-|-----------|-------|-----|-----|
-| Fiber (g/100g) | $< 0{.}7$ | | 5 pts ($\geq 3{.}5$) |
-| Protein (g/100g) | $< 1{.}6$ | | 5 pts ($\geq 8$) |
-| Fruits/vegetables (%) | $< 40\%$ | | 5 pts ($\geq 80\%$) |
+| Input column | Thresholds counted with `>=` |
+|---|---|
+| Energy, **kcal** per 100 g | 335, 670, 1005, 1340, 1675, 2010, 2345, 2680, 3015, 3350 |
+| Sugars, g per 100 g | 4.5, 9, 13.5, 18, 22.5, 27, 31.5, 36, 40.5, 45 |
+| **Total fat**, g per 100 g | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 |
+| Salt, g per 100 g | 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.90 |
 
-### Grade Assignment
+Fibre thresholds are 0.9, 1.9, 2.8, 3.7 and 4.7 g; protein thresholds are 1.6, 3.2, 4.8, 6.4 and 8 g. **Energy thresholds are applied directly to a kcal column, and the column used for saturated-fat points actually contains total fat.** These implementation choices are reproduced in the figure, not silently corrected.
 
-$$
-\text{Grade} = \begin{cases} A & \text{if } S \leq -1 \\ B & \text{if } 0 \leq S \leq 2 \\ C & \text{if } 3 \leq S \leq 10 \\ D & \text{if } 11 \leq S \leq 18 \\ E & \text{if } S \geq 19 \end{cases}
-$$
+## What the result does and does not mean
 
-### Application to Recipes
+The letter depends on ingredient matching, quantity conversion, missing values and the scoring code. Near a threshold, recomputing from a rounded exported CSV can differ from the pre-rounding calculation. The figure therefore separates full-precision recomputation, stored CSV grade and recomputation from rounded CSV values.
 
-For a recipe made of ingredients $1, \ldots, K$ in quantities $q_1, \ldots, q_K$ (in grams), the nutritional value per 100g of dish for a given nutrient is:
+The ingredient-search API intersects the sets of recipes containing each selected ingredient. That finds recipes containing **all requested ingredients**; it does not prove they require no other ingredients, and the endpoint does not rank its results by the score.
 
-$$
-v = \frac{\sum_{k=1}^K q_k \cdot v_k^{(100\text{g})}}{{\sum_{k=1}^K q_k}}
-$$
+## Source
 
-where $v_k^{(100\text{g})}$ is the nutrient content of ingredient $k$ per 100g. The scoring implementation used in the project is then applied to these aggregated values.
-
-## Recommendation Engine
-
-The application lets users enter their available ingredients. The engine filters feasible recipes (those whose ingredients are all present or substitutable) and ranks them by Nutri-Score, guiding the user toward the most nutritious options among what they can cook.
-
-## Web Application
-
-The repository documents a deployment on PythonAnywhere. It was developed as a team project with Akram El Mahzoum, Chams-Eddine Bouaziz and Moussa Diagne.
-
----
-
-**Source code:** [GitHub](https://github.com/akram3409/recip_score)
+Pinned code: commit [`555fd16f`](https://github.com/akram3409/recip_score/tree/555fd16f85f032bfe999311d2bb26f5a57f88f35). Calculation: [`nutriscore_calculation.py`](https://github.com/akram3409/recip_score/blob/555fd16f85f032bfe999311d2bb26f5a57f88f35/backend/nutriscore_calculation.py#L80). Examples: [`recipe_ingredient_nutrition_clean.csv`](https://github.com/akram3409/recip_score/blob/555fd16f85f032bfe999311d2bb26f5a57f88f35/datasets/donnees_propres/recipe_ingredient_nutrition_clean.csv) and [`recipe_nutriscore.csv`](https://github.com/akram3409/recip_score/blob/555fd16f85f032bfe999311d2bb26f5a57f88f35/datasets/donnees_propres/recipe_nutriscore.csv). Ingredient intersection: [`app.py`, lines 226–272](https://github.com/akram3409/recip_score/blob/555fd16f85f032bfe999311d2bb26f5a57f88f35/app.py#L226).

@@ -7,6 +7,8 @@
     function setThemeState() {
       var dark = document.documentElement.dataset.theme === "dark";
       theme.setAttribute("aria-pressed", String(dark));
+      var themeColor = document.querySelector('meta[name="theme-color"]');
+      if (themeColor) themeColor.content = getComputedStyle(document.documentElement).getPropertyValue("--paper").trim();
       theme.setAttribute("aria-label", fr ? "Thème sombre" : "Dark theme");
     }
     setThemeState();
@@ -54,7 +56,7 @@
         note.hidden = !tokens.every(function (word) { return normalize(note.dataset.note).includes(word); });
         if (!note.hidden) count++;
       });
-      noteCount.textContent = fr ? count + " note(s)" : count + " note(s)";
+      noteCount.textContent = count ? count + (count === 1 ? " note" : " notes") : (fr ? "Aucune note. Essayez un autre titre ou sujet." : "No notes. Try another title or topic.");
     }
     noteQuery.addEventListener("input", filterNotes);
     filterNotes();
@@ -73,7 +75,7 @@
     if (!index) return;
     var tokens = normalize(input.value).trim().split(/\s+/).filter(Boolean);
     results.replaceChildren();
-    if (!tokens.length) { status.textContent = fr ? "Saisissez un sujet pour parcourir le site." : "Enter a topic to explore the site."; return; }
+    if (!tokens.length) { status.textContent = fr ? "Recherchez un projet ou une note mathématique." : "Search projects and mathematical notes."; return; }
     var matches = index.map(function (page) {
       var title = normalize(page.title);
       var text = normalize(page.title + " " + page.description + " " + page.text);
@@ -81,7 +83,7 @@
       var score = tokens.reduce(function (sum, word) { return sum + (title.includes(word) ? 10 : 1); }, 0);
       return { page: page, match: match, score: score };
     }).filter(function (item) { return item.match; }).sort(function (a, b) { return b.score - a.score; });
-    status.textContent = matches.length ? (fr ? matches.length + " résultat(s)" : matches.length + " result(s)") : (fr ? "Aucun résultat. Essayez un autre mot-clé." : "No results. Try another keyword.");
+    status.textContent = matches.length ? (fr ? matches.length + (matches.length === 1 ? " résultat" : " résultats") : matches.length + (matches.length === 1 ? " result" : " results")) : (fr ? "Aucun résultat. Essayez un autre mot-clé." : "No results. Try another keyword.");
     matches.slice(0, 15).forEach(function (item) {
       var li = document.createElement("li");
       var link = document.createElement("a");
